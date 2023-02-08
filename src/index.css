@@ -1,0 +1,2621 @@
+@import url('https://fonts.googleapis.com/css2?family=Maitree:wght@200;300;400;500;600;700;800;900&family=Syne:wght@400;500;600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Quicksand:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700;800;900&family=Secular+One&display=swap');
+@font-face {font-family: blanka; src: url('https://res.cloudinary.com/iodiary/raw/upload/v1641255618/fonts/blanka_naxhhv.otf');
+    font-display: swap;}
+@font-face {font-family: phantom; src: url('https://res.cloudinary.com/iodiary/raw/upload/v1641255621/fonts/phantom_wxqtkb.otf');
+    font-display: swap;}
+@font-face {font-family: cubano; src: url('https://res.cloudinary.com/iodiary/raw/upload/v1641255618/fonts/cubano_bcjpiu.ttf');
+    font-display: swap;}
+
+:root{
+    --accent-color: #0052FF;
+	--accent-hover: #0052FF33;
+    --accent-transparent: #5D26C133;
+    --dark-blue: #000010;
+    --dim-blue: #010025;
+    --dark-black: #0a0a0a;
+	--black: #000000;
+    --white: #ffffff;
+	--milk: #f5f6f7;
+	--maitree: 'Maitree', serif;
+	--syne: 'Syne', sans-serif;
+	--slab: 'Roboto Slab', serif;
+	--lato: 'Lato', sans-serif;
+    --mulish: 'Mulish', sans-serif;
+	--karla: 'Karla', sans-serif;
+	--noto: 'Noto Sans JP', sans-serif;
+	--quicksand: 'Quicksand', sans-serif;
+	--rubik: 'Rubik', sans-serif;
+	--secular: 'Secular One', sans-serif;
+	--blanka: blanka;
+    --cubano: cubano;
+    --phantom: phantom;
+	--slate: #8892b0;
+	--light-slate: #a8b2d1;
+	--lightest-slate: #ccd6f6;
+    --dark-slate: #495670;
+	--dark-purple: #7F00FF;
+	--custom-green: #45a247;
+	--custom-red: red;
+}
+
+body{
+    background-color: var(--milk)!important;
+    -moz-osx-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    user-zoom: none!important;
+    -webkit-user-zoom: none!important;
+    -moz-user-zoom: none!important;
+    -moz-touch-callout: none!important;
+    -webkit-touch-callout: none!important;
+	scroll-behavior: smooth!important;
+}
+html{
+    scroll-behavior: smooth!important;
+}
+a{
+    text-decoration: none!important;
+    -moz-touch-callout: none!important;
+    -webkit-touch-callout: none!important;
+}
+img{
+    -moz-touch-callout: none!important;
+    -webkit-touch-callout: none!important;
+    object-fit: cover!important;
+    object-position: center!important;
+}
+.Toastify .Toastify__toast-body{
+    font-family: var(--karla)!important;
+	font-weight: 500!important;
+	font-size: 13px;
+}
+
+/* App Global Styles */
+.App{
+	padding: 0px 15px;
+	scroll-behavior: smooth!important;
+	background-color: var(--white);
+	min-height: 100vh!important;
+	height: auto!important;
+}
+.App.private{
+    padding: 0px;
+    overflow-x: hidden!important;
+}
+#scrollContainer{
+	scroll-behavior: smooth!important;
+}
+.spin svg{
+    -webkit-animation: spin-animation 0.7s infinite linear;
+    animation: spin-animation 0.7s infinite linear;
+}
+
+
+/* Auth Section */
+
+.authApp{
+    border: none;
+}
+.authApp nav{
+    border: none;
+    display: flex;
+}
+.authApp nav ul{
+    list-style: none;
+    display: flex;
+    padding: 20px 105px;
+    align-items: center;
+    margin: 0px;
+}
+.authApp nav.register ul{
+    padding: 20px 50px;
+    width: 100%;
+}
+.authApp nav ul li{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+.authApp nav ul li img{
+    border-radius: 50%;
+}
+.authApp nav ul li a{
+    font-family: var(--secular);
+    font-weight: 700!important;
+    color: var(--dark-black);
+    font-size: 18px;
+    color: var(--accent-color);
+    margin-left: 8px;
+    color: orange;
+}
+.authApp nav ul li a span{
+    color: var(--black);
+}
+.authApp .authSection .authGradientDiv{
+    background: #36D1DC;
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+    background: linear-gradient(to right, #5B86E5, #36D1DC);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 150px 100px;
+    min-height: 100vh;
+    position: sticky!important;
+    top: 0;
+    height: 100vh;
+}
+.authApp .authSection .authGradientDiv div{
+    border: none;
+    text-align: center;
+}
+.authApp .authSection .authGradientDiv div img{
+    border-radius: 15px;
+}
+.authApp .authSection .authGradientDiv div h4{
+    color: var(--white);
+    text-align: center;
+    margin: 0px;
+    padding: 50px 0px;
+    font-family: var(--secular);
+    font-weight: 200!important;
+    line-height: 35px;
+    font-size: 22px;
+}
+.authApp .authSection .authLoginSection{
+    padding: 20px 120px;
+}
+.authApp .authSection .authLoginSection.registerContent{
+    padding: 20px 60px;
+}
+
+.authApp .authSection .authLoginSection h2{
+    font-family: var(--secular);
+    font-size: 30px;
+    font-weight: 800!important;
+    color: var(--black);
+    margin: 0px;
+}
+.authApp .authSection .authLoginSection p{
+    margin: 0px;
+    color: var(--dark-slate);
+    font-family: var(--syne);
+    padding: 5px 2px;
+    font-weight: 500!important;
+    font-size: 14px;
+}
+.authApp .authSection .authLoginSection .qrCodeDiv{
+    padding: 40px 20px;
+    text-align: center;
+}
+.authApp .authSection .authLoginSection .qrCodeDiv img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid rgba(0,0,0,0.01)!important;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.authApp .authSection .authLoginSection .buttonDiv{
+    padding: 0px;
+}
+.authApp .authSection .authLoginSection .buttonDiv button{
+    width: 100%;
+    outline: none!important;
+    box-shadow: none!important;
+    border: 1.5px solid rgba(0,0,0,0.05)!important;
+    background-color: #F5F6F7;
+    padding: 10px;
+    font-family: var(--maitree);
+    font-weight: 500!important;
+    font-size: 13px;
+    border-radius: 8px;
+}
+.authApp .authSection .authLoginSection .buttonDiv button svg{
+    margin-top: -1px;
+    font-size: 14px;
+}
+
+.authApp .authSection .authLoginSection .forgottenPasswordDiv{
+    display: flex;
+    justify-content: flex-end;
+}
+.authApp .authSection .authLoginSection .forgottenPasswordDiv a{
+    font-size: 13px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    color: var(--accent-color);
+    padding: 5px 10px;
+}
+.authApp .authSection .authLoginSection .noAccountDiv{
+    padding: 20px 15px;
+}
+.authApp .authSection .authLoginSection .noAccountDiv span{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    color: var(--dark-slate);
+    font-size: 14px;
+    margin-top: auto;
+}
+.authApp .authSection .authLoginSection .noAccountDiv span a{
+    transition: 0.3s all ease-in-out;
+}
+
+.authApp .authSection .authLoginSection .authRegisterDiv{
+    padding: 30px 0px;
+}
+.authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv{
+    padding: 15px 0px;
+    display: flex;
+    justify-content: center;
+}
+.authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button{
+    width: 100%;
+    outline: none!important;
+    box-shadow: none!important;
+    border: 1.5px solid rgba(0,0,0,0.05)!important;
+    background-color: var(--accent-color);
+    padding: 13px 20px;
+    padding-bottom: 12px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 13px;
+    border-radius: 8px;
+    color: var(--white);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button:disabled{
+    background-color: var(--accent-hover);
+    border: 2px solid var(--accent-hover);
+    filter: blur(0.5px) brightness(90%);
+    border: 1.5px solid transparent!important;
+    color: var(--accent-color);
+    padding: 16px 10px;
+}
+
+/* .authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button.spin{
+    padding: 17px 10px;
+} */
+
+.customLabel{
+    font-family: var(--secular);
+    font-weight: 200!important;
+    color: rgba(0,0,0,0.8);
+    font-size: 13px;
+    padding: 0px 3px;
+}
+.customInput{
+    background-color: transparent!important;
+    box-shadow: none!important;
+    outline: none!important;
+    border: 1.5px solid rgba(0,0,0,0.05)!important;
+    padding: 20px 10px;
+    border-radius: 10px;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 14px;
+    transition: 0.3s all ease-in-out;
+    resize: none;
+}
+textarea.customInput{
+    padding: 15px 12px!important;
+}
+.customInput.signUp{
+    height: 55px;
+    padding: 15px;
+}
+.customInput.signUp:focus{
+    border: 1.5px solid var(--accent-color)!important;
+}
+.customInput.appInput{
+    padding: 24px 13px;
+}
+.customInput.appInput[type="number"]{
+    font-size: 13px;
+    padding: 24px 13px;
+}
+.customInput.appInput:focus{
+    border: 1.5px solid var(--accent-color)!important;
+}
+.customInput:disabled{
+    filter: blur(1px);
+    background-color: rgba(0,0,0,0.05)!important;;
+}
+.customSelectField{
+    border: none;
+}
+.customSelectField .customSelectFieldContent{
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0px;
+}
+.customSelectField .customSelectFieldContent button{
+    width: 100%;
+    margin-right: 10px;
+    padding: 13px 20px;
+    border-radius: 10px;
+    border: 1.5px solid rgba(0,0,0,0.05);
+    background-color: transparent;
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 13px;
+    transition: 0.3s all ease-in-out;
+    outline: none!important;
+}
+.customSelectField .customSelectFieldContent button:last-child{
+    margin-left: 10px;
+    margin-right: 0px;
+}
+.customSelectField .customSelectFieldContent button:focus{
+    border: 1.5px solid var(--dark-purple)!important;
+}
+.customSelectField .customSelectFieldContent button.active{
+    border: 1.5px solid var(--dark-purple)!important;
+    background-color: var(--dark-purple);
+    color: var(--white);
+}
+/* End Of Auth Section */
+
+/* Main App Section */
+.customCol{
+    padding: 0px!important;
+}
+.spacingDiv{
+    padding: 20px;
+}
+
+/* Sidebar Styles */
+
+.appCustomSidebar{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color: var(--milk);
+    padding: 30px 0px;
+    overflow-y: auto;
+}
+.appCustomSidebar::-webkit-scrollbar {
+    display: none;
+}
+.appCustomSidebar .iconBar{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+.appCustomSidebar .iconBar h3{
+    font-family: var(--secular);
+    font-size: 18px;
+    font-weight: 800!important;
+    display: block;
+    width: 100%;
+    padding: 0px 10px;
+    margin-top: 3px;
+    color: orange;
+}
+.appCustomSidebar .iconBar h3 span{
+    color: var(--black);
+}
+.appCustomSidebar .navListBody{
+    padding: 15px 25px;
+    padding-bottom: 0px;
+}
+.appCustomSidebar .navListBody h4{
+    font-size: 15px;
+    font-family: var(--secular);
+    font-weight: 400!important;
+    margin: 0px;
+    padding: 0px 15px;
+    color: var(--black);
+}
+.appCustomSidebar .navListBody ul{
+    list-style: none;
+    padding: 10px 9px;
+    margin: 0px;
+}
+.appCustomSidebar .navListBody ul li{
+    margin: 10px 0px;
+}
+.appCustomSidebar .navListBody ul li a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 5px;
+    color: var(--dark-slate);
+    font-family: var(--syne);
+    font-size: 13px;
+    transition: 0.3s all ease-in-out;
+}
+.appCustomSidebar .navListBody ul li a:hover{
+    color: var(--black);
+}
+.appCustomSidebar .navListBody ul li a.active{
+    color: var(--black);
+}
+.appCustomSidebar .navListBody ul li a svg{
+    margin-right: 12px;
+}
+.appCustomSidebar .navListBody ul li a i{
+    font-style: normal;
+}
+.appCustomSidebar .navListBody ul.balanceList{
+    padding: 15px 12px;
+}
+.appCustomSidebar .navListBody ul.balanceList li{
+    margin: 0px;
+}
+.appCustomSidebar .navListBody ul.balanceList li a{
+    font-family: var(--cubano);
+    font-weight: 200!important;
+    font-size: 12px;
+    color: rgba(0,0,0,0.6);
+}
+.appCustomSidebar .navListBody ul.balanceList li a:hover{
+    color: var(--black);
+}
+.appCustomSidebar .navListBody ul.balanceList li a svg{
+    margin-right: 5px;
+    color: var(--black);
+    font-size: 20px;
+    margin-top: -1px;
+}
+
+/* Navbar Style */
+.appCustomNavbar{
+    border: none;
+}
+.appCustomNavbar ul{
+    list-style: none;
+    padding: 20px 0px;
+    padding-right: 80px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.appCustomNavbar ul div{
+    display: flex;
+    align-items: center;
+}
+.appCustomNavbar ul div li.navbarTitle{
+    font-family: var(--cubano);
+    font-size: 16px;
+    font-weight: 600!important;
+    color: var(--dark-black);
+}
+.appCustomNavbar ul div input.searchInput{
+    font-family: var(--syne);
+    font-size: 13px;
+    outline: none!important;
+    box-shadow: none!important;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: 0.3s all ease-in-out;
+    width: 230px;
+    padding: 15px 10px;
+}
+.appCustomNavbar ul div input.searchInput:focus{
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+.appCustomNavbar ul div li a{
+    border: 1.5px solid rgba(0,0,0,0.2);
+    margin: 0px 10px;
+    margin-right: 15px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--black);
+    border-radius: 6px;
+    font-size: 12px;
+    text-align: center;
+    transition: 0.3s all ease-in-out;
+}
+.appCustomNavbar ul div li a:hover{
+    transform: scale(0.8);
+}
+.appCustomNavbar ul div li img{
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+    width: 33px!important;
+    height: 100%!important;
+    display: flex;
+    align-items: center;
+}
+.appCustomNavbar ul div li img:hover{
+    transform: scale(0.8);
+}
+.gravatarImg.sb-avatar--gravatar{
+    width: 35px!important;
+    height: 35px!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+.gravatarImg.sb-avatar--icon{
+    width: 35px!important;
+    height: 35px!important;
+    display: flex!important;
+    align-items: center!important;
+    justify-content: center!important;
+}
+.gravatarImg.sb-avatar__text{
+    width: 100%!important;
+    height: 100%!important;
+    border-radius: 50%!important;
+    transition: 0.3s all ease-in-out;
+}
+.gravatarImg.sb-avatar__text:hover{
+    transform: scale(0.8);
+}
+.gravatarImg.sb-avatar__text span{
+    font-size: 16px!important;
+    cursor: pointer;
+}
+
+
+/* Dropdown Style */
+.customDropdown{
+    border: none;
+}
+.dropdownContent{
+    display: block;
+    position: absolute;
+    width: 200px;
+    overflow: auto;
+    padding: 15px 0px;
+    box-shadow: none;
+    background-color: transparent;
+    z-index: 1000!important;
+}
+.dropdownContent.profileDropdown{
+    margin-left: -160px;
+    width: 190px;
+    display: none;
+}
+.dropdownCard{
+    padding: 5px 10px;
+    width: 100%;
+    display: block!important;
+    border: 2px solid rgba(0,0,0,0.05);
+    box-shadow: none;
+    background-color: var(--white);
+    border-radius: 10px;
+}
+.dropdownContent.profileDropdown a{
+    border: none;
+    text-align: left;
+    margin: 5px 0px;
+    padding: 11px;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 12px;
+    justify-content: flex-start;
+    color: var(--black)!important;
+    transition: 0.4s all ease-in-out;
+}
+.dropdownContent.profileDropdown a.active{
+    background-color: rgba(0,0,0,0.1);
+}
+.dropdownContent.profileDropdown a:hover{
+    transform: scale(1);
+    background-color: rgba(0,0,0,0.1);
+}
+.dropdownContent.profileDropdown a svg{
+    margin-right: 5px;
+}
+.customDropdown.profile:hover .dropdownContent.profileDropdown{
+    display: block!important;
+    -webkit-animation-duration: 0.8s;
+    animation-duration: 0.8s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+/* Footer Style */
+.appCustomFooter{
+    border-top: 1px solid rgba(0,0,0,0.1);
+    position: fixed;
+    bottom: 0px;
+    left: 250px;
+    width: 100%;
+    background-color: var(--white);
+}
+.appCustomFooter ul{
+    display: flex;
+    list-style: none;
+    padding: 20px 70px;
+    margin: 0px;
+}
+.appCustomFooter ul div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.appCustomFooter ul div.secondDiv{
+    margin-left: 39%;
+    justify-content: flex-end;
+}
+.appCustomFooter ul div li{
+    margin-right: 30px;
+}
+.appCustomFooter ul div li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 2px;
+    color: var(--dark-slate);
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 13px;
+    transition: 0.3s all ease-in-out;
+}
+.appCustomFooter ul div li a:hover{
+    color: var(--black);
+}
+.appCustomFooter ul div li a svg{
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+/* Footer Nav */
+.appCustomFoooterNav{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: var(--white);
+    display: none;
+}
+.appCustomFoooterNav ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0px;
+    -webkit-box-shadow: 0 8px 13px -1.5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 8px 13px -1.5px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 13px -1.5px rgba(0,0,0,0.4);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+.appCustomFoooterNav ul li a{
+    color: rgba(0,0,0,0.5);
+    font-size: 20px;
+}
+.appCustomFoooterNav ul li a.active{
+    color: var(--accent-color);
+}
+
+/* Dashboard Section and Style */
+.dashboardSection{
+    border: none;
+    padding: 10px 0px;
+    padding-bottom: 80px;
+}
+.dashboardSection .dashboardHeader{
+    padding: 30px 0px;
+    padding-right: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dashboardSection .dashboardHeader .currentBalance{
+    border: none;
+}
+.dashboardSection .dashboardHeader .currentBalance h3{
+    font-family: var(--mulish);
+    font-weight: 900!important;
+    font-size: 30px;
+    margin: 0px;
+    letter-spacing: 0.5px;
+    color: var(--black);
+}
+.dashboardSection .dashboardHeader .currentBalance p{
+    font-size: 13px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    margin: 0px;
+    padding: 10px 0px;
+    color: var(--dark-slate);
+}
+.dashboardSection .dashboardHeader .currentBalance p span{
+    color: var(--accent-color);
+    cursor: pointer;
+}
+.dashboardSection .dashboardHeader .openAccount{
+    height: 100%;
+}
+.dashboardSection .dashboardHeader .openAccount a{
+    font-family: var(--secular);
+    font-weight: 400!important;
+    font-size: 14px;
+    box-shadow: none!important;
+    background-color: transparent;
+    padding: 10px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    margin-top: -20px;
+    outline: none!important;
+    color: var(--dark-black);
+    transition: 0.3s all ease-in-out;
+}
+.dashboardSection .dashboardHeader .openAccount a:hover{
+    color: var(--accent-color);
+}
+.dashboardSection .dashboardHeader .openAccount a svg{
+    font-size: 18px;
+    margin-right: 5px;
+    margin-top: -2.5px;
+}
+
+.dashboardSection .dashboardContent{
+    padding: 0px;
+    padding-right: 70px;
+}
+.dashboardSection .dashboardContent .dashboardStats{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    padding: 10px 15px;
+    width: 48%;
+    border-radius: 13px;
+    transition: 0.3s all ease-in-out;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv.incomeStats:hover{
+    border: 1.3px solid var(--custom-green);
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv.spendingStats:hover{
+    border: 1.3px solid var(--dark-purple);
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivHeader h5{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 12px;
+    color: var(--dark-slate);
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivHeader span{
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivContent{
+    margin-bottom: 5px;
+    padding: 2px 0px;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivContent h4{
+    font-size: 17px;
+    font-family: var(--secular);
+    font-weight: 500!important;
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivFooter{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivFooter p{
+    color: var(--black);
+    font-size: 11px;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivFooter span{
+    color: var(--black);
+    font-size: 10px;
+    font-family: var(--slab);
+    font-weight: 600!important;
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv.incomeStats .statsDivFooter span, .dashboardSection .dashboardContent .dashboardStats .statsDiv.incomeStats .statsDivHeader span{
+    color: var(--custom-green);
+}
+.dashboardSection .dashboardContent .dashboardStats .statsDiv.spendingStats .statsDivFooter span, .dashboardSection .dashboardContent .dashboardStats .statsDiv.spendingStats .statsDivHeader span{
+    color: var(--dark-purple);
+}
+
+.dashboardSection .dashboardContent .dashboardAccountStats{
+    padding: 30px 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-bottom: none;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader h4{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: var(--cubano);
+    font-weight: 400!important;
+    color: var(--black);
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsChart{
+    border: 1px solid rgba(0,0,0,0.1);
+    border-bottom: none;
+    padding: 20px 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsChart img{
+    width: 100%!important;
+    height: 120px!important;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-top: none;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    padding: 30px 15px;
+    padding-top: 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li{
+    padding: 13px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div{
+    border: none;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div.initialDiv img{
+    border-radius: 50%;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div.initialDiv p{
+    padding-left: 10px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div p{
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div p span{
+    display: block;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div p span.titleSpan{
+    font-family: var(--karla);
+    font-weight: 700!important;
+    font-size: 12px;
+    color: var(--black);
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div p span.subtitleSpan{
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 11px;
+    color: var(--dark-slate);
+}
+
+.dashboardSection .dashboardContent .transactionStatsDiv{
+    padding: 0px;
+    padding-right: 20px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsHeader{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsHeader h4{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: var(--cubano);
+    font-weight: 400!important;
+    color: var(--dark-black);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsHeader span{
+    font-size: 12px;
+    color: var(--black);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsHeader span svg{
+    margin-top: -2px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent{
+    border: 0.5px solid rgba(0,0,0,0.1);
+    border-top: none;
+    padding: 20px 10px;
+    padding-bottom: 30px;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li{
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li:hover{
+    background-color: rgba(0,0,0,0.05);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div{
+    border: none;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv img{
+    border-radius: 50%;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv p{
+    padding-left: 10px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p{
+    margin: 0px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span{
+    display: block;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span.titleSpan{
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 12px;
+    color: var(--black);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span.subtitleSpan{
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 11px;
+    color: var(--dark-slate);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv  .emptyContent{
+    border: none;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv  .emptyContent img{
+    width: 100%!important;
+    height: 200px!important;
+    /* box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5)!important;
+    -webkit-box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5)!important; */
+}
+.dashboardSection .dashboardContent .transactionStatsDiv  .emptyContent h5{
+    text-align: center;
+    font-family: var(--secular);
+    font-weight: 500!important;
+    font-size: 19px;
+    margin-top: 10px;
+}
+
+/* Account Section and Styles */
+.accountSection{
+    border: none;
+    padding: 10px 0px;
+    padding-bottom: 80px;
+    margin-left: -79px;
+}
+
+    /* No Account Tab */
+.accountSection .noAccountTab{
+    padding: 50px 0px;
+    padding-right: 70px;
+    display: flex;
+    justify-content: center;
+}
+.accountSection .noAccountTab .noAccountTabContent{
+    padding: 10px 0px;
+}
+.accountSection .noAccountTab .noAccountTabContent .imageDiv{
+    padding: 40px 10px;
+    padding-top: 0px;
+    text-align: center;
+}
+.accountSection .noAccountTab .noAccountTabContent .imageDiv img{
+    object-position: center;
+    object-fit: contain!important;
+}
+.accountSection .noAccountTab .noAccountTabContent h4{
+    font-size: 23px;
+    font-family: var(--cubano);
+    color: var(--black);
+    margin: 0px;
+    font-weight: 600!important;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.accountSection .noAccountTab .noAccountTabContent p{
+    font-family: var(--syne);
+    text-align: center;
+    margin: 0px;
+    padding: 15px 330px;
+    font-size: 13px;
+    line-height: px;
+    font-weight: 500!important;
+    color: var(--dark-slate);
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv{
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv button{
+    font-family: var(--slab);
+    font-weight: 500!important;
+    font-size: 14px;
+    box-shadow: none!important;
+    background-color: transparent;
+    padding: 10px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--accent-color);
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv button svg{
+    margin-right: 7px;
+    margin-top: 0.5px;
+    color: var(--accent-color)!important;
+}
+
+/* Account Details Section */
+.accountDetailsSection{
+    border: none;
+    padding: 30px 0px;
+    padding-bottom: 80px;
+}
+.accountDetailsSection .accountDetailsHeader{
+    padding: 10px 70px;
+    padding-bottom: 0px;
+    margin-left: -73px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.accountDetailsSection .accountDetailsHeader .currentBalance{
+    border: none;
+    padding: 0px 5px;
+}
+.accountDetailsSection .accountDetailsHeader .currentBalance h3{
+    font-family: var(--cubano);
+    font-weight: 600!important;
+    font-size: 28px;
+    margin: 0px;
+    letter-spacing: 0.7px;
+    color: var(--black);
+}
+.accountDetailsSection .accountDetailsHeader .currentBalance p{
+    font-size: 13px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    margin: 0px;
+    padding: 7px 0px;
+    color: var(--dark-slate);
+}
+.accountDetailsSection .accountDetailsHeader ul.accountActionsList{
+    list-style: none;
+    padding: 20px 0px;
+    padding-bottom: 10px;
+    margin: 0px;
+    display: flex;
+}
+.accountDetailsSection .accountDetailsHeader ul.accountActionsList li{
+    margin-right: 10px;
+}
+.accountDetailsSection .accountDetailsHeader ul.accountActionsList li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-family: var(--maitree);
+    font-weight: 600!important;
+    font-size: 12px;
+    color: var(--black);
+    transition: 0.3s all ease-in-out;
+}
+.accountDetailsSection .accountDetailsHeader ul.accountActionsList li a:hover{
+    background-color: var(--black);
+    color: var(--white);
+}
+.accountDetailsSection .accountDetailsHeader ul.accountActionsList li a svg{
+    margin-right: 6px;
+}
+
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv{
+    padding: 0px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent{
+    border-top: none;
+    padding: 20px 0px;
+    padding-bottom: 30px;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li{
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li:hover{
+    background-color: rgba(0,0,0,0.05);
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div{
+    border: none;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv img{
+    border-radius: 50%;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv p{
+    padding-left: 10px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div p{
+    margin: 0px;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div p span{
+    display: block;
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div p span.titleSpan{
+    font-family: var(--maitree);
+    font-weight: 900!important;
+    font-size: 11px;
+    color: var(--black);
+}
+.accountDetailsSection .accountDetailsContent .transactionStatsDiv .transactionStatsContent ul li div p span.subtitleSpan{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 11px;
+    color: var(--dark-slate);
+}
+
+.accountDetailsSection .accountDetailsContent .creditCardDiv{
+    padding: 30px 10px;
+    padding-right: 70px;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv h4{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    color: var(--dark-slate);
+    margin-bottom: 20px;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox{
+    background-color: rgba(0,0,0,0.04);
+    border-radius: 10px;
+    padding: 17px 20px;
+    display: flex;
+    height: auto;
+    transition: 0.3s all ease-in-out;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox img{
+    /* width: 100%!important; */
+    height: 60px!important;
+    object-fit: cover!important;
+    object-position: center!important;
+    padding: 0px!important;
+    border-radius: 8px;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox div{
+    width: 100%;
+    padding: 5px 15px;
+    padding-right: 5px;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox div h5{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 15px;
+    color: var(--black);
+    margin: 0px;
+    margin-bottom: 5px;
+}
+.accountDetailsSection .accountDetailsContent .creditCardDiv .creditCardBox div p{
+    font-family: var(--mulish);
+    font-weight: 500!important;
+    color: var(--dark-slate);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px;
+    margin-top: 10px;
+}
+
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv{
+    padding: 0px 10px;
+    padding-right: 70px;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv  h4{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    color: var(--dark-slate);
+    margin-bottom: 20px;
+}
+
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox{
+    border: 1px solid rgba(0,0,0,0.05);
+    padding: 5px 17px;
+    border-radius: 10px;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox ul li{
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding: 14px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox ul li:last-child{
+    border: none;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox ul li span{
+    font-weight: 500!important;
+    font-family: var(--slab);
+    font-size: 12px;
+}
+.accountDetailsSection .accountDetailsContent .accountDetailsDiv .accountDetailsBox ul li span:last-child{
+    font-weight: 400!important;
+}
+
+.cardsSection{
+    padding: 20px 0px;
+    padding-right: 75px;
+}
+.cardsSection .cardListSection{
+    display: block;
+    width: 100%;
+}
+.cardsSection .cardListSection .cardList{
+    display: flex;
+    padding: 0px;
+    margin: 0px;
+	overflow-x: scroll!important;
+    align-items: center!important;
+}
+.cardsSection .cardListSection .cardList::-webkit-scrollbar{
+    display: none;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer{
+    display: flex!important;
+    padding: 20px 0px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard{
+    width: 330px;
+    height: auto;
+    border-radius: 8px;
+    color: var(--white);
+    padding: 18px;
+    margin-right: 15px;
+    display: block;
+    transition: 0.3s all ease-in-out;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard:hover{
+    -webkit-box-shadow: 0 8px 17px -1.5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 8px 17px -1.5px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 17px -1.5px rgba(0,0,0,0.3);
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard:last-child{
+    margin-right: 0px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardHeader{
+    display: flex;
+    justify-content: flex-end;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardHeader span{
+    padding: 2px 5px;
+    font-size: 13px;
+    border-radius: 3px;
+    font-family: var(--phantom);
+    font-weight: 500!important;
+    color: var(--white);
+    cursor: pointer;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardBody{
+    padding: 15px 0px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardBody p{
+    font-family: var(--cubano);
+    font-size: 16px;
+    margin: 0px;
+    font-weight: 400!important;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardBody span{
+    font-family: var(--syne);
+    font-size: 15px;
+    font-weight: 500!important;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter p{
+    margin: 0px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter p:last-child{
+    margin-left: 50px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter p span{
+    display: block;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter p span:first-child{
+    font-family: var(--cubano);
+    font-size: 14px;
+    font-weight: 300!important;
+    letter-spacing: 0.5px;
+}
+.cardsSection .cardListSection .cardList div.cardScrollContainer div.singleCreditCard .singleCreditCardFooter p span:last-child{
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 500!important;
+}
+
+.cardsSection .cardInformationSection{
+    padding: 20px 0px;
+}
+
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementHeader{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-bottom: none;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementHeader h4{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: var(--cubano);
+    font-weight: 400!important;
+    color: var(--black);
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementContent{
+    border: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementContent ul{
+    list-style: none;
+    display: block;
+    margin: 0px;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementContent ul li{
+    padding: 10px 5px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: var(--maitree);
+    font-size: 13px;
+    font-weight: 700!important;
+    cursor: pointer;
+    color: var(--black);
+    transition: 0.4s all ease-in-out;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementContent ul li svg{
+    margin-right: 5px;
+    margin-top: -2px;
+    font-size: 15px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementContent ul li:hover{
+    color: var(--accent-color);
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-top: 0px;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    padding: 15px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .footerBorder{
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter span.withdrawals{
+    color: var(--dark-slate);
+    font-family: var(--mulish);
+    font-weight: 500!important;
+    font-size: 13px;
+    display: block;
+    margin-top: 15px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter h5{
+    font-family: var(--mulish);
+    font-weight: 900!important;
+    color: var(--black);
+    font-size: 17px;
+    margin: 0px;
+    padding: 8px 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .progressBar{
+    padding: 10px 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft p{
+    margin: 0px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft p span{
+    display: block;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft p span:first-child{
+    font-family: var(--mulish);
+    font-weight: 800!important;
+    color: var(--darkest-slate);
+    font-size: 14px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft p span:last-child{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    color: var(--dark-slate);
+    font-size: 13px;
+}
+.cardsSection .cardInformationSection .cardManagementDiv .cardManagementFooter .spentAndLeft p:last-child span{
+    text-align: right;
+}
+
+
+
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionHeader{
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionHeader h4{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: var(--cubano);
+    font-weight: 400!important;
+    color: var(--black);
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent{
+    border: 0.5px solid rgba(0,0,0,0.1);
+    border-top: none;
+    padding: 20px 10px;
+    padding-bottom: 30px;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li{
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li:hover{
+    background-color: rgba(0,0,0,0.05);
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div{
+    border: none;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div.initialDiv img{
+    border-radius: 50%;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div.initialDiv p{
+    padding-left: 10px;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div p{
+    margin: 0px;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div p span{
+    display: block;
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div p span.titleSpan{
+    font-family: var(--syne);
+    font-weight: 700!important;
+    font-size: 12px;
+    color: var(--black);
+}
+.cardsSection .cardInformationSection .cardTransactionDiv .cardTransactionContent ul li div p span.subtitleSpan{
+    font-family: var(--mulish);
+    font-weight: 600!important;
+    font-size: 11px;
+    color: var(--dark-slate);
+}
+
+.transactionSection{
+    padding: 20px 0px;
+    padding-right: 75px;
+}
+.transactionSection .transactionSectionHeader{
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transactionSection .transactionSectionHeader div h4{
+    font-family: var(--cubano);
+    font-weight: 800!important;
+    font-size: 26px;
+    margin: 0px;
+}
+.transactionSection .transactionSectionHeader div p{
+    margin: 0px;
+    padding: 8px 0px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    color: var(--dark-slate);
+}
+.transactionSection .transactionSectionHeader div p span{
+    color: var(--accent-color);
+    font-weight: 600!important;
+}
+.transactionSection .transactionSectionHeader div a{
+    font-family: var(--karla);
+    font-weight: 700!important;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 7px 15px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--white);
+    background-color: var(--black);
+    border-radius: 6px;
+}
+.transactionSection .transactionSectionHeader div a svg{
+    margin-right: 5px;
+    font-size: 16px;
+    color: var(--white);
+}
+.transactionSection .transactionNavDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.transactionSection .transactionNavDiv div.selectDiv{
+    display: none;
+}
+.transactionSection .transactionNavDiv div select{
+    border: 3px solid var(--black);
+    outline: none!important;
+    box-shadow: none!important;
+    font-family: var(--karla);
+    font-size: 14px;
+    font-weight: 700!important;
+    border-radius: 8px;
+    padding: 7px 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none!important;
+    transition: 0.3s all ease-in-out;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav{
+    padding: 30px 0px;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul{
+    background-color: #F0F5F5;
+    list-style: none;
+    padding: 10px 8px;
+    border-radius: 11px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li{
+    margin: 0px 7px;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li:first-child{
+    margin-left: 0px;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li:last-child{
+    margin-right: 0px;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li a{
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--black);
+    padding: 5px 15px;
+    padding-top: 5.5px;
+    border-radius: 5px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    transition: 0.3s all ease-in-out;
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li a.active{
+    background-color: var(--black);
+    color: var(--white);
+}
+.transactionSection .transactionNavDiv .transactionSectionNav ul li a:hover{
+    background-color: var(--black);
+    color: var(--white);
+}
+.transactionSection .transactionNavDiv div button{
+    background-color: #F0F5F5;
+    font-family: var(--secular);
+    font-weight: 200!important;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 10px 15px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--black);
+    border-radius: 8px;
+}
+.transactionSection .transactionNavDiv div button svg{
+    margin-right: 5px;
+    margin-top: -3px;
+    font-size: 15px;
+}
+
+.transactionSection .transactionList{
+    border: none;
+    padding: 0px;
+}
+.transactionSection .transactionList ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.transactionSection .transactionList ul li{
+    padding: 15px;
+    margin: 8px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    border: 0.6px solid rgba(0,0,0,0.1);
+    transition: 0.3s all ease-in-out;
+}
+.transactionSection .transactionList ul li.active{
+    border: 0.6px solid rgba(0,0,0,0);
+    -webkit-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    -moz-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    box-shadow: 0 4px 14px 4.5px #f7f7f7;
+}
+.transactionSection .transactionList ul li:hover{
+    border: 0.6px solid rgba(0,0,0,0);
+    -webkit-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    -moz-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    box-shadow: 0 4px 14px 4.5px #f7f7f7;
+}
+.transactionSection .transactionList ul li div{
+    border: none;
+}
+.transactionSection .transactionList ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.transactionSection .transactionList ul li div.initialDiv img{
+    border-radius: 50%;
+}
+.transactionSection .transactionList ul li div.initialDiv p{
+    padding-left: 20px;
+}
+.transactionSection .transactionList ul li div p{
+    margin: 0px;
+}
+.transactionSection .transactionList ul li div p span{
+    display: block;
+}
+.transactionSection .transactionList ul li div p span.titleSpan{
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 13px;
+    color: var(--black);
+}
+.transactionSection .transactionList ul li div p span.subtitleSpan{
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 10px;
+    margin-top: 1px;
+    color: var(--dark-slate);
+}
+
+.transactionSection .noTransactionTab{
+    padding: 50px 0px;
+    padding-right: 70px;
+    display: flex;
+    justify-content: center;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent{
+    padding: 10px 0px;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent .imageDiv{
+    padding: 30px 10px;
+    padding-top: 0px;
+    text-align: center;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent .imageDiv img{
+    object-position: center;
+    object-fit: contain!important;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent h4{
+    font-size: 25px;
+    font-family: var(--secular);
+    color: var(--black);
+    margin: 0px;
+    font-weight: 600!important;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent p{
+    font-family: var(--syne);
+    text-align: center;
+    margin: 0px;
+    padding: 15px 250px;
+    font-size: 13px;
+    line-height: px;
+    font-weight: 500!important;
+    color: var(--dark-slate);
+}
+.transactionSection .noTransactionTab .noTransactionTabContent .buttonDiv{
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.transactionSection .noTransactionTab .noTransactionTabContent .buttonDiv a{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    box-shadow: none!important;
+    background-color: transparent;
+    padding: 10px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--accent-color);
+}
+.transactionSection .noTransactionTab .noTransactionTabContent .buttonDiv a svg{
+    margin-right: 5px;
+    margin-top: 0.5px;
+    color: var(--accent-color)!important;
+}
+/* New Transaction */
+.transactionSection .newTransactionDiv{
+    padding: 30px 0px;
+}
+.transactionSection .newTransactionDiv .miniNewTrCardLink{
+    display: block;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard{
+    border: 1.5px solid rgba(0,0,0,0.03);
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.4s all ease-in-out;
+    background-color: var(--white);
+}
+.transactionSection .newTransactionDiv .miniNewTrCard:hover{
+    -webkit-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    -moz-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    border: 1.5px solid attr(data-color);
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#fc5185"]:hover{
+    border: 1.5px solid #fc5185;
+    -webkit-box-shadow: 0 4px 14px 4.5px #fc518539;
+    -moz-box-shadow: 0 4px 14px 4.5px #fc518539;
+    box-shadow: 0 4px 14px 4.5px #fc518539;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#107a8b"]:hover{
+    border: 1.5px solid #107a8b;
+    -webkit-box-shadow: 0 4px 14px 4.5px #107a8b33;
+    -moz-box-shadow: 0 4px 14px 4.5px #107a8b33;
+    box-shadow: 0 4px 14px 4.5px #107a8b33;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#10316b"]:hover{
+    border: 1.5px solid #10316b;
+    -webkit-box-shadow: 0 4px 14px 4.5px #10316b33;
+    -moz-box-shadow: 0 4px 14px 4.5px #10316b33;
+    box-shadow: 0 4px 14px 4.5px #10316b33;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#ed733f"]:hover{
+    border: 1.5px solid #ed733f;
+    -webkit-box-shadow: 0 4px 14px 4.5px #ed733f33;
+    -moz-box-shadow: 0 4px 14px 4.5px #ed733f33;
+    box-shadow: 0 4px 14px 4.5px #ed733f33;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#f0d43a"]:hover{
+    border: 1.5px solid #f0d43a;
+    -webkit-box-shadow: 0 4px 14px 4.5px #f0d43a39;
+    -moz-box-shadow: 0 4px 14px 4.5px #f0d43a39;
+    box-shadow: 0 4px 14px 4.5px #f0d43a39;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#7a57d1"]:hover{
+    border: 1.5px solid #7a57d1;
+    -webkit-box-shadow: 0 4px 14px 4.5px #7a57d133;
+    -moz-box-shadow: 0 4px 14px 4.5px #7a57d133;
+    box-shadow: 0 4px 14px 4.5px #7a57d133;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard div span{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 50%;
+    -webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.05);
+    -moz-box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.05);
+    box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.05);
+    transition: 0.5s all ease-in-out!important;
+    border: 1.5px solid #ffffff;
+    background-color: #ffffff;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#fc5185"]:hover span{
+    border: 1.5px solid #fc5185;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#107a8b"]:hover span{
+    border: 1.5px solid #107a8b;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#10316b"]:hover span{
+    border: 1.5px solid #10316b;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#ed733f"]:hover span{
+    border: 1.5px solid #ed733f;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#f0d43a"]:hover span{
+    border: 1.5px solid #f0d43a;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard[data-color="#7a57d1"]:hover span{
+    border: 1.5px solid #7a57d1;
+}
+.transactionSection .newTransactionDiv .miniNewTrCard h5{
+    margin: 0px;
+    margin-bottom: 3px;
+    font-family: var(--secular);
+    font-weight: 200!important;
+    font-size: 18px;
+    color: var(--black);
+}
+.transactionSection .newTransactionDiv .miniNewTrCard p{
+    margin: 0px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 13px;
+    color: rgba(0,0,0,0.8);
+}
+.transactionSection .newTransferDiv{
+    padding: 20px 0px;
+}
+.transactionSection .newTransferDiv .newTransferNav{
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.transactionSection .newTransferDiv .newTransferNav select{
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 14px;
+    padding: 10px 15px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 10px;
+    appearance: none!important;
+    -webkit-appearance: none!important;
+    display: none;
+}
+.transactionSection .newTransferDiv .newTransferNav ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.05);
+    padding: 10px 0px;
+    margin: 0px;
+    border-radius: 10px;
+}
+.transactionSection .newTransferDiv .newTransferNav ul li{
+    margin: 0px 15px;
+}
+.transactionSection .newTransferDiv .newTransferNav ul li span{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 14px;
+    padding: 8px 25px;
+    padding-top: 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+}
+.transactionSection .newTransferDiv .newTransferNav ul li span.active{
+    background-color: var(--black);
+    color: var(--white);
+}
+.transactionSection .newTransferDiv .newTransferSubTab{
+    padding: 40px 30px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab h5.notAvailable{
+    text-align: center;
+    font-family: var(--secular);
+    font-weight: 400!important;
+    margin: 0px;
+    padding: 20px 0px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .buttonDiv{
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 15px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .buttonDiv button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: var(--accent-color);
+    transition: 0.3s all ease-in-out;
+    box-shadow: none!important;
+    border: none!important;
+    outline: none!important;
+    padding: 15px 40px;
+    color: var(--white);
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    letter-spacing: .5px;
+    border-radius: 8px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .buttonDiv button svg{
+	font-size: 15px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab.p2pPinTab{
+	border: none;
+	padding: 0px 20px;
+	padding-left: 15px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab h5{
+	margin: 0px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-family: var(--secular);
+	font-weight: 600!important;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(0,0,0,0.02);
+	padding: 10px 1px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p{
+	margin: 0px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p i{
+	display: block;
+	width: 100%;
+	font-style: normal;
+	font-size: 13px;
+	padding: 3px 0px;
+	font-family: var(--karla);
+	font-weight: 400!important;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p i.lastChild{
+	text-align: right;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p span{
+	display: block;
+	width: 100%;
+	font-style: normal;
+	color: var(--black);
+	font-size: 15px;
+	padding: 3px 0px;
+	font-family: var(--karla);
+	font-weight: 600!important;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p span:last-child{
+	text-align: right;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .enterPinDiv{
+	padding: 30px 0px;
+}
+.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .enterPinDiv p{
+	margin: 0px;
+	margin-bottom: 15px;
+	font-family: var(--karla);
+	font-weight: 500!important;
+	color: var(--black);
+}
+
+/* Setting Section */
+.settingSection{
+    padding: 20px 0px;
+    padding-right: 75px;
+}
+.settingSection .settingNavDiv{
+    padding: 10px 0px;
+}
+.settingSection .settingNavDiv .settingNav{
+    padding: 5px 0px;
+}
+.settingSection .settingNavDiv .settingNav ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+}
+.settingSection .settingNavDiv .settingNav ul li{
+    margin-right: 15px;
+}
+.settingSection .settingNavDiv .settingNav ul li a{
+    display: flex;
+    width: 100%;
+    padding: 9px 25px;
+    align-items: center;
+    justify-content: center;
+    color: var(--black);
+    border-radius: 8px;
+    font-family: var(--syne);
+    font-size: 13px;
+    font-weight: 500!important;
+    transition: 0.3s all ease-in-out;
+}
+.settingSection .settingNavDiv .settingNav ul li a i{
+    font-style: normal;
+}
+.settingSection .settingNavDiv .settingNav ul li a svg{
+    display: none;
+}
+.settingSection .settingNavDiv .settingNav ul li a.active{
+    background-color: var(--black);
+    color: var(--white);
+}
+.settingSection .settingNavDiv .settingNav ul li a:hover{
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.settingSection .profileSettingsDiv{
+    padding: 30px 0px;
+}
+.settingSection .profileSettingsDiv h4{
+    font-family: var(--cubano);
+    font-weight: 300!important;
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px 2px;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv{
+    padding: 15px 25px;
+    border-radius: 15px;
+    background-color: #F2F4F5;
+    margin-top: 15px;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul{
+    list-style: none;
+    display: block;
+    padding: 0px;
+    margin: 0px;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul li{
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 15px 0px;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul li:last-child{
+    border-bottom: none;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul li span{
+    display: block;
+    color: rgba(0,0,0,0.5);
+    font-weight: 200!important;
+    font-family: var(--secular);
+    font-size: 15px;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul li p{
+    margin: 0px;
+    font-family: var(--karla);
+    font-size: 14px;
+    font-weight: 600!important;
+    margin-top: 3px;
+    color: var(--black);
+}
+.settingSection .settingsButtonDiv{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+    margin-bottom: 10px;
+}
+.settingSection .settingsButtonDiv button{
+    font-family: var(--mulish);
+    font-weight: 700!important;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 13px 30px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--white);
+    background-color: var(--accent-color);
+    border-radius: 7px;
+    transition: 0.3s all ease-in-out;
+}
+.settingSection .settingsButtonDiv button:hover{
+    color: var(--accent-color);
+    background-color: var(--accent-hover);
+}
+.settingSection .settingsButtonDiv button#cancel{
+    color: var(--accent-color);
+    background-color: var(--accent-hover);
+    padding: 13px 45px;
+}
+.settingSection .settingsButtonDiv button#cancel:hover{
+    color: var(--white);
+    background-color: var(--accent-color);
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul.notificationList{
+    border: none;
+}
+.settingSection .profileSettingsDiv  .settingDetailsDiv ul.notificationList li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.peer2peerSection{
+    border: none;
+    padding: 70px 0px;
+    padding-bottom: 80px;
+}
+.peer2peerSection .buttonDiv{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+.peer2peerSection .buttonDiv button{
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: var(--accent-color);
+    transition: 0.3s all ease-in-out;
+    box-shadow: none!important;
+    border: none!important;
+    outline: none!important;
+    padding: 15px 40px;
+    color: var(--white);
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 13px;
+    letter-spacing: .5px;
+    border-radius: 8px;
+}
+.peer2peerSection .buttonDiv button svg{
+	font-size: 15px;
+}
+
+.otherURLSection{
+    padding: 40px 0px;
+    padding-right: 75px;
+}
+.otherURLSection .otherURLCard{
+    margin-bottom: 30px;
+    border-radius: 10px;
+    border: 2px solid rgba(0,0,0,0.03);
+    -webkit-box-shadow: 0 3px 17px -1.5px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 3px 17px -1.5px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 17px -1.5px rgba(0,0,0,0.05);
+    transition: 0.3s all ease-in-out;
+}
+.otherURLSection .otherURLCard:hover{
+    border: 2px solid var(--accent-color);
+}
+.otherURLSection .otherURLCard a{
+    display: block;
+    padding: 20px;
+    padding-bottom: 30px;
+    color: var(--black);
+}
+.otherURLSection .otherURLCard span{
+    font-size: 40px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: var(--accent-color);
+    margin: 0px;
+}
+.otherURLSection .otherURLCard h5{
+    margin: 0px;
+    margin-top: 10px;
+    text-align: center;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 18px;
+}
+
+
+/* App Loader */
+.appLoader{
+	width: 100%;
+	height: 100%;
+	z-index: 7000!important;
+	background-color: var(--white);
+	animation: leaves 1s ease-in-out infinite alternate;
+	-webkit-animation: leaves 1s ease-in-out infinite alternate;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	-webkit-user-select: none!important;
+	user-select: none!important;
+}
+.appLoader p{
+	margin: 0px;
+	color: var(--dark-slate);
+	font-family: var(--inter);
+	font-weight: 600!important;
+	cursor: text;
+}
+.appLoader p span{
+	color: var(--accent-color);
+}
+
+/* Network Error Tab */
+.networkError{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 1000!important;
+	top: 0;
+	left: 0;
+	background-color: var(--white);
+	display: flex;
+	justify-content: center;
+	padding: 200px 0px;
+}
+.networkError div.errorContent{
+	padding: 10px;
+}
+.networkError div.errorContent h1{
+	font-family: var(--cubano);
+	font-weight: 500!important;
+	font-size: 60px;
+	margin: 0px;
+	color: var(--dark-purple);
+}
+.networkError div.errorContent .buttonDiv{
+	display: flex;
+	justify-content: center;
+	padding: 40px 0px;
+}
+.networkError div.errorContent .buttonDiv button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background: #36D1DC;
+    background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+    background: linear-gradient(to right, #5B86E5, #36D1DC);
+    transition: 0.2s all ease-in-out;
+    box-shadow: none!important;
+    border: none!important;
+    outline: none!important;
+    padding: 14px 30px;
+    color: var(--white);
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 15px;
+    letter-spacing: .5px;
+    border-radius: 2px;
+}
+
+/* Modal Styles */
+.customBackdrop{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(3px);
+    z-index: 10000!important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 130px 0px;
+}
+.customBackdrop.logoutBackdrop{
+	padding: 50px 100px;
+}
+.customBackdrop.p2pBackdrop{
+	padding: 50px 0px;
+}
+.customModal{
+    width: 500px;
+    height: auto;
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    z-index: 3;
+    display: block;
+	-webkit-box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.1);
+	-moz-box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.1);
+	box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.1);
+}
+.customModal.transactionModal{
+	width: 450px;
+}
+.customModal div.modalContent .buttonDiv{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+.customModal div.modalContent .buttonDiv button{
+	width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: var(--accent-color);
+    transition: 0.3s all ease-in-out;
+    box-shadow: none!important;
+    border: none!important;
+    outline: none!important;
+    padding: 13px 40px;
+    color: var(--white);
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 13px;
+    letter-spacing: .5px;
+    border-radius: 8px;
+}
+.customModal div.modalContent .buttonDiv button svg{
+	font-size: 15px;
+}
+.customModal.logoutModal{
+	width: 330px;
+}
+.customModal.settingsModal{
+	width: 700px;
+}
+.customModal.trPinModal{
+	width: 400px;
+}
+.customModal.logoutModal div.modalContent{
+	display: block!important;
+}
+.customModal.logoutModal div.modalContent h5{
+	width: 100%;
+	display: block;
+	font-family: var(--cubano);
+	font-size: 18px;
+	font-weight: 400!important;
+	margin: 0px;
+}
+.customModal.logoutModal div.modalContent .buttonDiv{
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 25px;
+}
+.customModal.logoutModal div.modalContent .buttonDiv button{
+	width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background-color: #5B86E5;
+    transition: 0.3s all ease-in-out;
+    box-shadow: none!important;
+    border: none!important;
+    outline: none!important;
+    padding: 11px 50px;
+    color: var(--white);
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    letter-spacing: .5px;
+    border-radius: 8px;
+}
+.customModal.logoutModal div.modalContent .buttonDiv button:last-child{
+	background-color: red;
+}
+.customModal.logoutModal div.modalContent .buttonDiv button:hover{
+	filter:  brightness(80%);
+}
+
+.customModal div.modalContent .buttonDiv{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 15px;
+}
+.customModal div.modalContent .buttonDiv button{
+	width: 100%;
+}
+.customModal div.modalContent .p2pPinTab{
+	border: none;
+	padding: 0px 20px;
+	padding-left: 15px;
+}
+.customModal div.modalContent .p2pPinTab h5{
+	margin: 0px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 18px;
+	font-family: var(--cubano);
+	font-weight: 500!important;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo{
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid rgba(0,0,0,0.06);
+	padding: 10px 1px;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p{
+	margin: 0px;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i{
+	display: block;
+	width: 100%;
+	font-style: normal;
+	font-size: 13px;
+	padding: 3px 0px;
+	font-family: var(--karla);
+	font-weight: 400!important;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i.lastChild{
+	text-align: right;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span{
+	display: block;
+	width: 100%;
+	font-style: normal;
+	color: var(--black);
+	font-size: 15px;
+	padding: 3px 0px;
+	font-family: var(--karla);
+	font-weight: 600!important;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span:last-child{
+	text-align: right;
+}
+.customModal div.modalContent .p2pPinTab .enterPinDiv{
+	padding: 30px 0px;
+}
+.customModal div.modalContent .p2pPinTab .enterPinDiv p{
+	margin: 0px;
+	margin-bottom: 15px;
+	font-family: var(--karla);
+	font-weight: 500!important;
+	color: var(--black);
+}
+.customModal div.modalContent .enterPinDiv input{
+	text-align: center;
+}
+.customModal.transactionModal div.modalContent .buttonDiv{
+	border: none;
+}
+.customModal.transactionModal div.modalContent .buttonDiv button{
+	margin-left: 0px;
+	margin-right: 25px;
+	background-color: rgb(0, 82, 255, 0.1);
+	color: var(--accent-color);
+}
+.customModal.transactionModal div.modalContent .buttonDiv button:last-child{
+	margin-right: 0px;
+	margin-left: 25px;
+	background-color: #0052FF;
+	color: var(--white);
+}
+
+/* Animation Styles */
+@-webkit-keyframes spin-animation {
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    0% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes spin-animation {
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    0% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes leaves {
+	0% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+	}
+	100% {
+		transform: scale(1.8);
+		-webkit-transform: scale(1.8);
+	}
+}
+@-webkit-keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}

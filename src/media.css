@@ -1,0 +1,608 @@
+@media (max-width: 1199.5px){
+    .settingSection{
+        padding-right: 35px;
+    }
+}
+
+@media (max-width: 1150.5px){
+    .transactionSection{
+        padding-right: 40px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 200px;
+    }
+}
+
+@media (max-width: 1100.5px){
+    .authApp nav ul{
+        padding: 20px 40px;
+    }
+    .authApp .authSection .authGradientDiv{
+        padding: 130px 50px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px 60px;
+    }
+}
+
+@media (max-width: 1080.5px){
+    .transactionSection{
+        padding-right: 30px;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul{
+        padding: 8px;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul li{
+        margin: 0px 3px;
+    }
+}
+
+@media (max-width: 1050.5px){
+    .transactionSection{
+        padding-right: 20px;
+    }
+    .otherURLSection{
+        padding-right: 20px;
+    }
+    .settingSection{
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 1000.5px){
+    .transactionSection .transactionNavDiv .transactionSectionNav ul li{
+        margin: 0px 1px;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul li a{
+        padding: 5px 8px;
+        padding-top: 5.5px;
+    }
+    .transactionSection{
+        padding-right: 10px;
+    }
+}
+
+@media(max-width: 991.5px){
+    .appCustomNavbar ul{
+        padding-right: 45px;
+    }
+    .appCustomSidebar{
+        width: 130px;
+    }
+    .appCustomSidebar .navListBody ul.balanceList{
+        display: none;
+    }
+    .appCustomSidebar .navListBody h4{
+        display: none;
+    }
+    .appCustomSidebar .navListBody ul li a{
+        text-align: center;
+        justify-content: center;
+    }
+    .appCustomSidebar .navListBody ul li a svg{
+        margin: 0px;
+        font-size: 20px;
+    }
+    .appCustomSidebar .navListBody ul li a i{
+        display: none;
+    }
+    .dashboardSection .dashboardHeader{
+        padding-right: 40px;
+    }
+    .dashboardSection .dashboardContent{
+        padding-right: 40px;
+    }
+    .transactionSection{
+        padding-right: 40px;
+    }
+    .otherURLSection{
+        padding-right: 40px;
+    }
+    .customModal.transactionModal{
+        width: 500px;
+    }
+    .settingSection{
+        padding-right: 40px;
+    }
+}
+
+@media (max-width: 900.5px){
+    .dashboardSection .dashboardHeader{
+        padding-right: 25px;
+    }
+    .dashboardSection .dashboardContent{
+        padding-right: 25px;
+    }
+    .appCustomNavbar ul{
+        padding-right: 30px;
+    }
+    .appCustomFooter{
+        left: 130px;
+    }
+    .appCustomFooter ul{
+        padding-left: 30px;
+    }
+    .appCustomFooter ul div.secondDiv{
+        margin-left: 35%;
+    }
+    .transactionSection{
+        padding-right: 20px;
+    }
+    .settingSection{
+        padding-right: 20px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 150px;
+    }
+}
+
+@media (max-width: 875.5px){
+    .transactionSection .newTransactionDiv .miniNewTrCard h5{
+        font-size: 17px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard p{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 850.5px){
+    .dashboardSection .dashboardHeader{
+        padding-right: 15px;
+    }
+    .dashboardSection .dashboardContent{
+        padding-right: 15px;
+    }
+    .appCustomNavbar ul{
+        padding-right: 25px;
+    }
+    .appCustomFooter ul{
+        padding-left: 15px;
+    }
+    .appCustomFooter ul div.secondDiv{
+        margin-left: 30%;
+    }
+    .transactionSection .transactionNavDiv{
+        display: block;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav{
+        width: 100%;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul{
+        justify-content: space-between;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul li{
+        margin: 0px;
+    }
+    .transactionSection .transactionNavDiv .transactionSectionNav ul li a{
+        padding: 5px 10px;
+        padding-top: 5.5px;
+    }
+    .transactionSection{
+        padding-right: 15px;
+    }
+    .transactionSection .transactionNavDiv div{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .otherURLSection{
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 825.5px){
+    .transactionSection .newTransactionDiv .miniNewTrCard{
+        padding: 15px;
+    }
+}
+
+@media (max-width: 810.5px){
+    .dashboardSection .dashboardHeader{
+        padding-right: 20px;
+    }
+    .dashboardSection .dashboardContent{
+        padding-right: 20px;
+    }
+    .appCustomNavbar ul{
+        padding-right: 25px;
+    }
+    .appCustomSidebar{
+        width: 110px;
+    }
+    .appCustomSidebar .navListBody{
+        padding: 0px 15px;
+    }
+    .appCustomSidebar .iconBar{
+        justify-content: center;
+    }
+    .appCustomSidebar .iconBar span{
+        display: none;
+    }
+    .otherURLSection{
+        padding-right: 20px;
+    }
+}
+
+@media (max-width: 800.5px){
+    .authApp nav ul{
+        padding: 20px 20px;
+    }
+    .authApp .authSection .authGradientDiv{
+        padding: 130px 30px;
+    }
+    .authApp .authSection .authGradientDiv div h4{
+        line-height: 30px;
+        font-size: 20px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px 40px;
+    }
+    .appCustomFooter{
+        left: 110px;
+    }
+    .appCustomFooter ul{
+        padding-left: 25px;
+    }
+    .appCustomFooter ul div.secondDiv{
+        margin-left: 25%;
+    }
+}
+
+@media (max-width: 767.5px){
+    #authGradientCol{
+        display: none;
+    }
+    #rightHeaderSectionCol{
+        display: none;
+    }
+    #appSidebarCol{
+        display: none;
+    }
+    .authApp nav.register ul{
+        padding: 20px 0px;
+    }
+    .authApp nav.register ul li{
+        padding: 10px 0px;
+    }
+    .authApp .authSection .authLoginSection.registerContent{
+        padding: 20px 5px;
+    }
+    .dashboardSection .dashboardHeader{
+        padding: 0px 20px;
+    }
+    .dashboardSection .dashboardContent{
+        padding: 0px 20px;
+    }
+    .dashboardSection .dashboardContent .transactionStatsDiv{
+        padding: 0px 15px;
+    }
+    .appCustomNavbar ul{
+        padding: 20px;
+    }
+    .appCustomFooter{
+        left: 0px;
+        display: none;
+    }
+    .appCustomFooter ul{
+        padding: 20px;
+        justify-content: space-between;
+    }
+    .appCustomFooter ul div.secondDiv{
+        margin-left: 0%;
+    }
+    .appCustomFooter ul div li:last-child{
+        margin-right: 0px;
+    }
+    .appCustomFoooterNav{
+        display: block;
+    }
+    .transactionSection{
+        padding: 20px 40px;
+    }
+    .otherURLSection{
+        padding: 40px 25px;
+    }
+    .settingSection{
+        padding: 0px 20px;
+    }
+    .customModal.transactionModal{
+        width: 550px;
+    }
+    .transactionSection .newTransactionDiv{
+        padding: 20px 0px;
+        padding-bottom: 70px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard{
+        padding: 25px;
+    }
+    .transactionSection .noTransactionTab{
+        padding: 50px 0px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 150px;
+    }
+}
+
+@media (max-width: 630.5px){
+    .transactionSection{
+        padding: 20px;
+    }
+}
+
+@media (max-width: 575.5px){
+    .authApp nav ul{
+        padding: 20px 50px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px 70px;
+        padding-bottom: 50px;
+    }
+    .authApp .authSection .authLoginSection .noAccountDiv{
+        padding: 0px 5px;
+    }
+    .authApp .authSection .authLoginSection .authRegisterDiv{
+        padding-bottom: 10px;
+    }
+    .authApp nav.register ul{
+        padding: 20px 80px;
+    }
+    .authApp .authSection .authLoginSection.registerContent{
+        padding: 20px 85px;
+    }
+    .appCustomNavbar ul div input.searchInput{
+        display: none;
+    }
+    .transactionSection{
+        padding: 20px 15px;
+    }
+    .transactionSectionNav{
+        display: none;
+    }
+    .transactionSection .transactionNavDiv div.selectDiv{
+        display: block;
+    }
+    .transactionSection .transactionNavDiv{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0px;
+    }
+    .transactionSection .transactionNavDiv div{
+        margin: 0px;
+    }
+    .transactionSection .transactionSectionHeader div h4{
+        font-size: 24px;
+    }
+    .otherURLSection{
+        padding: 40px 20px;
+    }
+    .customBackdrop.p2pBackdrop{
+        padding: 40px 30px;
+    }
+    .settingSection .settingNavDiv .settingNav ul li{
+        margin-right: 10px;
+    }
+    .settingSection .settingNavDiv .settingNav ul li a{
+        padding: 8px 15px;
+        padding-bottom: 7.5px;
+    }
+    .transactionSection .newTransferDiv{
+        padding: 0px;
+    }
+    .transactionSection .newTransferDiv .newTransferNav{
+        padding: 0px 30px;
+        justify-content: flex-start;
+    }
+    .transactionSection .newTransferDiv .newTransferNav ul{
+        display: none;
+    }
+    .transactionSection .noTransactionTab{
+        padding: 20px 0px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 100px;
+    }
+}
+
+@media (max-width: 485.5px){
+    .settingSection .settingNavDiv .settingNav ul li{
+        margin-right: 5px;
+    }
+}
+
+@media (max-width: 475.5px){
+    .authApp nav ul{
+        padding: 20px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px 40px;
+        padding-bottom: 50px;
+    }
+    .authApp nav.register ul{
+        padding: 20px 60px;
+    }
+    .authApp .authSection .authLoginSection.registerContent{
+        padding: 20px 65px;
+        padding-bottom: 30px;
+    }
+    .dashboardSection .dashboardHeader .openAccount button{
+        font-size: 13px;
+    }
+    .dashboardSection .dashboardHeader .openAccount button svg{
+        margin-right: 5px;
+        margin-top: 0px;
+    }
+    .transactionSection .transactionSectionHeader div h4{
+        font-size: 23px;
+        font-weight: 700!important;
+    }
+    .customModal.transactionModal{
+        padding: 20px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent h4{
+        font-size: 20px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 60px;
+    }
+}
+
+@media (max-width: 465.5px){
+    .settingSection .settingNavDiv .settingNav ul li{
+        margin-right: 0px;
+    }
+    .settingSection .settingNavDiv .settingNav ul li a{
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 455.5px){
+    .dashboardSection .dashboardHeader{
+        display: block;
+    }
+    .dashboardSection .dashboardHeader .openAccount{
+        display: flex;
+        justify-content: flex-end;
+        padding: 15px 0px;
+    }
+    .modalFormCol{
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 425.5px){
+    .authApp nav ul{
+        padding: 10px 15px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px 30px;
+        padding-bottom: 50px;
+    }
+    .authApp .authSection .authLoginSection h2{
+        font-size: 27px;
+    }
+    .authApp nav.register ul{
+        padding: 10px 30px;
+    }
+    .authApp .authSection .authLoginSection.registerContent{
+        padding: 20px 35px;
+        padding-bottom: 30px;
+    }
+    .transactionSection .transactionSectionHeader div p{
+        font-weight: 400!important;
+        font-size: 13px;
+    }
+    .transactionSection .transactionSectionHeader div button{
+        font-size: 12px;
+        padding: 8px 13px;
+    }
+    .transactionSection .transactionNavDiv div select{
+        padding: 6px 15px;
+    }
+    .otherURLSection{
+        padding: 20px 15px;
+    }
+    .urlCardCol{
+        padding: 0px 5px;
+    }
+    .settingSection{
+        padding: 0px 15px;
+    }
+    .settingSection .settingNavDiv .settingNav ul li{
+        margin-right: 2px;
+    }
+    .settingSection .settingNavDiv .settingNav ul li a{
+        padding: 8px 12px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard{
+        padding: 15px;
+        height: auto;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard h5{
+        font-size: 15px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard p{
+        font-size: 11px;
+        color: rgba(0,0,0,0.7);
+    }
+    .transactionSection .newTransferDiv .newTransferSubTab{
+        padding: 40px 20px;
+        padding-bottom: 100px;
+    }
+    .transactionSection .newTransferDiv .newTransferNav{
+        padding: 0px 20px;
+    }
+}
+
+@media (max-width: 395.5px){
+    .customBackdrop.p2pBackdrop{
+        padding: 30px 15px;
+    }
+    .customModal{
+        border-radius: 10px;
+    }
+    .settingSection .profileSettingsDiv  .settingDetailsDiv{
+        padding: 5px 20px;
+        border-radius: 10px;
+    }
+    .appCustomFoooterNav ul{
+        padding: 18px 20px;
+        padding-bottom: 13px;
+    }
+}
+
+@media (max-width: 390.5px){
+    .dashboardSection .dashboardHeader{
+        padding: 0px 15px;
+    }
+    .dashboardSection .dashboardContent{
+        padding: 0px 10px;
+    }
+    .dashboardSection .dashboardContent .transactionStatsDiv{
+        padding: 0px 15px;
+    }
+    .appCustomNavbar ul{
+        padding: 20px 15px;
+    }
+    .transactionSection .transactionSectionHeader div p{
+        margin-top: 10px;
+    }
+    .transactionSection .transactionSectionHeader div button{
+        margin-top: -26px;
+    }
+    .otherURLSection{
+        padding: 20px;
+    }
+    .transactionSection .newTransferDiv .newTransferSubTab{
+        padding: 30px 2px;
+        padding-bottom: 100px;
+    }
+    .transactionSection .newTransferDiv .newTransferNav{
+        padding: 0px 2px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 20px;
+    }
+}
+
+@media (max-width: 375.5px){
+    .authApp nav ul{
+        padding: 10px 5px;
+    }
+    .authApp .authSection .authLoginSection{
+        padding: 20px;
+        padding-bottom: 30px;
+    }
+    .authApp nav.register ul{
+        padding: 10px 20px;
+    }
+    .authApp .authSection .authLoginSection.registerContent{
+        padding: 20px 25px;
+        padding-bottom: 30px;
+    }
+    .transactionSection .transactionSectionHeader div button svg{
+        display: none;
+    }
+}
