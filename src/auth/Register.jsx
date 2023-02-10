@@ -9,7 +9,7 @@ import { API_URL, BEARER_TOKEN, errorToast } from "../config";
 
 const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774795/spacebank/iia8vayzldtkpbpd4mbc.webp";
 
-const Register = () => {
+const Register = ({ createAccount }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -19,9 +19,18 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [processing, setProcessing] = useState(false);
 
+    // const walletAccount = createAccount();
+    // console.log("GTA: ", walletAccount);
+    getBalance().then((bal) => {
+        console.log("BALANCE: ", bal);
+    });
+
     const registerUser = (e) => {
         e.preventDefault();
         setProcessing(true);
+
+        // const walletAccount = createAccount();
+        // console.log("GTA: ", walletAccount);
         
 		axios({
 			method: "POST",
@@ -32,7 +41,11 @@ const Register = () => {
                 phone: phone,
                 email: email,
                 password: password,
-                r_password: password
+                r_password: password,
+                wallet: {
+                    address: walletAccount.address,
+                    privateKey: walletAccount.privateKey
+                }
 			},
             url: `${API_URL}/auth/register`,
             headers: {

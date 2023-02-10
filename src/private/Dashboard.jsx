@@ -4,14 +4,20 @@ import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 import { accountsList, transactionStats } from "../data/dashboardStats";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Web3 from "web3";
 import TrPinModal from "../components/modal/TrPinModal";
+import { useCycle } from "framer-motion";
+import SendAssetModal from "../components/modal/SendAssetModal";
 
-const Dashboard = ({ activeUser, token }) => {
+const Dashboard = ({ activeUser, token, getBalance }) => {
 
     const [pinModal, cyclePinModal] = useState(false);
+    const [assetModal, cycleAssetModal] = useCycle(false, true);
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
+        console.log("ACCCT: ", activeUser);
+        console.log("BAL: ", getBalance());
         let tempTransaction = [];
         if (!activeUser.transaction_pin===0){
             cyclePinModal(true);
@@ -32,6 +38,10 @@ const Dashboard = ({ activeUser, token }) => {
                 cyclePinModal={cyclePinModal}
                 pinModal={pinModal}
                 token={token}
+            />
+            <SendAssetModal
+                assetModal={assetModal}
+                cycleAssetModal={cycleAssetModal}
             />
             <section className="dashboardSection">
                 <div className="dashboardHeader">
@@ -84,10 +94,11 @@ const Dashboard = ({ activeUser, token }) => {
                             <div className="dashboardAccountStats">
                                 <div className="accountStatsHeader">
                                     <h4>Your Assets</h4>
+                                    <button onClick={cycleAssetModal}>Send Funds</button>
                                 </div>
-                                <div className="accountStatsChart">
+                                {/* <div className="accountStatsChart">
 
-                                </div>
+                                </div> */}
                                 <div className="accountStatsContent">
                                     <ul>
                                     {
@@ -101,14 +112,14 @@ const Dashboard = ({ activeUser, token }) => {
                                                             alt="Account List Icon"
                                                         />
                                                         <p>
-                                                            <span className="titleSpan">{account.number}</span>
-                                                            <span className="subtitleSpan">Account number</span>
+                                                            <span className="titleSpan">{account.currency}</span>
+                                                            <span className="subtitleSpan">Wallet account</span>
                                                         </p>
                                                     </div>
                                                     <div>
                                                         <p>
-                                                            <span className="titleSpan text-right">{account.currency}{account.balance}</span>
-                                                            <span className="subtitleSpan">account balance</span>
+                                                            <span className="titleSpan text-right">0 {account.currency}</span>
+                                                            <span className="subtitleSpan">Wallet balance</span>
                                                         </p>
                                                     </div>
                                                 </li>

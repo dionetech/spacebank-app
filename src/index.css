@@ -833,12 +833,12 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader{
     border: 1.3px solid rgba(0,0,0,0.1);
-    border-bottom: none;
+    border: 1px solid rgba(0,0,0,0.1);
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
     padding: 15px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader h4{
@@ -848,6 +848,26 @@ textarea.customInput{
     font-family: var(--cubano);
     font-weight: 400!important;
     color: var(--black);
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button{
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 12px;
+    box-shadow: none!important;
+    background-color: transparent;
+    padding: 8px 12px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 10px;
+    transition: 0.3s all ease-in-out;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button:hover{
+    background-color: var(--accent-hover);
+    color: var(--accent-color);
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsChart{
     border: 1px solid rgba(0,0,0,0.1);
@@ -863,8 +883,8 @@ textarea.customInput{
     border-top: none;
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
-    padding: 30px 15px;
-    padding-top: 0px;
+    padding: 10px 20px;
+    padding-left: 15px;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul{
     list-style: none;
@@ -2379,7 +2399,7 @@ textarea.customInput{
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(4px);
     z-index: 10000!important;
     display: flex;
     justify-content: center;
@@ -2390,7 +2410,7 @@ textarea.customInput{
 	padding: 50px 100px;
 }
 .customBackdrop.p2pBackdrop{
-	padding: 50px 0px;
+	padding: 70px 0px;
 }
 .customModal{
     width: 500px;
@@ -2405,7 +2425,7 @@ textarea.customInput{
 	box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.1);
 }
 .customModal.transactionModal{
-	width: 450px;
+	width: 400px;
 }
 .customModal div.modalContent .buttonDiv{
 	display: flex;

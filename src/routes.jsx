@@ -14,7 +14,7 @@ import Settings from "./private/Settings";
 
 export const Router = () => {
 
-    const { token, removeToken, setToken, user } = AuthToken();
+    const { token, removeToken, setToken, user, createAccount, getBalance } = AuthToken();
 
     const convertDate = (date, returnData) => {
         const dummyDate = new Date(String(date.split("T")[0]));
@@ -41,6 +41,7 @@ export const Router = () => {
                             <Dashboard
                                 token={token}
                                 activeUser={user}
+                                getBalance={getBalance}
                                 removeToken={removeToken}
                             />:
                             <Login
@@ -146,6 +147,8 @@ export const Router = () => {
                             />:
                             <Register
                                 setToken={setToken}
+                                createAccount={createAccount}
+                                getBalance={getBalance}
                             />
                         }
                     />
