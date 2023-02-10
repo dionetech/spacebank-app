@@ -5,7 +5,7 @@ import TransactionNav from "../components/section/TransactionNav";
 import NoTransactionTab from "../components/tab/NoTransactionTab";
 import ProtectedLayout from "../layout/ProtectedLayout";
 
-const Transactions = ({ activeUser, token }) => {
+const Transactions = ({ activeUser, token, removeToken }) => {
 
     const [transactions, setTransactions] = useState([]);
 
@@ -22,6 +22,7 @@ const Transactions = ({ activeUser, token }) => {
         <ProtectedLayout
             navTitle="Transactions"
             user={activeUser}
+            removeToken={removeToken}
         >
             <section className="transactionSection">
             {

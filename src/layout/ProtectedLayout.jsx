@@ -6,7 +6,7 @@ import Sidebar from "../components/nav/app/Sidebar";
 import useDarkmode from "../hooks/useDarkmode";
 import AppLoader from "../utils/appLoader";
 
-const ProtectedLayout = ({ children, navTitle, user }) => {
+const ProtectedLayout = ({ children, navTitle, user, removeToken }) => {
 
     const { darkmode, toggleDarkmode } = useDarkmode();
 
@@ -23,6 +23,7 @@ const ProtectedLayout = ({ children, navTitle, user }) => {
                             navTitle={navTitle}
                             toggleDarkmode={toggleDarkmode}
                             user={user}
+                            removeToken={removeToken}
                         />
                         {children}
                         <Footer />

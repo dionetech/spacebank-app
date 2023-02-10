@@ -19,18 +19,16 @@ const Register = ({ createAccount }) => {
     const [password, setPassword] = useState("");
     const [processing, setProcessing] = useState(false);
 
-    // const walletAccount = createAccount();
-    // console.log("GTA: ", walletAccount);
-    getBalance().then((bal) => {
-        console.log("BALANCE: ", bal);
-    });
+    // getBalance().then((bal) => {
+    //     console.log("BALANCE: ", bal);
+    // });
 
     const registerUser = (e) => {
         e.preventDefault();
         setProcessing(true);
 
-        // const walletAccount = createAccount();
-        // console.log("GTA: ", walletAccount);
+        const walletAccount = createAccount();
+        console.log("WALLET ACCOUNT: ", walletAccount);
         
 		axios({
 			method: "POST",

@@ -5,7 +5,7 @@ import { API_URL, BEARER_TOKEN } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 
-const BuyAirtime = ({ activeUser, token }) => {
+const BuyAirtime = ({ activeUser, token, removeToken }) => {
 
     const [amount, setAmount] = useState("");
     const [network, setNetwork] = useState("");
@@ -23,6 +23,7 @@ const BuyAirtime = ({ activeUser, token }) => {
         <ProtectedLayout
             navTitle="Buy Airtime"
             user={activeUser}
+            removeToken={removeToken}
         >
             <section className="transactionSection">
                 <div className="newTransferDiv">

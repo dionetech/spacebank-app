@@ -5,7 +5,7 @@ import { API_URL, BEARER_TOKEN } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 
-const SendMoney = ({ activeUser, token }) => {
+const SendMoney = ({ activeUser, token, removeToken }) => {
 
     const [currentTab, setCurrentTab] = useState("p2p");
 
@@ -13,6 +13,7 @@ const SendMoney = ({ activeUser, token }) => {
         <ProtectedLayout
             navTitle="Send Money"
             user={activeUser}
+            removeToken={removeToken}
         >
             <section className="transactionSection">
                 <div className="newTransferDiv">

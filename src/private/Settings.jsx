@@ -4,7 +4,7 @@ import ProfileSettingsModal from "../components/modal/ProfileSettingsModal";
 import SettingNav from "../components/section/SettingNav";
 import ProtectedLayout from "../layout/ProtectedLayout";
 
-const Settings = ({ activeUser, token }) => {
+const Settings = ({ activeUser, token, removeToken }) => {
 
     const [openModal, cycleOpenModal] = useCycle(false, true);
 
@@ -17,6 +17,7 @@ const Settings = ({ activeUser, token }) => {
         <ProtectedLayout
             navTitle="Profile Settings"
             user={activeUser}
+            removeToken={removeToken}
         >
             <section className="settingSection">
 

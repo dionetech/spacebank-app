@@ -4,7 +4,7 @@ import ProfileDropdown from "../../dropdown/ProfileDropdown";
 import LogoutModal from "../../modal/LogoutModal";
 import { useCycle } from "framer-motion";
 
-const Navbar = ({ navTitle, toggleDarkmode, user }) => {
+const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
 
     const [openModal, cycleOpenModal] = useCycle(false, true);
 
@@ -58,6 +58,7 @@ const Navbar = ({ navTitle, toggleDarkmode, user }) => {
                             }
                             <ProfileDropdown
                                 toggleModal={toggleModal}
+                                removeToken={removeToken}
                             />
                         </li>
                     </div>

@@ -9,7 +9,7 @@ import TrPinModal from "../components/modal/TrPinModal";
 import { useCycle } from "framer-motion";
 import SendAssetModal from "../components/modal/SendAssetModal";
 
-const Dashboard = ({ activeUser, token, getBalance }) => {
+const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
 
     const [pinModal, cyclePinModal] = useState(false);
     const [assetModal, cycleAssetModal] = useCycle(false, true);
@@ -33,6 +33,7 @@ const Dashboard = ({ activeUser, token, getBalance }) => {
         <ProtectedLayout
             navTitle="Dashboard"
             user={activeUser}
+            removeToken={removeToken}
         >
             <TrPinModal
                 cyclePinModal={cyclePinModal}
@@ -94,7 +95,7 @@ const Dashboard = ({ activeUser, token, getBalance }) => {
                             <div className="dashboardAccountStats">
                                 <div className="accountStatsHeader">
                                     <h4>Your Assets</h4>
-                                    <button onClick={cycleAssetModal}>Send Funds</button>
+                                    <button onClick={cycleAssetModal}>Transfer Assets</button>
                                 </div>
                                 {/* <div className="accountStatsChart">
 

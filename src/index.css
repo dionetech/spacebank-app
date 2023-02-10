@@ -855,14 +855,14 @@ textarea.customInput{
     font-size: 12px;
     box-shadow: none!important;
     background-color: transparent;
-    padding: 8px 12px;
+    padding: 10px 15px;
     border: none!important;
     display: flex;
     align-items: center;
     outline: none!important;
     background-color: var(--accent-color);
     color: var(--white);
-    border-radius: 10px;
+    border-radius: 8px;
     transition: 0.3s all ease-in-out;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button:hover{
@@ -2445,9 +2445,9 @@ textarea.customInput{
     outline: none!important;
     padding: 13px 40px;
     color: var(--white);
-    font-family: var(--slab);
-    font-weight: 400!important;
-    font-size: 13px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 12px;
     letter-spacing: .5px;
     border-radius: 8px;
 }

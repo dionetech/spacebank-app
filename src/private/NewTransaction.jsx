@@ -2,11 +2,12 @@ import { Link } from "react-router-dom";
 import { transactionsLists } from "../data/newTransactions";
 import ProtectedLayout from "../layout/ProtectedLayout";
 
-const NewTransaction = ({ activeUser, token }) => {
+const NewTransaction = ({ activeUser, token, removeToken }) => {
     return (
         <ProtectedLayout
             navTitle="Transactions"
             user={activeUser}
+            removeToken={removeToken}
         >
             <section className="transactionSection">
                 <div className="newTransactionDiv">

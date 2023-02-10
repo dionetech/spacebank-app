@@ -3,7 +3,13 @@ import { IoIosRedo, IoIosUndo } from "react-icons/io";
 import { BiLogOut, BiCog } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
 
-const ProfileDropdown = ({ toggleModal }) => {
+const ProfileDropdown = ({ toggleModal, removeToken }) => {
+
+    const logUserOut = (e) => {
+        e.preventDefault();
+        removeToken();
+        toggleModal();
+    }
 
     return (
         <>
@@ -21,7 +27,7 @@ const ProfileDropdown = ({ toggleModal }) => {
                     <Link to="/transactions/new/transfer">
                         <IoIosUndo /> Send Money
                     </Link>
-                    <Link to="/logout" onClick={toggleModal}>
+                    <Link to="/logout" onClick={logUserOut}>
                         <BiLogOut /> Log out
                     </Link>
                 </div>
