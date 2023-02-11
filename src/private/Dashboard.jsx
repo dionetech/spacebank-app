@@ -40,6 +40,16 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
         // setTransactions(tempTransaction);
     }, [])
 
+    const copyAddress = (e) => {
+        e.preventDefault();
+		if (navigator.clipboard){
+			window.navigator.clipboard.writeText(activeUser.user.wallet.address);
+			successToast("Wallet address successfully copied");
+		}else{
+			alert(`Copy Address: ${activeUser.user.wallet.address}`);
+		}
+    }
+
     return (
         <ProtectedLayout
             navTitle="Dashboard"
@@ -109,7 +119,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                     <button onClick={cycleAssetModal}>Transfer Assets</button>
                                 </div>
                                 <div className="accountWalletAddress">
-                                    <span>{activeUser.user.wallet.address}</span>
+                                    <span onClick={copyAddress}>{activeUser.user.wallet.address}</span>
                                 </div>
                                 {/* <div className="accountStatsChart">
 
