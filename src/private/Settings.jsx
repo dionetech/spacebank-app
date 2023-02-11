@@ -37,19 +37,19 @@ const Settings = ({ activeUser, token, removeToken }) => {
                             <ul>
                                 <li>
                                     <span>Full name</span>
-                                    <p>{activeUser.fname} {activeUser.lname}</p>
+                                    <p>{activeUser.user.name}</p>
                                 </li>
                                 <li>
                                     <span>Username</span>
-                                    <p>{activeUser.username}</p>
+                                    <p>{activeUser.user.username}</p>
                                 </li>
                                 <li>
                                     <span>Gender</span>
-                                    <p>{activeUser.dob===null?"Not set":`${user.gender}`}</p>
+                                    <p>{activeUser.user.gender?`${activeUser.user.gender}`:"Not set"}</p>
                                 </li>
                                 <li>
                                     <span>Date of birth</span>
-                                    <p>{activeUser.dob===null?"Not set":`${user.dob}`}</p>
+                                    <p>{activeUser.user.dob?`${activeUser.user.dob}`:"Not set"}</p>
                                 </li>
                             </ul>
                         </div>
@@ -61,11 +61,11 @@ const Settings = ({ activeUser, token, removeToken }) => {
                             <ul>
                                 <li>
                                     <span>Email address</span>
-                                    <p>{activeUser.email}</p>
+                                    <p>{activeUser.user.email}</p>
                                 </li>
                                 <li>
                                     <span>Phone number</span>
-                                    <p>{activeUser.phone}</p>
+                                    <p>{activeUser.user.phoneNumber}</p>
                                 </li>
                                 <li>
                                     <span>Address</span>

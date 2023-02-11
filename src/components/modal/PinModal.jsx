@@ -151,7 +151,7 @@ const CodeInput = ({ setPin }) => {
             />
         ));
   
-        return <>{codeInputFields}</>;
-    };
+    return <>{codeInputFields}</>;
+};
 
 export default PinModal;

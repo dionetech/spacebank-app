@@ -10,12 +10,12 @@ const Transactions = ({ activeUser, token, removeToken }) => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        let tempTransaction = [];
-        tempTransaction = activeUser.airtime_purchases.concat(activeUser.bill_purchases);
-        tempTransaction = tempTransaction.concat(activeUser.data_purchases);
-        tempTransaction = tempTransaction.concat(activeUser.deposits);
-        tempTransaction = tempTransaction.concat(activeUser.transfers);
-        setTransactions(tempTransaction);        
+        // let tempTransaction = [];
+        // tempTransaction = activeUser.airtime_purchases.concat(activeUser.bill_purchases);
+        // tempTransaction = tempTransaction.concat(activeUser.data_purchases);
+        // tempTransaction = tempTransaction.concat(activeUser.deposits);
+        // tempTransaction = tempTransaction.concat(activeUser.transfers);
+        // setTransactions(tempTransaction);        
     }, [])
 
     return (

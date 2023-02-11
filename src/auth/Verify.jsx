@@ -1,10 +1,11 @@
 import AuthLayout from "../layout/AuthLayout";
 import Header from "../layout/Header";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer, useRef } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
-import { API_URL, BEARER_TOKEN, errorToast } from "../config";
+import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../config";
+import { Navigate } from "react-router-dom";
 
 const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774795/spacebank/iia8vayzldtkpbpd4mbc.webp";
 
@@ -12,11 +13,13 @@ const Verify = () => {
 
     const [code, setCode] = useState("");
     const [processing, setProcessing] = useState(false);
+    const [redirectToAuth, setRedirectToAuth] = useState(false);
 
     useEffect(() => {
         const emailExist = window.localStorage.getItem("verifyEmail");
         if (!emailExist){
             console.log("NO EMAIL");
+            setRedirectToAuth(true);
         }
     }, [])
 
@@ -26,7 +29,7 @@ const Verify = () => {
         setProcessing(true);
         axios({
             method: "POST",
-            url: `${API_URL}/auth/verify`,
+            url: `${API_URL}/auth/otp`,
             data: { email: window.localStorage.getItem("verifyEmail"), otp: parseInt(code) },
             headers: {
                 'Authorization': BEARER_TOKEN,
@@ -34,12 +37,9 @@ const Verify = () => {
         })
         .then((res) => {
             setProcessing(false);
-            console.log("RES: ", res);
-            if (res.data.error){
-                errorToast(res.data.message);
-            }else{
-                successToast("Email successfully confirmed");
-                window.localStorage.removeItem("verifyEmail");
+            if (res.data.success){
+                successToast("Email successfully verified");
+                setRedirectToAuth(true);
             }
         })
         .catch((error) => {
@@ -51,6 +51,7 @@ const Verify = () => {
 
 	return (
 		<>
+            {redirectToAuth?<Navigate to="/auth" />:""}
 			<Header />
             <AuthLayout
                 register={true}
@@ -66,16 +67,12 @@ const Verify = () => {
                             <form onSubmit={verifyEmail}>
                                 <div className="form-group customFormGroup">
                                     <label htmlFor="sbCode" className="customLabel">OTP Code</label>
-                                    <input
-                                        type="number"
-                                        placeholder=""
-                                        id="sbCode"
-                                        name="sbCode"
-                                        required
-                                        className="form-control customInput signUp"
-                                        value={code}
-                                        onChange={(e) => setCode(e.target.value)}
-                                    />
+
+                                    <div className="inputFlexGroup">
+                                        <CodeInput
+                                            setCode={setCode}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="authButtonDiv">
                                     <motion.button
@@ -94,5 +91,39 @@ const Verify = () => {
 		</>
 	)
 }
+
+const CodeInput = ({ setCode }) => {
+    const itemsRef = useRef([]);
+  
+    const codeChangeHandler = (event) => {
+        const [, codeFieldIndex] = event.target.name.split("-");
+        let fieldIntIndex = parseInt(codeFieldIndex, 10);
+        setCode((prevState) => prevState + event.target.value);
+  
+        if (fieldIntIndex < 3) {
+            itemsRef.current[fieldIntIndex + 1].focus();
+        } else {
+            const field = document.querySelector(`Input[name=code-${fieldIntIndex}]`);
+            field.blur();
+        }
+    };
+  
+    const codeInputFields = new Array(4)
+        .fill(0)
+        .map((item, index) => (
+            <input
+                type="text"
+                className="form-control customInput appInput"
+                ref={(ref) => itemsRef.current.push(ref)}
+                name={`code-${index}`}
+                key={index}
+                onChange={(event) => codeChangeHandler(event)}
+                maxLength={1}
+                required
+            />
+        ));
+  
+    return <>{codeInputFields}</>;
+};
 
 export default Verify;

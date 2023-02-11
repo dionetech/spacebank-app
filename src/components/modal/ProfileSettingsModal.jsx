@@ -4,12 +4,12 @@ import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
 import { errorToast, successToast } from "../../config";
 
-const ProfileSettingsModal = ({ openModal, cycleOpenModal }) => {
+const ProfileSettingsModal = ({ openModal, cycleOpenModal, user }) => {
 
-    const [firstName, setFirstName] = useState();
-    const [lastName, setLastName] = useState();
-    const [email, setEmail] = useState();
-    const [phone, setPhone] = useState();
+    const [firstName, setFirstName] = useState(user.user.firstName);
+    const [lastName, setLastName] = useState(user.user.lastName);
+    const [email, setEmail] = useState(user.user.email);
+    const [phone, setPhone] = useState(user.user.phoneNumber);
     const [gender, setGender] = useState();
     const [dob, setDob] = useState();
     const [address, setAddress] = useState();

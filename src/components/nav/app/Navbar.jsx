@@ -38,19 +38,11 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                             </Link>
                         </li> */}
                         <li className="customDropdown profile">
-                            {
-                                user.profilepic.split("/")[6]==="user.png"?
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png"
-                                    alt="User Image"
-                                    style={{ width: "10px", height: "10px" }}
-                                />:
-                                <img
-                                    src={user.profilepic}
-                                    alt="User Image"
-                                    style={{ width: "30px", height: "30px" }}
-                                />
-                            }
+                            <img
+                                src={user.profilePhoto}
+                                alt="User Image"
+                                style={{ width: "30px", height: "30px" }}
+                            />
                             <ProfileDropdown
                                 removeToken={removeToken}
                                 cycleOpenModal={cycleOpenModal}

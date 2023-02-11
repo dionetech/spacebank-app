@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { API_URL, BEARER_TOKEN, errorToast } from "../config";
+import { Link, Navigate } from "react-router-dom";
+import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../config";
 
 const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774795/spacebank/iia8vayzldtkpbpd4mbc.webp";
 
@@ -18,6 +18,7 @@ const Register = ({ createAccount }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [processing, setProcessing] = useState(false);
+    const [redirectToVerify, setRedirectToVerify] = useState(false);
 
     // getBalance().then((bal) => {
     //     console.log("BALANCE: ", bal);
@@ -33,19 +34,18 @@ const Register = ({ createAccount }) => {
 		axios({
 			method: "POST",
 			data: {
-				firstname: firstName,
-                lastname: lastName,
+				firstName: firstName,
+                lastName: lastName,
                 username: username,
-                phone: phone,
+                phoneNumber: phone,
                 email: email,
                 password: password,
-                r_password: password,
                 wallet: {
                     address: walletAccount.address,
                     privateKey: walletAccount.privateKey
                 }
 			},
-            url: `${API_URL}/auth/register`,
+            url: `${API_URL}/auth/signup`,
             headers: {
                 'Authorization': BEARER_TOKEN,
             },
@@ -53,11 +53,12 @@ const Register = ({ createAccount }) => {
 		.then((res) => {
 			setProcessing(false);
             console.log("RES: ", res);
-            if (res.data.error===true){
+            if (res.data.success!==true){
                 errorToast(res.data.message);
             }else{
                 window.localStorage.setItem('verifyEmail', email);
                 successToast("Account successfully created");
+                setRedirectToVerify(true);
             }
 		})
 		.catch(() => {
@@ -69,6 +70,7 @@ const Register = ({ createAccount }) => {
 
 	return (
 		<>
+            {redirectToVerify?<Navigate to="/auth/verify" />:""}
 			<Header />
             <AuthLayout
                 register={true}

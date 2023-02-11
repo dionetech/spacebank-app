@@ -24,28 +24,25 @@ const Login = ({ setToken }) => {
 
         axios({
             method: "POST",
-            url: `${API_URL}/auth/login`,
+            url: `${API_URL}/auth`,
             data: { email, password },
             headers: {
                 'Authorization': BEARER_TOKEN,
             },
         })
         .then((res) => {
-            const token = res.data.token;
+            const token = res.data.data.token;
             axios({
-                method: "POST",
-                url: `${API_URL}/user`,
-                data: {
-                    token: token
-                },
+                method: "GET",
+                url: `${API_URL}/users/${res.data.data.user._id}`,
                 headers: {
-                    'Authorization': BEARER_TOKEN,
+                    'x-auth-token': token,
                 },
             })
             .then(async(res) => {
-                console.log("LAST RES: ", res);
+                const userData = res.data.data;
+                setToken(token, userData);
                 successToast("Login successful");
-                setToken(token, res.data.data);
                 setProcessing(false);
             })
             .catch((error) => {
@@ -56,8 +53,11 @@ const Login = ({ setToken }) => {
         })
         .catch((error) => {
             setProcessing(false);
-            console.log("INITIAL ERROR: ", error);
-            errorToast("An error occured, try again");
+            try{
+                errorToast(error.response.data.error);
+            }catch{
+                errorToast("An error occured, try again");
+            }
         })
     }
 

@@ -22,7 +22,7 @@ const ProtectedLayout = ({ children, navTitle, user, removeToken }) => {
                         <Navbar
                             navTitle={navTitle}
                             toggleDarkmode={toggleDarkmode}
-                            user={user}
+                            user={user.user}
                             removeToken={removeToken}
                         />
                         {children}

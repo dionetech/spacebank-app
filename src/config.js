@@ -10,7 +10,7 @@ const TS_STYLE = {
     draggable: true,
 }
 
-export const API_URL = "https://api.myspacebank.com/private-api/v1";
+export const API_URL = "https://spacebank-api-production.up.railway.app/api/v1"; //"http://localhost:6500/api/v1" // "https://api.myspacebank.com/private-api/v1";
 export const IMG_URL = "https://image.tmdb.org/t/p";
 export const COOKIE_NAME = "spacebank__cookiename";
 export const COOKIE_PASSWORD = "ake#LACHI8899andChikabamdhkgmhkfgfnmkhmkfgmknompkpomidu";

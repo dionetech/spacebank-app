@@ -371,12 +371,13 @@ textarea.customInput{
 .customSelectField .customSelectFieldContent button{
     width: 100%;
     margin-right: 10px;
-    padding: 13px 20px;
+    padding: 13px 15px;
     border-radius: 10px;
     border: 1.5px solid rgba(0,0,0,0.05);
     background-color: transparent;
-    font-family: var(--slab);
-    font-weight: 400!important;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    color: rgba(0,0,0,0.8);
     font-size: 13px;
     transition: 0.3s all ease-in-out;
     outline: none!important;
@@ -386,11 +387,11 @@ textarea.customInput{
     margin-right: 0px;
 }
 .customSelectField .customSelectFieldContent button:focus{
-    border: 1.5px solid var(--dark-purple)!important;
+    border: 1.5px solid var(--accent-color)!important;
 }
 .customSelectField .customSelectFieldContent button.active{
-    border: 1.5px solid var(--dark-purple)!important;
-    background-color: var(--dark-purple);
+    border: 1.5px solid var(--accent-color)!important;
+    background-color: var(--accent-color);
     color: var(--white);
 }
 /* End Of Auth Section */
