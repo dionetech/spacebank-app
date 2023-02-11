@@ -3,12 +3,12 @@ import { IoIosRedo, IoIosUndo } from "react-icons/io";
 import { BiLogOut, BiCog } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
 
-const ProfileDropdown = ({ toggleModal, removeToken }) => {
+const ProfileDropdown = ({ cycleOpenModal, removeToken }) => {
 
     const logUserOut = (e) => {
         e.preventDefault();
         removeToken();
-        toggleModal();
+        cycleOpenModal();
     }
 
     return (

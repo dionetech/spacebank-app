@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
-import { motion } from "framer-motion";
+import { motion, useCycle } from "framer-motion";
 import { API_URL, BEARER_TOKEN } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
+import PinModal from "../../components/modal/PinModal";
 
 const SendMoney = ({ activeUser, token, removeToken }) => {
 
@@ -50,7 +51,7 @@ const SendMoney = ({ activeUser, token, removeToken }) => {
 
 const P2pTab = ({ token }) => {
 
-    const [activeTab, setActiveTab] = useState("initial");
+    const [pinModal, cyclePinModal] = useCycle(false, true);
     const [amount, setAmount] = useState("");
     const [description, setDescription] = useState("");
     const [username, setUsername] = useState("");
@@ -61,7 +62,7 @@ const P2pTab = ({ token }) => {
         setProcessing(true);
         setTimeout(() => {
             setProcessing(false);
-            setActiveTab("pin");
+            cyclePinModal();
         }, 2000);
     }
 
@@ -69,8 +70,14 @@ const P2pTab = ({ token }) => {
         <div className="newTransferSubTab">
             <div className="row justify-content-center">
                 <div className="col-xl-8">
-                {
-                    activeTab==="initial"?
+                    <PinModal
+                        amount={amount}
+                        username={username}
+                        description={description}
+                        token={token}
+                        pinModal={pinModal}
+                        cyclePinModal={cyclePinModal}
+                    />
                     <form onSubmit={processTransaction}>
                         <div className="row">
                             <div className="col-6 modalFormCol">
@@ -138,14 +145,7 @@ const P2pTab = ({ token }) => {
                                 {processing?<ImSpinner8 />:"Proceed"}
                             </motion.button>
                         </div>
-                    </form>:
-                    <P2pPinTab
-                        username={username}
-                        amount={amount}
-                        description={description}
-                        token={token}
-                    />
-                }
+                    </form>
                 </div>
             </div>
         </div>

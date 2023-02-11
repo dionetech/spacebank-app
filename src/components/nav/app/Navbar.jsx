@@ -8,11 +8,6 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
 
     const [openModal, cycleOpenModal] = useCycle(false, true);
 
-    const toggleModal = (e) => {
-        e.preventDefault();
-        cycleOpenModal();
-    }
-
     return (
         <>
             <LogoutModal
@@ -57,8 +52,8 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                                 />
                             }
                             <ProfileDropdown
-                                toggleModal={toggleModal}
                                 removeToken={removeToken}
+                                cycleOpenModal={cycleOpenModal}
                             />
                         </li>
                     </div>

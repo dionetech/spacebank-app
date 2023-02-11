@@ -43,7 +43,8 @@ const Login = ({ setToken }) => {
                 },
             })
             .then(async(res) => {
-                successToast("Login successful")
+                console.log("LAST RES: ", res);
+                successToast("Login successful");
                 setToken(token, res.data.data);
                 setProcessing(false);
             })

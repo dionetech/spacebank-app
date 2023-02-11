@@ -7,6 +7,7 @@ import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
 const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
 
     const [activeTab, setActiveTab] = useState("initial");
+    const [asset, setAsset] = useState("bnb");
     const [amount, setAmount] = useState("");
     const [walletAddress, setWalletAddress] = useState("");
     const [processing, setProcessing] = useState(false);
@@ -14,17 +15,21 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
     const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
-        setTimeout(() => {
-            setProcessing(false);
-            setActiveTab("pin");
-        }, 2000);
+
+        console.log(amount, asset, walletAddress);
+
+        setProcessing(false);
+
+        // setTimeout(() => {
+        //     setProcessing(false);
+        //     setActiveTab("pin");
+        // }, 2000);
     }
 
     const closeModal = () => {
         setActiveTab("initial");
         setAmount("");
         setWalletAddress("");
-        setUsername("");
         setProcessing(false);
         cycleAssetModal();
     }
@@ -34,32 +39,56 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
             { assetModal && (
                 <motion.div
                     className="fixed-top customBackdrop p2pBackdrop"
-                    onClick={closeModal}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1}}
                     exit={{ opacity: 0 }}
                 >
-                    <motion.div onClick={(e) => {e.stopPropagation();}} className="customModal transactionModal">
+                    <motion.div className="customModal transactionModal">
                         <div className="modalContent">
                         {
                             activeTab==="initial"?
+                            <>
+                            <h5 className="walletBalance">Balance: 10000000000<strong>({asset.toUpperCase()})</strong></h5>
                             <form onSubmit={processTransaction}>
                                 <div className="row">
-                                    <div className="col-12 modalFormCol">
+                                    <div className="col-md-6 modalFormCol">
                                         <div className="form-group">
                                             <label
-                                                htmlFor="spacebankFName"
+                                                htmlFor="spacebankAmount"
                                                 className="customLabel"
-                                            >Amount (BNB)</label>
+                                            >Amount ({asset.toUpperCase()})</label>
                                             <input
                                                 id="spacebankAmount"
                                                 name="spacebankAmount"
                                                 type="number"
                                                 required={true}
+                                                placeholder="0.05"
                                                 value={amount}
                                                 onChange={(e) => setAmount(e.target.value)}
                                                 className="form-control customInput appInput"
                                             />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md-6 modalFormCol">
+                                        <div className="form-group">
+                                            <label
+                                                htmlFor="spacebankAsset"
+                                                className="customLabel"
+                                            >Asset ({asset.toUpperCase()})</label>
+                                            <select
+                                                id="spacebankAsset"
+                                                name="spacebankAsset"
+                                                onChange={(e) => setAsset(e.target.value)}
+                                                className="form-control selectDropdown"
+                                                defaultValue={asset}
+                                            >
+                                                <option value="bnb">BNB</option>
+                                                <option value="wbnb">WBNB</option>
+                                                <option value="usdt">USDT</option>
+                                                <option value="busd">BUSD</option>
+                                                <option value="usdc">USDC</option>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -73,6 +102,7 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
                                                 id="spacebankWalletAddress"
                                                 name="spacebankWalletAddress"
                                                 type="text"
+                                                placeholder="0xC5208D632e3D6F5a527F9cE18e212fe2CD8719Cb"
                                                 required={true}
                                                 value={walletAddress}
                                                 onChange={(e) => setWalletAddress(e.target.value)}
@@ -96,7 +126,8 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
                                         {processing?<ImSpinner8 />:"Proceed"}
                                     </motion.button>
                                 </div>
-                            </form>:
+                            </form>
+                            </>:
                             <EnterPinTab
                                 username={username}
                                 amount={amount}

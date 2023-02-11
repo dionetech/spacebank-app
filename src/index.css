@@ -301,6 +301,9 @@ img{
     transition: 0.3s all ease-in-out;
     resize: none;
 }
+.customInput::placeholder{
+    color: rgba(0,0,0,0.4);
+}
 textarea.customInput{
     padding: 15px 12px!important;
 }
@@ -324,6 +327,38 @@ textarea.customInput{
 .customInput:disabled{
     filter: blur(1px);
     background-color: rgba(0,0,0,0.05)!important;;
+}
+.inputFlexGroup{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.inputFlexGroup input{
+	text-align: center;
+	margin: 0px 7px;
+	font-family: var(--secular);
+	font-size: 17px;
+}
+.inputFlexGroup input:first-child{
+	margin-left: 0px;
+}
+.inputFlexGroup input:last-child{
+	margin-right: 0px;
+}
+.selectDropdown{
+    background-color: transparent!important;
+    box-shadow: none!important;
+    outline: none!important;
+    border: 1.5px solid rgba(0,0,0,0.05)!important;
+    border-radius: 10px;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 14px;
+    transition: 0.3s all ease-in-out;
+    resize: none;
+    height: 49px;
 }
 .customSelectField{
     border: none;
@@ -2425,7 +2460,7 @@ textarea.customInput{
 	box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.1);
 }
 .customModal.transactionModal{
-	width: 400px;
+	width: 450px;
 }
 .customModal div.modalContent .buttonDiv{
 	display: flex;
@@ -2443,7 +2478,7 @@ textarea.customInput{
     box-shadow: none!important;
     border: none!important;
     outline: none!important;
-    padding: 13px 40px;
+    padding: 12px 30px;
     color: var(--white);
     font-family: var(--syne);
     font-weight: 500!important;
@@ -2573,6 +2608,13 @@ textarea.customInput{
 }
 .customModal div.modalContent .enterPinDiv input{
 	text-align: center;
+}
+.customModal.transactionModal div.modalContent h5.walletBalance{
+    margin: 0px;
+    margin-bottom: 20px;
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 17px;
 }
 .customModal.transactionModal div.modalContent .buttonDiv{
 	border: none;

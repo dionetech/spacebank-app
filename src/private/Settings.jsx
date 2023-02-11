@@ -40,6 +40,10 @@ const Settings = ({ activeUser, token, removeToken }) => {
                                     <p>{activeUser.fname} {activeUser.lname}</p>
                                 </li>
                                 <li>
+                                    <span>Username</span>
+                                    <p>{activeUser.username}</p>
+                                </li>
+                                <li>
                                     <span>Gender</span>
                                     <p>{activeUser.dob===null?"Not set":`${user.gender}`}</p>
                                 </li>
