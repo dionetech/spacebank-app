@@ -26,11 +26,13 @@ const Verify = () => {
     const verifyEmail = (e) => {
         e.preventDefault();
 
+        console.log("OTP CODE ENTERED: ", code);
+
         setProcessing(true);
         axios({
             method: "POST",
             url: `${API_URL}/auth/otp`,
-            data: { email: window.localStorage.getItem("verifyEmail"), otp: parseInt(code) },
+            data: { email: window.localStorage.getItem("verifyEmail"), otp: code },
             headers: {
                 'Authorization': BEARER_TOKEN,
             },
