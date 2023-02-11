@@ -869,10 +869,11 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader{
     border: 1.3px solid rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.1);
+    border-bottom: none;
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
     padding: 15px;
+    padding-bottom: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -904,6 +905,27 @@ textarea.customInput{
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button:hover{
     background-color: var(--accent-hover);
     color: var(--accent-color);
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountWalletAddress{
+    display: block;
+    padding: 15px;
+    border: 1.3px solid rgba(0,0,0,0.1);
+    border-top: none;
+    width: 100%;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountWalletAddress span{
+    display: inline-flex;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 13px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 7px;
+    transition: 0.3s all ease-in-out;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountWalletAddress span:hover{
+    background-color: rgba(0,0,0,0.1);
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsChart{
     border: 1px solid rgba(0,0,0,0.1);

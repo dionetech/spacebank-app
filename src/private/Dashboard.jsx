@@ -58,7 +58,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
             <section className="dashboardSection">
                 <div className="dashboardHeader">
                     <div className="currentBalance">
-                        <h3>₦{activeUser.balances.balance.$numberDecimal}.00</h3>
+                        <h3>${activeUser.balances.balance.$numberDecimal}.00</h3>
                         <p>Total balance from all accounts <span>NGN</span></p>
                     </div>
                     <div className="openAccount">
@@ -79,7 +79,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                         <span><BsArrowUpRight /></span>
                                     </div>
                                     <div className="statsDivContent">
-                                        <h4>₦{activeUser.balances.balance.$numberDecimal}</h4>
+                                        <h4>${activeUser.balances.balance.$numberDecimal}</h4>
                                     </div>
                                     <div className="statsDivFooter">
                                         <p>84 Transactions</p>
@@ -93,7 +93,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                         <span><BsArrowDownLeft /></span>
                                     </div>
                                     <div className="statsDivContent">
-                                        <h4>₦{activeUser.balances.deposits.$numberDecimal}</h4>
+                                        <h4>${activeUser.balances.deposits.$numberDecimal}</h4>
                                     </div>
                                     <div className="statsDivFooter">
                                         <p>58 Transactions</p>
@@ -107,6 +107,9 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                 <div className="accountStatsHeader">
                                     <h4>Your Assets</h4>
                                     <button onClick={cycleAssetModal}>Transfer Assets</button>
+                                </div>
+                                <div className="accountWalletAddress">
+                                    <span>{activeUser.user.wallet.address}</span>
                                 </div>
                                 {/* <div className="accountStatsChart">
 

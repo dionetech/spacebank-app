@@ -551,6 +551,13 @@
         padding: 18px 20px;
         padding-bottom: 13px;
     }
+    .dashboardSection .dashboardContent .dashboardAccountStats .accountWalletAddress{
+        padding: 15px 10px;
+    }
+    .dashboardSection .dashboardContent .dashboardAccountStats .accountWalletAddress span{
+        font-size: 12px;
+        padding: 3px 9px;
+    }
 }
 
 @media (max-width: 390.5px){
