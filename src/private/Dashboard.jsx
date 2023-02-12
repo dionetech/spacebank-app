@@ -11,6 +11,7 @@ import SendAssetModal from "../components/modal/SendAssetModal";
 import PancakeSwapHelper from '../helpers/pancakeswapHelper';
 import { currencyList } from "../helpers/CurrencyHelper";
 import CryptoIcons from "../utils/cryptoIcons";
+import { successToast } from "../config";
 
 const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
 
