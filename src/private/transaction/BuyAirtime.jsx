@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { API_URL, BEARER_TOKEN } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
+import { useEffect } from "react";
 
 const BuyAirtime = ({ activeUser, token, removeToken }) => {
 
@@ -12,10 +13,30 @@ const BuyAirtime = ({ activeUser, token, removeToken }) => {
     const [phone, setPhone] = useState("");
     const [processing, setProcessing] = useState(false);
 
+    useEffect(() => {
+        var config = {
+            method: 'GET',
+            url: 'https://bingpay.ng/api/v1/all-networks',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Authorization': 'Bearer 1dd501141dffd9d68f254b241f05871b8f10754c90f4832ad9'
+            }
+        };
+          
+        axios(config)
+            .then(function (response) {
+                console.log("RESULT: ", JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log("ERROR: ", error);
+            });
+    })
+
     const buyAirtime = (e) => {
         e.preventDefault();
         setProcessing(true);
         console.log(network, phone, amount);
+
         setProcessing(false)
     }
 

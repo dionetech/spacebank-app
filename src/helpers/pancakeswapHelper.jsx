@@ -5,7 +5,7 @@ import AuthToken from '../auth/authToken';
 export default function PancakeSwapHelper() {
 
     const { user } = AuthToken();
-    const web3 = new Web3('https://bsc-dataseed.binance.org/');
+    const web3 = new Web3('https://data-seed-prebsc-2-s3.binance.org:8545/');
     let pancakeSwapContract = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
     let pancakeSwap = new web3.eth.Contract(pancakeABI, pancakeSwapContract);
     

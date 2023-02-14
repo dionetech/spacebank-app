@@ -11,10 +11,42 @@ import NewTransaction from "./private/NewTransaction";
 import SendMoney from "./private/transaction/SendMoney";
 import BuyAirtime from "./private/transaction/BuyAirtime";
 import Settings from "./private/Settings";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "./config";
 
 export const Router = () => {
 
     const { token, removeToken, setToken, user, createAccount, getBalance } = AuthToken();
+    const [initialLoad, setInitialLoad] = useState(false);
+
+    const reloadUser = () => {
+        if (token){
+            axios({
+                method: "GET",
+                headers: {
+                    'x-auth-token': token,
+                },
+                url: `${API_URL}/users/${user.user._id}`,
+            })
+            .then((res) => {
+                console.log("SUCCESS ON RELOAD: ", res);
+                if (res.data.success){
+                    setToken(token, res.data.data);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (initialLoad===false){
+            reloadUser();
+            setInitialLoad(true);
+        }
+    }, [initialLoad])
 
     const convertDate = (date, returnData) => {
         const dummyDate = new Date(String(date.split("T")[0]));
@@ -43,6 +75,7 @@ export const Router = () => {
                                 activeUser={user}
                                 getBalance={getBalance}
                                 removeToken={removeToken}
+                                reloadUser={reloadUser}
                             />:
                             <Login
                                 setToken={setToken}
@@ -58,6 +91,7 @@ export const Router = () => {
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}
+                                reloadUser={reloadUser}
                             />:
                             <Login
                                 setToken={setToken}
@@ -73,6 +107,7 @@ export const Router = () => {
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}
+                                reloadUser={reloadUser}
                             />:
                             <Login
                                 setToken={setToken}
@@ -88,6 +123,7 @@ export const Router = () => {
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}
+                                reloadUser={reloadUser}
                             />:
                             <Login
                                 setToken={setToken}
@@ -103,6 +139,7 @@ export const Router = () => {
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}
+                                reloadUser={reloadUser}
                             />:
                             <Login
                                 setToken={setToken}

@@ -6,7 +6,7 @@ import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 import PinModal from "../../components/modal/PinModal";
 
-const SendMoney = ({ activeUser, token, removeToken }) => {
+const SendMoney = ({ activeUser, token, removeToken, reloadUser }) => {
 
     const [currentTab, setCurrentTab] = useState("p2p");
 
@@ -26,6 +26,7 @@ const SendMoney = ({ activeUser, token, removeToken }) => {
                         currentTab==="p2p"&&(
                             <P2pTab
                                 token={token}
+                                reloadUser={reloadUser}
                             />
                         )
                     }
@@ -49,7 +50,7 @@ const SendMoney = ({ activeUser, token, removeToken }) => {
     )
 }
 
-const P2pTab = ({ token }) => {
+const P2pTab = ({ token, reloadUser }) => {
 
     const [pinModal, cyclePinModal] = useCycle(false, true);
     const [amount, setAmount] = useState("");
@@ -77,6 +78,7 @@ const P2pTab = ({ token }) => {
                         token={token}
                         pinModal={pinModal}
                         cyclePinModal={cyclePinModal}
+                        reloadUser={reloadUser}
                     />
                     <form onSubmit={processTransaction}>
                         <div className="row">

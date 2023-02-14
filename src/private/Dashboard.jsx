@@ -14,6 +14,7 @@ import CryptoIcons from "../utils/cryptoIcons";
 import { successToast } from "../config";
 
 const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
+    const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/');
 
     const { getToken, getAmountsOut, getDecimals, getBalanceOfToken, approve, swap, sendETH, sendTOKEN } = PancakeSwapHelper();
     const [pinModal, cyclePinModal] = useState(false);
@@ -21,13 +22,11 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
     const [transactions, setTransactions] = useState([]);
     const [currency, setCurrency] = useState(["","BNB", 18]);
     const [currencyTo, setCurrencyTo] = useState(["0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56","BUSD", 18]);
-
     const [w, setW] = useState(false);
-    const [walletBalance, setWalletBalance] = useState("");
+    const [walletBalance, setWalletBalance] = useState(0);
 
     useEffect(() => {
         getBalance().then((bal) => {
-            console.log("BAL: ", bal);
             setWalletBalance(bal);
         });
         // let tempTransaction = [];
@@ -65,6 +64,12 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
             <SendAssetModal
                 assetModal={assetModal}
                 cycleAssetModal={cycleAssetModal}
+                walletBalance={walletBalance}
+                activeUser={activeUser}
+                getBalanceOfToken={getBalanceOfToken}
+                currencyList={currencyList}
+                sendETH={sendETH}
+                sendTOKEN={sendTOKEN}
             />
             <section className="dashboardSection">
                 <div className="dashboardHeader">
@@ -117,7 +122,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                             <div className="dashboardAccountStats">
                                 <div className="accountStatsHeader">
                                     <h4>Your Assets</h4>
-                                    <button onClick={cycleAssetModal}>Transfer Assets</button>
+                                    <button onClick={cycleAssetModal}>Send Token</button>
                                 </div>
                                 <div className="accountWalletAddress">
                                     <span onClick={copyAddress}>{activeUser.user.wallet.address}</span>
@@ -134,6 +139,7 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                         }else{
                                             bl = walletBalance;
                                         }
+                                        console.log("BLLTC: ", bl);
                                         return (
                                             <li key={index}>
                                                 <div className="initialDiv">

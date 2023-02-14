@@ -3,36 +3,50 @@ import { useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
+import { useEffect } from "react";
 
-const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
+const SendAssetModal = ({ activeUser, assetModal, cycleAssetModal, walletBalance,
+    token, getBalanceOfToken, currencyList, sendETH, sendTOKEN }) => {
 
-    const [activeTab, setActiveTab] = useState("initial");
     const [asset, setAsset] = useState("bnb");
     const [amount, setAmount] = useState("");
     const [walletAddress, setWalletAddress] = useState("");
     const [processing, setProcessing] = useState(false);
 
+    const [sendTokenBal, setSendTokenBal] = useState(0);
+    const [sendToken, setSendToken] = useState("");
+    const [sendTokenName, setSendTokenName] = useState("BNB");
+
+    useEffect(() => {
+        currencyList.map((curr) => {
+            if (curr.name.toLowerCase()===asset){
+                setSendToken(curr.contract);
+                setSendTokenName(curr.name.toUpperCase());
+                if(curr.contract != ""){
+                    getBalanceOfToken(curr.contract, activeUser.user.wallet.address).then(( bal ) => { 
+                        console.log("SAM BAL: ", bal);
+                        setSendTokenBal(bal);
+                    })
+                }else{
+                    console.log(walletBalance)
+                    setSendTokenBal(walletBalance);
+                }
+            }
+        })
+    }, [asset])
+
     const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
 
-        console.log(amount, asset, walletAddress);
-
+        if (sendToken===""){
+            sendETH(activeUser.user.wallet.address, walletAddress, amount, activeUser.user.wallet.privateKey);
+        }else{
+            sendTOKEN(activeUser.user.wallet.address, walletAddress, amount, sendToken, activeUser.user.wallet.privateKey);
+        }
         setProcessing(false);
-
-        // setTimeout(() => {
-        //     setProcessing(false);
-        //     setActiveTab("pin");
-        // }, 2000);
     }
 
-    const closeModal = () => {
-        setActiveTab("initial");
-        setAmount("");
-        setWalletAddress("");
-        setProcessing(false);
-        cycleAssetModal();
-    }
 
     return (
         <AnimatePresence>
@@ -45,10 +59,7 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
                 >
                     <motion.div className="customModal transactionModal">
                         <div className="modalContent">
-                        {
-                            activeTab==="initial"?
-                            <>
-                            <h5 className="walletBalance">Balance: 10000000000<strong>({asset.toUpperCase()})</strong></h5>
+                            <h5 className="walletBalance">Balance: {sendTokenBal}<strong>({asset.toUpperCase()})</strong></h5>
                             <form onSubmit={processTransaction}>
                                 <div className="row">
                                     <div className="col-md-6 modalFormCol">
@@ -83,11 +94,13 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
                                                 className="form-control selectDropdown"
                                                 defaultValue={asset}
                                             >
-                                                <option value="bnb">BNB</option>
-                                                <option value="wbnb">WBNB</option>
-                                                <option value="usdt">USDT</option>
-                                                <option value="busd">BUSD</option>
-                                                <option value="usdc">USDC</option>
+                                            {
+                                                currencyList.map((curr, index) => {
+                                                    return (
+                                                        <option key={index} value={curr.name.toLowerCase()}>{curr.name}</option>
+                                                    )
+                                                })
+                                            }
                                             </select>
                                         </div>
                                     </div>
@@ -127,15 +140,6 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
                                     </motion.button>
                                 </div>
                             </form>
-                            </>:
-                            <EnterPinTab
-                                username={username}
-                                amount={amount}
-                                description={description}
-                                cycleOpenP2pModal={cycleOpenP2pModal}
-                                token={token}
-                            />
-                        }
                         </div>
                     </motion.div>
                 </motion.div>
@@ -143,111 +147,5 @@ const SendAssetModal = ({ assetModal, cycleAssetModal, token }) => {
         </AnimatePresence>
     )
 }
-
-
-const EnterPinTab = ({ amount, description, username, cycleOpenP2pModal, token }) => {
-
-    const [pin, setPin] = useState("");
-    const [processing, setProcessing] = useState(false);
-
-    const sendFunds = (e) => {
-        e.preventDefault();
-        setProcessing(true);
-        console.log(username, amount, description, pin);
-		axios({
-			method: "POST",
-			data: {
-                token: token,
-				pin: pin,
-                amount: amount,
-                username: username,
-                reason: description,
-			},
-            url: `${API_URL}/user/p2p-transfer`,
-            headers: {
-                'Authorization': BEARER_TOKEN,
-            },
-		})
-		.then((res) => {
-			setProcessing(false);
-            console.log("RES: ", res);
-            if (res.data.error){
-                errorToast(res.data.message);
-                return '';
-            }
-		})
-		.catch((error) => {
-			setProcessing(false);
-            console.log("ERROR: ", error);
-			errorToast("An Error Occurred");
-		})
-    }
-
-    return (
-        <div className="p2pPinTab">
-            <h5>Confirm</h5>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>From</i>
-                    <span>NGN Balance</span>
-                </p>
-                <p>
-                    <i className="lastChild">Transaction Fee</i>
-                    <span>₦0.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>To</i>
-                    <span>{username}</span>
-                </p>
-                <p>
-                    <i className="lastChild">Amount</i>
-                    <span>₦{amount}.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>Message</i>
-                    <span>{description}</span>
-                </p>
-            </div>
-            <div className="enterPinDiv">
-                <p className="text-center">Please, type in your transaction PIN.</p>
-                <form onSubmit={sendFunds}>
-                    <div className="row justify-content-center">
-                        <div className="col-xl-7">
-                            <div className="form-group">
-                                <input
-                                    id="spacebankTrPin"
-                                    name="spacebankTrPin"
-                                    type="text"
-                                    required={true}
-                                    value={pin}
-                                    onChange={(e) => setPin(e.target.value)}
-                                    className="form-control customInput appInput"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buttonDiv">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            onClick={cycleOpenP2pModal}
-                            type="button"
-                        >Cancel</motion.button>
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            type="submit"
-                            className="spin"
-                        >{processing?<ImSpinner8 />:"Confirm"}</motion.button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
-}
-
 
 export default SendAssetModal;

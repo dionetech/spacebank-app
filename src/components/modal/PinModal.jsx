@@ -2,17 +2,19 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useReducer, useState, useRef } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
 
-const PinModal = ({ pinModal, cyclePinModal, token, username, amount, description }) => {
+const PinModal = ({ pinModal, cyclePinModal, token, username, amount, description, reloadUser }) => {
 
     const [processing, setProcessing] = useState(false);
     const [pin, setPin] = useState("");
+    const [redirectToDashboard, setRedirectToDashboard] = useState(false);
 
     const sendFunds = (e) => {
         e.preventDefault();
         setProcessing(true);
-        console.log("TTK: ", token);
+        
 		axios({
 			method: "POST",
 			data: {
@@ -22,29 +24,36 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
                 username: username,
                 reason: description,
 			},
-            url: `${API_URL}/user/p2p-transfer`,
+            url: `${API_URL}/transactions/send-money/p2p`,
             headers: {
-                'Authorization': BEARER_TOKEN,
+                'x-auth-token': token,
             },
 		})
 		.then((res) => {
 			setProcessing(false);
             console.log("RES: ", res);
-            if (res.data.error){
-                errorToast(res.data.message);
-                return '';
+            if (res.data.success){
+                successToast(`You just sent $${amount} to ${username}`);
+                reloadUser();
+                setRedirectToDashboard(true);
+            }else{
+                errorToast("An error occured");
             }
-            successToast(`You just sent ${amount} to ${username}`);
 		})
 		.catch((error) => {
 			setProcessing(false);
             console.log("ERROR: ", error);
-			errorToast("An Error Occurred");
+            try{
+                errorToast(error.response.data.error);
+            }catch{
+                errorToast("An error occured, try again");
+            }
 		})
     }
 
     return (
         <AnimatePresence>
+            {redirectToDashboard?<Navigate to="/" />:""}
             { pinModal && (
                 <motion.div
                     className="fixed-top customBackdrop p2pBackdrop"

@@ -61,9 +61,13 @@ const Register = ({ createAccount }) => {
                 setRedirectToVerify(true);
             }
 		})
-		.catch(() => {
+		.catch((error) => {
 			setProcessing(false);
-			errorToast("An Error Occurred");
+            try{
+                errorToast(error.response.data.error);
+            }catch{
+                errorToast("An error occured, try again");
+            }
 		})
         
     }

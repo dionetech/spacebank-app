@@ -47,7 +47,11 @@ const Verify = () => {
         .catch((error) => {
             setProcessing(false);
             console.log("Error: ", error);
-            errorToast("An error occured, try again");
+            try{
+                errorToast(error.response.data.error);
+            }catch{
+                errorToast("An error occured, try again");
+            }
         })
     }
 

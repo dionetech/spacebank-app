@@ -941,8 +941,7 @@ textarea.customInput{
     border-top: none;
     border-bottom-left-radius: 13px;
     border-bottom-right-radius: 13px;
-    padding: 10px 20px;
-    padding-left: 15px;
+    padding: 10px 10px;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul{
     list-style: none;
@@ -951,9 +950,16 @@ textarea.customInput{
     margin: 0px;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li{
-    padding: 13px 0px;
+    padding: 13px 10px;
     display: flex;
     justify-content: space-between;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 5px 0px;
+}
+.dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li:hover{
+    background: rgba(0,0,0,0.05);
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsContent ul li div{
     border: none;
