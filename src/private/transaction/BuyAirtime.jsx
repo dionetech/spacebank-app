@@ -1,10 +1,32 @@
 import { useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { motion } from "framer-motion";
-import { API_URL, BEARER_TOKEN } from "../../config";
+import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
-import { useEffect } from "react";
+
+const networkList = [
+    {
+        "id": "1",
+        "name": "MTN",
+        "image": "https://bingpay.ng/assets/services/mtn.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Airtel",
+        "image": "https://bingpay.ng/assets/services/airtel.jpg"
+    },
+    {
+        "id": "3",
+        "name": "9mobile",
+        "image": "https://bingpay.ng/assets/services/9mobile.jpg"
+    },
+    {
+        "id": "4",
+        "name": "GLO",
+        "image": "https://bingpay.ng/assets/services/glo.jpg"
+    }
+]
 
 const BuyAirtime = ({ activeUser, token, removeToken }) => {
 
@@ -13,29 +35,33 @@ const BuyAirtime = ({ activeUser, token, removeToken }) => {
     const [phone, setPhone] = useState("");
     const [processing, setProcessing] = useState(false);
 
-    useEffect(() => {
-        var config = {
-            method: 'GET',
-            url: 'https://bingpay.ng/api/v1/all-networks',
-            headers: { 
-                'Content-Type': 'application/json', 
-                'Authorization': 'Bearer 1dd501141dffd9d68f254b241f05871b8f10754c90f4832ad9'
-            }
-        };
-          
-        axios(config)
-            .then(function (response) {
-                console.log("RESULT: ", JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log("ERROR: ", error);
-            });
-    })
-
     const buyAirtime = (e) => {
         e.preventDefault();
         setProcessing(true);
-        console.log(network, phone, amount);
+
+        axios({
+			method: "POST",
+			data: {
+                network, phone, amount
+			},
+            url: `${API_URL}/transactions/buy-airtime`,
+            headers: {
+                'x-auth-token': token,
+            },
+		})
+		.then((res) => {
+			setProcessing(false);
+            console.log("RES: ", res);
+            successToast(`You recharged ₦${amount} to ${phone}`);
+		})
+		.catch((error) => {
+			setProcessing(false);
+            try{
+                errorToast(error.response.data.error);
+            }catch{
+                errorToast("An Error Occurred");
+            }
+		})
 
         setProcessing(false)
     }
@@ -89,22 +115,28 @@ const BuyAirtime = ({ activeUser, token, removeToken }) => {
                                             </div>
                                         </div>
 
-                                        <div className="col-xl-6">
+                                        <div className="col-md-6">
                                             <br />
                                             <div className="form-group">
                                                 <label
                                                     htmlFor="spacebankNetwork"
                                                     className="customLabel"
                                                 >Network</label>
-                                                <input
+                                                <select
                                                     id="spacebankNetwork"
                                                     name="spacebankNetwork"
-                                                    type="text"
-                                                    required={true}
-                                                    value={network}
                                                     onChange={(e) => setNetwork(e.target.value)}
-                                                    className="form-control customInput appInput"
-                                                />
+                                                    className="form-control selectDropdown"
+                                                    defaultValue={network}
+                                                >
+                                                {
+                                                    networkList.map((network) => {
+                                                        return (
+                                                            <option key={network.id} value={network.id}>{network.name}</option>
+                                                        )
+                                                    })
+                                                }
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

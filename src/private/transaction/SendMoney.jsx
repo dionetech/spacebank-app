@@ -174,7 +174,7 @@ const P2pPinTab = ({ amount, description, username, token }) => {
 			},
             url: `${API_URL}/user/p2p-transfer`,
             headers: {
-                'Authorization': BEARER_TOKEN,
+                'x-auth-token': token,
             },
 		})
 		.then((res) => {
