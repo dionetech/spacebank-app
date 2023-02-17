@@ -28,33 +28,46 @@ const networkList = [
     }
 ]
 
-const BuyAirtime = ({ activeUser, token, removeToken }) => {
+const BuyAirtime = ({ activeUser, token, removeToken, reloadUser }) => {
 
     const [amount, setAmount] = useState("");
-    const [network, setNetwork] = useState("");
+    const [network, setNetwork] = useState("1");
+    const [networkIcon, setNetworkIcon] = useState("https://bingpay.ng/assets/services/mtn.jpg");
     const [phone, setPhone] = useState("");
     const [processing, setProcessing] = useState(false);
+
+    const changeNetwork = (e) => {
+        setNetwork(e.target.value);
+        networkList.map((loopNetwork) => {
+            if (loopNetwork.id===e.target.value){
+                setNetworkIcon(loopNetwork.image);
+                return '';
+            }
+        })
+    }
 
     const buyAirtime = (e) => {
         e.preventDefault();
         setProcessing(true);
 
+        console.log(network, amount, networkIcon, phone);
+
         axios({
 			method: "POST",
 			data: {
-                network, phone, amount
+                network, phone, amount, networkIcon
 			},
-            url: `${API_URL}/transactions/buy-airtime`,
+            url: `${API_URL}/transactions/airtime/buy-airtime`,
             headers: {
                 'x-auth-token': token,
             },
 		})
 		.then((res) => {
 			setProcessing(false);
-            console.log("RES: ", res);
             successToast(`You recharged ₦${amount} to ${phone}`);
 		})
 		.catch((error) => {
+            reloadUser();
 			setProcessing(false);
             try{
                 errorToast(error.response.data.error);
@@ -62,8 +75,6 @@ const BuyAirtime = ({ activeUser, token, removeToken }) => {
                 errorToast("An Error Occurred");
             }
 		})
-
-        setProcessing(false)
     }
 
     return (
@@ -125,7 +136,7 @@ const BuyAirtime = ({ activeUser, token, removeToken }) => {
                                                 <select
                                                     id="spacebankNetwork"
                                                     name="spacebankNetwork"
-                                                    onChange={(e) => setNetwork(e.target.value)}
+                                                    onChange={changeNetwork}
                                                     className="form-control selectDropdown"
                                                     defaultValue={network}
                                                 >

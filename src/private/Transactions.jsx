@@ -5,17 +5,12 @@ import TransactionNav from "../components/section/TransactionNav";
 import NoTransactionTab from "../components/tab/NoTransactionTab";
 import ProtectedLayout from "../layout/ProtectedLayout";
 
-const Transactions = ({ activeUser, token, removeToken }) => {
+const Transactions = ({ activeUser, token, removeToken, convertDate }) => {
 
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        // let tempTransaction = [];
-        // tempTransaction = activeUser.airtime_purchases.concat(activeUser.bill_purchases);
-        // tempTransaction = tempTransaction.concat(activeUser.data_purchases);
-        // tempTransaction = tempTransaction.concat(activeUser.deposits);
-        // tempTransaction = tempTransaction.concat(activeUser.transfers);
-        // setTransactions(tempTransaction);        
+        setTransactions(activeUser.transactions);     
     }, [])
 
     return (
@@ -30,7 +25,10 @@ const Transactions = ({ activeUser, token, removeToken }) => {
                 <>
                     <TransactionHeader />
                     <TransactionNav />
-                    <TransactionList />
+                    <TransactionList
+                        transactions={transactions}
+                        convertDate={convertDate}
+                    />
                 </>:
                 <NoTransactionTab />
             }

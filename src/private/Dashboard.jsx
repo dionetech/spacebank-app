@@ -1,7 +1,6 @@
 import ProtectedLayout from "../layout/ProtectedLayout";
 import { RiAddCircleLine } from "react-icons/ri";
 import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
-import { transactionStats } from "../data/dashboardStats";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Web3 from "web3";
@@ -13,7 +12,7 @@ import { currencyList } from "../helpers/CurrencyHelper";
 import CryptoIcons from "../utils/cryptoIcons";
 import { successToast } from "../config";
 
-const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
+const Dashboard = ({ activeUser, token, getBalance, reloadUser, removeToken, convertDate }) => {
     const web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/');
 
     const { getToken, getAmountsOut, getDecimals, getBalanceOfToken, approve, swap, sendETH, sendTOKEN } = PancakeSwapHelper();
@@ -29,15 +28,10 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
         getBalance().then((bal) => {
             setWalletBalance(bal);
         });
-        // let tempTransaction = [];
+        setTransactions(activeUser.transactions);
         // if (!activeUser.transaction_pin===0){
         //     cyclePinModal(true);
         // }
-        // tempTransaction = activeUser.airtime_purchases.concat(activeUser.bill_purchases);
-        // tempTransaction = tempTransaction.concat(activeUser.data_purchases);
-        // tempTransaction = tempTransaction.concat(activeUser.deposits);
-        // tempTransaction = tempTransaction.concat(activeUser.transfers);
-        // setTransactions(tempTransaction);
     }, [])
 
     const copyAddress = (e) => {
@@ -173,23 +167,23 @@ const Dashboard = ({ activeUser, token, getBalance, removeToken }) => {
                                     <div className="transactionStatsContent">
                                         <ul>
                                         {
-                                            transactionStats.map((transaction, index) => {
+                                            transactions.map((transaction, index) => {
                                                 return (
                                                     <li key={index}>
                                                         <div className="initialDiv">
                                                             <img
-                                                                src={transaction.cardIcon}
+                                                                src={transaction.icon}
                                                                 style={{ width: "26px", height: "26px" }}
                                                                 alt="Transaction Card Icon"
                                                             />
                                                             <p>
-                                                                <span className="titleSpan">{transaction.purchase}</span>
-                                                                <span className="subtitleSpan">{transaction.date}</span>
+                                                                <span className="titleSpan">{transaction.description}</span>
+                                                                <span className="subtitleSpan">{convertDate(transaction.createdAt, "fulldate")}</span>
                                                             </p>
                                                         </div>
                                                         <div>
                                                             <p>
-                                                                <span className="titleSpan text-right">{transaction.amount}</span>
+                                                                <span className="titleSpan text-right">₦{transaction.amount}</span>
                                                             </p>
                                                         </div>
                                                     </li>

@@ -50,6 +50,9 @@ export const Router = () => {
 
     const convertDate = (date, returnData) => {
         const dummyDate = new Date(String(date.split("T")[0]));
+        var dt = new Date();
+        var h = dt. getHours(), m = dt. getMinutes();
+        var _time = (h > 12) ? (h-12 + ':' + m +' PM') : (h + ':' + m +' AM');
         const month = new Intl.DateTimeFormat("en-US", {month:"long"}).format(dummyDate);
         const day = dummyDate.getDate();
         
@@ -58,6 +61,9 @@ export const Router = () => {
         }
         if (returnData==="month"){
             return String(month.slice(0,3));
+        }
+        if (returnData==="fulldate"){
+            return `${String(day)} ${String(month.slice(0,3))}, ${_time}`
         }
     }
 
@@ -76,6 +82,7 @@ export const Router = () => {
                                 getBalance={getBalance}
                                 removeToken={removeToken}
                                 reloadUser={reloadUser}
+                                convertDate={convertDate}
                             />:
                             <Login
                                 setToken={setToken}
@@ -92,6 +99,7 @@ export const Router = () => {
                                 activeUser={user}
                                 removeToken={removeToken}
                                 reloadUser={reloadUser}
+                                convertDate={convertDate}
                             />:
                             <Login
                                 setToken={setToken}
