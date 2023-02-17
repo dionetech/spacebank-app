@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
+import { Navigate } from "react-router-dom";
 
 const networkList = [
     {
@@ -35,6 +36,7 @@ const BuyAirtime = ({ activeUser, token, removeToken, reloadUser }) => {
     const [networkIcon, setNetworkIcon] = useState("https://bingpay.ng/assets/services/mtn.jpg");
     const [phone, setPhone] = useState("");
     const [processing, setProcessing] = useState(false);
+    const [redirect, setRedirect] = useState(false);
 
     const changeNetwork = (e) => {
         setNetwork(e.target.value);
@@ -63,16 +65,20 @@ const BuyAirtime = ({ activeUser, token, removeToken, reloadUser }) => {
             },
 		})
 		.then((res) => {
+            reloadUser();
 			setProcessing(false);
             successToast(`You recharged ₦${amount} to ${phone}`);
+            setRedirect(true);
 		})
 		.catch((error) => {
             reloadUser();
 			setProcessing(false);
             try{
                 errorToast(error.response.data.error);
+                setRedirect(true);
             }catch{
                 errorToast("An Error Occurred");
+                setRedirect(true);
             }
 		})
     }
@@ -83,6 +89,7 @@ const BuyAirtime = ({ activeUser, token, removeToken, reloadUser }) => {
             user={activeUser}
             removeToken={removeToken}
         >
+            {redirect?<Navigate to="/transactions" />:""}
             <section className="transactionSection">
                 <div className="newTransferDiv">
                     <div className="newTransferSubTab">
