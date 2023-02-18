@@ -28,11 +28,11 @@ export const transactionsLists = [
         link: "/transactions/new/giftcard"
     },
     {
-        title: "Pay a Bill",
-        subTitle: "Pay bills seamlessly",
+        title: "Data Subscription",
+        subTitle: "Buy data effortlessly",
         icon: <MdOutlinePayments />,
         color: "#7a57d1",
-        link: "/transactions/new/pay"
+        link: "/transactions/new/data"
     },
     {
         title: "Investment",

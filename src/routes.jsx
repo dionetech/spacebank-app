@@ -14,6 +14,7 @@ import Settings from "./private/Settings";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "./config";
+import BuyData from "./private/transaction/BuyData";
 
 export const Router = () => {
 
@@ -144,6 +145,22 @@ export const Router = () => {
                         element={
                             token?
                             <BuyAirtime
+                                token={token}
+                                activeUser={user}
+                                removeToken={removeToken}
+                                reloadUser={reloadUser}
+                            />:
+                            <Login
+                                setToken={setToken}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/transactions/new/data"
+                        element={
+                            token?
+                            <BuyData
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}
