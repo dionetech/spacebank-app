@@ -48,11 +48,16 @@ const Login = ({ setToken }) => {
             .catch((error) => {
                 setProcessing(false);
                 console.log("SECOND ERROR: ", error);
-                errorToast("An error occured, try again");
+                try{
+                    errorToast(error.response.data.error);
+                }catch{
+                    errorToast("An error occured, try again");
+                }
             })
         })
         .catch((error) => {
             setProcessing(false);
+            console.log("ERROR: ", error);
             try{
                 errorToast(error.response.data.error);
             }catch{

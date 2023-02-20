@@ -266,7 +266,37 @@ const BuyData = ({ activeUser, token, removeToken, reloadUser }) => {
 
     const buyData = (e) => {
         e.preventDefault();
+		setProcessing(true);
         console.log(networkIcon, network, amount, phone, dataPackage);
+
+        axios({
+			method: "POST",
+			data: {
+                network, phone, amount, networkIcon, plan: dataPackage
+			},
+            url: `${API_URL}/transactions/data/buy-data`,
+            headers: {
+                'x-auth-token': token,
+            },
+		})
+		.then((res) => {
+            reloadUser();
+			setProcessing(false);
+            successToast(`You recharged ₦${amount} to ${phone}`);
+            setRedirect(true);
+		})
+		.catch((error) => {
+            reloadUser();
+			setProcessing(false);
+            try{
+                errorToast(error.response.data.error);
+                setRedirect(true);
+            }catch{
+                errorToast("An Error Occurred");
+                setRedirect(true);
+            }
+		})
+
     }
 
     return (

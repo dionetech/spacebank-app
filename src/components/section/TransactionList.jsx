@@ -5,6 +5,9 @@ const TransactionList = ({ transactions, convertDate }) => {
         if (type==="buy-airtime"){
             return "Airtime Recharge"
         }
+        if (type==="buy-data"){
+            return "Data Subscription"
+        }
     }
 
     return (
