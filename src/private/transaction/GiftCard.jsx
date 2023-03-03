@@ -3,10 +3,9 @@ import GiftCardBox from "../../components/card/GiftCardBox";
 import { localGiftCard } from "../../data/giftCard";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 
-const GiftCard = ({ activeUser, token, removeToken, convertDate }) => {
+const GiftCard = ({ activeUser, token, reloadUser, removeToken, convertDate }) => {
 
     const [activeTab, setActiveTab] = useState("local");
-    const [a, setA] = useState([]);
 
     return (
         <ProtectedLayout
@@ -31,7 +30,10 @@ const GiftCard = ({ activeUser, token, removeToken, convertDate }) => {
                 <div className="giftCardContent">
                 {
                     activeTab==="local"&&(
-                        <LocalGiftCards />
+                        <LocalGiftCards
+                            reloadUser={reloadUser}
+                            token={token}
+                        />
                     )
                 }
                 {
@@ -82,7 +84,7 @@ const InternationalGiftCards = () => {
     )
 }
 
-const LocalGiftCards = () => {
+const LocalGiftCards = ({ token, reloadUser }) => {
     return (
         <>
             <div className="row">
@@ -95,6 +97,8 @@ const LocalGiftCards = () => {
                         >
                             <GiftCardBox
                                 gcard={gcard}
+                                token={token}
+                                reloadUser={reloadUser}
                             />
                         </div>
                     )

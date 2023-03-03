@@ -70,6 +70,38 @@ img{
 	font-weight: 500!important;
 	font-size: 13px;
 }
+.alert{
+    border: 1px solid var(--accent-color);
+    margin: 5px 0px;
+    padding: 13px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.alert.info{
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1.5px solid #bee5eb;
+}
+.alert span{
+    font-family: var(--rubik);
+    font-weight: 400!important;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+.subInfo{
+    font-family: var(--rubik);
+    font-weight: 500!important;
+    font-size: 13px;
+    margin: 0px;
+    padding: 10px 0px;
+}
+.subInfo strong{
+    font-size: 14px;
+    font-weight: 600!important;
+}
 
 /* App Global Styles */
 .App{
