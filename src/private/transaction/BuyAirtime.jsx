@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { motion } from "framer-motion";
-import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
+import { API_URL, errorToast, successToast } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 import { Navigate } from "react-router-dom";

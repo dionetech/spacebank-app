@@ -15,6 +15,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "./config";
 import BuyData from "./private/transaction/BuyData";
+import PayBills from "./private/transaction/PayBills";
+import GiftCard from "./private/transaction/GiftCard";
 
 export const Router = () => {
 
@@ -31,7 +33,6 @@ export const Router = () => {
                 url: `${API_URL}/users/${user.user._id}`,
             })
             .then((res) => {
-                console.log("SUCCESS ON RELOAD: ", res);
                 if (res.data.success){
                     setToken(token, res.data.data);
                 }
@@ -51,7 +52,7 @@ export const Router = () => {
 
     const convertDate = (date, returnData) => {
         const dummyDate = new Date(String(date.split("T")[0]));
-        var dt = new Date();
+        var dt = new Date(date);
         var h = dt. getHours(), m = dt. getMinutes();
         var _time = (h > 12) ? (h-12 + ':' + m +' PM') : (h + ':' + m +' AM');
         const month = new Intl.DateTimeFormat("en-US", {month:"long"}).format(dummyDate);
@@ -161,6 +162,38 @@ export const Router = () => {
                         element={
                             token?
                             <BuyData
+                                token={token}
+                                activeUser={user}
+                                removeToken={removeToken}
+                                reloadUser={reloadUser}
+                            />:
+                            <Login
+                                setToken={setToken}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/transactions/new/bill"
+                        element={
+                            token?
+                            <PayBills
+                                token={token}
+                                activeUser={user}
+                                removeToken={removeToken}
+                                reloadUser={reloadUser}
+                            />:
+                            <Login
+                                setToken={setToken}
+                            />
+                        }
+                    />
+
+                    <Route
+                        path="/transactions/new/giftcard"
+                        element={
+                            token?
+                            <GiftCard
                                 token={token}
                                 activeUser={user}
                                 removeToken={removeToken}

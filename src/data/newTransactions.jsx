@@ -35,12 +35,19 @@ export const transactionsLists = [
         link: "/transactions/new/data"
     },
     {
-        title: "Investment",
-        subTitle: "Invest your money in stocks",
+        title: "Bills Payment",
+        subTitle: "Pay your bills seamlessly",
         icon: <RiPlantLine />,
         color: "#ed733f",
-        link: "/transactions/new/invest"
+        link: "/transactions/new/bill"
     },
+    // {
+    //     title: "Investment",
+    //     subTitle: "Invest your money in stocks",
+    //     icon: <RiPlantLine />,
+    //     color: "#ed733f",
+    //     link: "/transactions/new/invest"
+    // },
     {
         title: "Savings",
         subTitle: "Save money with interest",

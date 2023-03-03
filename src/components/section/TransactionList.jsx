@@ -8,6 +8,9 @@ const TransactionList = ({ transactions, convertDate }) => {
         if (type==="buy-data"){
             return "Data Subscription"
         }
+        if (type==="pay-bill"){
+            return "Bill Payment"
+        }
     }
 
     return (
@@ -20,7 +23,7 @@ const TransactionList = ({ transactions, convertDate }) => {
                             <div className="initialDiv">
                                 <img
                                     src={transaction.icon}
-                                    style={{ width: "30px", height: "30px" }}
+                                    style={{ width: "32px", height: "32px" }}
                                     alt="Transaction Card Icon"
                                 />
                                 <p>
@@ -30,7 +33,7 @@ const TransactionList = ({ transactions, convertDate }) => {
                             </div>
                             <div>
                                 <p>
-                                    <span className="titleSpan text-right">{transaction.amount}</span>
+                                    <span className="titleSpan text-right">₦{transaction.amount}</span>
                                     <span className="subtitleSpan text-right">{convertDate(transaction.createdAt, "fulldate")}</span>
                                 </p>
                             </div>

@@ -1,12 +1,12 @@
 import { AiOutlineTransaction } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-const TransactionHeader = () => {
+const TransactionHeader = ({ activeUser }) => {
 
     return (
         <div className="transactionSectionHeader">
             <div>
-                <h4>$114.158,63</h4>
+                <h4>${activeUser.balances.balance.$numberDecimal}.00</h4>
                 <p>Total balance from all accounts <span>USD</span></p>
             </div>
             <div>

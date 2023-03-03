@@ -1053,6 +1053,11 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv img{
     border-radius: 50%;
+    background-color: var(--white);
+    border: 1.5px solid rgba(0,0,0,0.1);
+    object-fit: contain!important;
+    object-position: center!important;
+    transition: 0.3s all ease-in-out;
 }
 .dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv p{
     padding-left: 10px;
@@ -1824,6 +1829,9 @@ textarea.customInput{
     -moz-box-shadow: 0 4px 14px 4.5px #f7f7f7;
     box-shadow: 0 4px 14px 4.5px #f7f7f7;
 }
+/* .transactionSection .transactionList ul li:hover div.initialDiv img{
+    border: 1.5px solid var(--accent-color)
+} */
 .transactionSection .transactionList ul li div{
     border: none;
 }
@@ -1833,6 +1841,10 @@ textarea.customInput{
 }
 .transactionSection .transactionList ul li div.initialDiv img{
     border-radius: 50%;
+    border: 1.5px solid rgba(0,0,0,0.1);
+    object-fit: contain!important;
+    object-position: center!important;
+    transition: 0.3s all ease-in-out;
 }
 .transactionSection .transactionList ul li div.initialDiv p{
     padding-left: 20px;
@@ -2174,6 +2186,86 @@ textarea.customInput{
 	font-weight: 500!important;
 	color: var(--black);
 }
+.transactionSection.giftCardSection .giftCardNav{
+    border: none;
+}
+.transactionSection.giftCardSection .giftCardNav ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+.transactionSection.giftCardSection .giftCardNav ul li{
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 15px;
+    padding: 9px 35px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    transition: 0.3s all ease-in-out;
+    margin: 0px 5px;
+}
+.transactionSection.giftCardSection .giftCardNav ul li.active{
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+.transactionSection.giftCardSection .giftCardContent{
+    padding: 30px 0px;
+    padding-bottom: 70px;
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox{
+    border: 1.5px solid rgba(0,0,0,0.02);
+    padding: 5px;
+    margin: 20px 0px;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+    border-radius: 4px;
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox:hover{
+    border: 1.5px solid var(--accent-color);
+    -webkit-box-shadow: 0 3px 17px -1.5px #0052FF33;
+    -moz-box-shadow: 0 3px 17px -1.5px #0052FF33;
+    box-shadow: 0 3px 17px -1.5px #0052FF33
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox:hover div img{
+    filter: brightness(100%);
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox div{
+    height: 100%;
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox div img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center left;
+    border-radius: 3px;
+    transition: 0.4s all ease-in-out;
+    filter: brightness(80%);
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox div:last-child{
+    padding: 5px 0px;
+    width: 100%;
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox div h3{
+    font-family: var(--rubik);
+    font-size: 15px;
+    font-weight: 600!important;
+    margin: 0px;
+}
+.transactionSection.giftCardSection .giftCardContent .giftCardBox div p{
+    font-family: var(--karla);
+    font-size: 12px;
+    font-weight: 600!important;
+    margin: 0px;
+    margin-top: 5px;
+}
+
+
 
 /* Setting Section */
 .settingSection{

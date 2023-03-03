@@ -23,7 +23,9 @@ const Transactions = ({ activeUser, token, removeToken, convertDate }) => {
             {
                 transactions.length!==0?
                 <>
-                    <TransactionHeader />
+                    <TransactionHeader
+                        activeUser={activeUser}
+                    />
                     <TransactionNav />
                     <TransactionList
                         transactions={transactions}
