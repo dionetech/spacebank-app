@@ -2,13 +2,19 @@ import { useState } from "react";
 import { useEffect } from "react";
 import TrByDate from "../../components/nav/app/TrByDate";
 import { convertDate } from "../../utils/convertDate";
-import { Link } from "react-router-dom";
-import { AiOutlineTransaction } from "react-icons/ai";
+import { createFilter } from 'react-search-input';
+// import { Link } from "react-router-dom";
+// import { AiOutlineTransaction } from "react-icons/ai";
 
-const MobileTransactions = ({ activeUser, token, transactions }) => {
+const KEYS_TO_FILTERS = ['description'];
+
+
+const MobileTransactions = ({ transactions }) => {
 
     const [dateList, setDateList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
+
+    const filteredTransactions = transactions.filter(createFilter(searchInput, KEYS_TO_FILTERS))
 
     useEffect(() => {
         const dates = [];
@@ -47,7 +53,7 @@ const MobileTransactions = ({ activeUser, token, transactions }) => {
                         <TrByDate
                             key={index}
                             date={date}
-                            transactions={transactions}
+                            transactions={filteredTransactions}
                         />
                     )
                 })

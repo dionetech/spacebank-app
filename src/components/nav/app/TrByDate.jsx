@@ -19,26 +19,32 @@ const TrByDate = ({ date, transactions }) => {
     }, [ transactions ])
 
     return (
-        <div className="trByDate">
-            <div className="header">
-                <h4>{date}</h4>
-            </div>
+        <>
+        {
+            trList.length!==0&&(
+            <div className="trByDate">
+                <div className="header">
+                    <h4>{date}</h4>
+                </div>
 
-            <div className="content">
-                <ul>
-                {
-                    trList.map((tr, index) => {
-                        return (
-                            <MobileTrCard
-                                key={index}
-                                tr={tr}
-                            />
-                        )
-                    })
-                }
-                </ul>
+                <div className="content">
+                    <ul>
+                    {
+                        trList.map((tr, index) => {
+                            return (
+                                <MobileTrCard
+                                    key={index}
+                                    tr={tr}
+                                />
+                            )
+                        })
+                    }
+                    </ul>
+                </div>
             </div>
-        </div>
+            )
+        }
+        </>
     )
 }
 
