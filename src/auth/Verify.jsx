@@ -7,7 +7,7 @@ import axios from "axios";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../config";
 import { Navigate } from "react-router-dom";
 
-const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774795/spacebank/iia8vayzldtkpbpd4mbc.webp";
+const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1678007848/spacebank/vebkzacxodblspnrgluf.webp";
 
 const Verify = () => {
 

@@ -92,7 +92,7 @@ const LocalGiftCards = ({ token, reloadUser }) => {
                 localGiftCard.map((gcard, index) => {
                     return (
                         <div
-                            className="col-xl-3"
+                            className="col-lg-3 col-md-4 col-sm-4 col-6"
                             key={index}
                         >
                             <GiftCardBox

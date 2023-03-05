@@ -7,7 +7,7 @@ import axios from "axios";
 import { Link, Navigate } from "react-router-dom";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../config";
 
-const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774795/spacebank/iia8vayzldtkpbpd4mbc.webp";
+const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1678007848/spacebank/vebkzacxodblspnrgluf.webp";
 
 const Register = ({ createAccount }) => {
 

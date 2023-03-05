@@ -592,6 +592,12 @@
     .transactionSection .noTransactionTab .noTransactionTabContent p{
         padding: 15px 20px;
     }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div img{
+        height: 130px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox{
+        margin: 15px 0px;
+    }
 }
 
 @media (max-width: 375.5px){
@@ -611,5 +617,17 @@
     }
     .transactionSection .transactionSectionHeader div button svg{
         display: none;
+    }
+}
+
+@media (max-width: 355.5px){
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div img{
+        height: 110px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div h3{
+        font-size: 13px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div p{
+        font-size: 11px;
     }
 }

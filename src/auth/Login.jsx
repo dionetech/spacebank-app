@@ -8,7 +8,7 @@ import { ImSpinner8 } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../config";
 
-const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1671774864/spacebank/yni73yocqg0ope3iifqm.webp";
+const imageURL = "https://res.cloudinary.com/ruthless-labs/image/upload/v1678007810/spacebank/aky7ek2o52kp04eel5zj.webp";
 
 const Login = ({ setToken }) => {
 
