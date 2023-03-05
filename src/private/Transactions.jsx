@@ -4,6 +4,7 @@ import TransactionList from "../components/section/TransactionList";
 import TransactionNav from "../components/section/TransactionNav";
 import NoTransactionTab from "../components/tab/NoTransactionTab";
 import ProtectedLayout from "../layout/ProtectedLayout";
+import MobileTransactions from "./mobile/MobileTransactions";
 
 const Transactions = ({ activeUser, token, removeToken, convertDate }) => {
 
@@ -36,6 +37,11 @@ const Transactions = ({ activeUser, token, removeToken, convertDate }) => {
             }
             <br /><br />
             </section>
+            <MobileTransactions
+                activeUser={activeUser}
+                token={token}
+                transactions={transactions}
+            />
         </ProtectedLayout>
     )
 }

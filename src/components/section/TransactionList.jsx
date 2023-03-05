@@ -11,6 +11,9 @@ const TransactionList = ({ transactions, convertDate }) => {
         if (type==="pay-bill"){
             return "Bill Payment"
         }
+        if (type==="purchased-giftcard"){
+            return "Purchased Giftcard"
+        }
     }
 
     return (

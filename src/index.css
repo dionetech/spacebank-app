@@ -2297,6 +2297,122 @@ textarea.customInput{
     margin-top: 5px;
 }
 
+.mobileTransactionSection{
+    padding-bottom: 80px;
+    display: none;
+}
+.mobileTransactionSection .mobileTrHeader{
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+.mobileTransactionSection .mobileTrHeader .formDiv{
+    padding: 0px 20px;
+}
+.mobileTransactionSection .mobileTrHeader .formDiv .form-group{
+    margin: 0px;
+}
+.mobileTransactionSection .mobileTrHeader .formDiv .form-group input{
+    font-size: 13px;
+}
+.mobileTransactionSection .trByDate{
+    border: none;
+}
+.mobileTransactionSection .trByDate .header{
+    background-color: #F2F4F5;
+    padding: 8px 17px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.mobileTransactionSection .trByDate .header h4{
+    margin: 0px;
+    padding: 0px;
+    font-size: 11px;
+    font-weight: 600!important;
+    font-family: var(--rubik);
+}
+.mobileTransactionSection .trByDate .content{
+    border: none;
+    padding: 0px;
+}
+.mobileTransactionSection .trByDate .content ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+.mobileTransactionSection .trByDate .content ul li{
+    padding: 12px 15px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0px;
+    border-top: 0.1px solid rgba(0,0,0,0.02);
+    border-bottom: 0.1px solid rgba(0,0,0,0.02);
+    transition: 0.3s all ease-in-out;
+}
+.mobileTransactionSection .trByDate .content ul li.active{
+    border-top: 0.1px solid rgba(0,0,0,0.05);
+    border-bottom: 0.1px solid rgba(0,0,0,0.5);
+}
+.mobileTransactionSection .trByDate .content ul li:hover{
+    border-top: 0.1px solid rgba(0,0,0,0.05);
+    border-bottom: 0.1px solid rgba(0,0,0,0.05);
+}
+.mobileTransactionSection .trByDate .content ul li div{
+    border: none;
+}
+.mobileTransactionSection .trByDate .content ul li div.initialDiv{
+    display: flex;
+    align-items: center;
+}
+.mobileTransactionSection .trByDate .content ul li div.initialDiv img{
+    border-radius: 50%;
+    object-fit: cover!important;
+    object-position: center!important;
+    transition: 0.3s all ease-in-out;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+.mobileTransactionSection .trByDate .content ul li div.initialDiv p{
+    padding-left: 15px;
+}
+.mobileTransactionSection .trByDate .content ul li div p{
+    margin: 0px;
+}
+.mobileTransactionSection .trByDate .content ul li div p span{
+    display: block;
+}
+.mobileTransactionSection .trByDate .content ul li div p span.titleSpan{
+    font-family: var(--karla);
+    font-weight: 500!important;
+    font-size: 12px;
+    color: var(--black);
+}
+.mobileTransactionSection .trByDate .content ul li div p.amount span{
+    font-family: var(--karla);
+    font-weight: 600!important;
+    font-size: 11px;
+    color: var(--black);
+}
+.mobileTransactionSection .trByDate .content ul li div p span.subtitleSpan{
+    font-family: var(--slab);
+    font-weight: 500!important;
+    font-size: 9px;
+    margin-top: 1px;
+    color: var(--dark-slate);
+}
+
+
+/*
+
+.transactionSection .transactionList ul li div p span.subtitleSpan{
+    font-family: var(--slab);
+    font-weight: 400!important;
+    font-size: 10px;
+    margin-top: 1px;
+    color: var(--dark-slate);
+} */
 
 
 /* Setting Section */

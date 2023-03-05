@@ -27,11 +27,6 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                                 placeholder="Type to search ..."
                             />
                         </form>
-                        <li>
-                            <Link to="/notifications" id="bellIcon">
-                                <VscBell />
-                            </Link>
-                        </li>
                         {/* <li>
                             <Link href="/darkmode" id="bellIcon">
                                 <a href="/darkmode" onClick={toggleDarkmode}><BiMoon /></a>
