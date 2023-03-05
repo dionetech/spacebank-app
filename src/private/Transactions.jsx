@@ -20,7 +20,7 @@ const Transactions = ({ activeUser, token, removeToken, convertDate }) => {
             user={activeUser}
             removeToken={removeToken}
         >
-            <section className="transactionSection">
+            <section className="transactionSection main">
             {
                 transactions.length!==0?
                 <>

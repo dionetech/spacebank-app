@@ -490,11 +490,18 @@
         padding: 20px 35px;
         padding-bottom: 30px;
     }
-    .transactionSection{
+    .transactionSection.main{
         display: none;
     }
     .mobileTransactionSection{
         display: block;
+    }
+    .transactionSection .transactionSectionHeader div button{
+        font-size: 12px;
+        padding: 8px 13px;
+    }
+    .transactionSection .transactionNavDiv div select{
+        padding: 6px 15px;
     }
     .otherURLSection{
         padding: 20px 15px;
@@ -510,6 +517,24 @@
     }
     .settingSection .settingNavDiv .settingNav ul li a{
         padding: 8px 12px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard{
+        padding: 15px;
+        height: auto;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard h5{
+        font-size: 15px;
+    }
+    .transactionSection .newTransactionDiv .miniNewTrCard p{
+        font-size: 11px;
+        color: rgba(0,0,0,0.7);
+    }
+    .transactionSection .newTransferDiv .newTransferSubTab{
+        padding: 40px 20px;
+        padding-bottom: 100px;
+    }
+    .transactionSection .newTransferDiv .newTransferNav{
+        padding: 0px 20px;
     }
 }
 
@@ -550,8 +575,30 @@
     .appCustomNavbar ul{
         padding: 20px 15px;
     }
+    .transactionSection .transactionSectionHeader div p{
+        margin-top: 10px;
+    }
+    .transactionSection .transactionSectionHeader div button{
+        margin-top: -26px;
+    }
     .otherURLSection{
         padding: 20px;
+    }
+    .transactionSection .newTransferDiv .newTransferSubTab{
+        padding: 30px 2px;
+        padding-bottom: 100px;
+    }
+    .transactionSection .newTransferDiv .newTransferNav{
+        padding: 0px 2px;
+    }
+    .transactionSection .noTransactionTab .noTransactionTabContent p{
+        padding: 15px 20px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div img{
+        height: 130px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox{
+        margin: 15px 0px;
     }
 }
 
@@ -570,7 +617,19 @@
         padding: 20px 25px;
         padding-bottom: 30px;
     }
+    .transactionSection .transactionSectionHeader div button svg{
+        display: none;
+    }
 }
 
 @media (max-width: 355.5px){
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div img{
+        height: 110px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div h3{
+        font-size: 13px;
+    }
+    .transactionSection.giftCardSection .giftCardContent .giftCardBox div p{
+        font-size: 11px;
+    }
 }

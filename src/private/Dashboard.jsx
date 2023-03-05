@@ -73,8 +73,8 @@ const Dashboard = ({ activeUser, token, getBalance, reloadUser, removeToken, con
                     </div>
                     <div className="openAccount">
                         {/* <button><RiAddCircleLine /> Make a P2P Transaction</button> */}
-                        <Link to="/transactions/new/transfer" id="p2pTransactionLink">
-                            <RiAddCircleLine /> Make a P2P Transaction
+                        <Link to="/transactions/new" id="p2pTransactionLink">
+                            <RiAddCircleLine /> Make a Transaction
                         </Link>
                     </div>
                 </div>
