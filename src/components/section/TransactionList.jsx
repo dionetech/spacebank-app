@@ -16,7 +16,7 @@ const TransactionList = ({ transactions, convertDate }) => {
 
   return (
     <div className="transactionList">
-      {transactions.length === 0 ? (
+      {transactions.length !== 0 ? (
         <ul>
           {transactions.map((transaction, index) => {
             return (
