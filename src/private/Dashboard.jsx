@@ -91,7 +91,7 @@ const Dashboard = ({
                             loading: false,
                             status: "success",
                         });
-                    }, 1300);
+                    }, 1500);
                 }
             })
             .catch((err) => {
@@ -141,7 +141,7 @@ const Dashboard = ({
                 <div className="dashboardHeader">
                     <div className="currentBalance">
                         <h3>
-                            ${activeUser.balances.balance.$numberDecimal}.00
+                            ${(parseFloat(balances[0]) * 322.88).toFixed(2)}
                         </h3>
                         <p>
                             Total balance from all accounts <span>NGN</span>
@@ -168,10 +168,9 @@ const Dashboard = ({
                                     <div className="statsDivContent">
                                         <h4>
                                             $
-                                            {
-                                                activeUser.balances.balance
-                                                    .$numberDecimal
-                                            }
+                                            {(
+                                                parseFloat(balances[0]) * 322.88
+                                            ).toFixed(2)}
                                         </h4>
                                     </div>
                                     <div className="statsDivFooter">
