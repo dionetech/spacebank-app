@@ -9,318 +9,329 @@ let fees = 5; // %
 let pancakeSwap = new web3.eth.Contract(pancakeABI, pancakeSwapContract);
 
 export const getAmountsOut = async (fromToken, toToken) => {
-  if (fromToken.toLowerCase() == toToken.toLowerCase()) {
-    console.log("ok");
-    return [web3.utils.toWei("1"), web3.utils.toWei("1")];
-  }
+    if (fromToken.toLowerCase() == toToken.toLowerCase()) {
+        console.log("ok");
+        return [web3.utils.toWei("1"), web3.utils.toWei("1")];
+    }
 
-  let amount = await pancakeSwap.methods
-    .getAmountsOut(web3.utils.toWei("1"), [fromToken, toToken])
-    .call()
-    .catch((error) => {
-      return "false";
-    });
+    let amount = await pancakeSwap.methods
+        .getAmountsOut(web3.utils.toWei("1"), [fromToken, toToken])
+        .call()
+        .catch((error) => {
+            return "false";
+        });
 
-  return amount ? amount : "false";
+    return amount ? amount : "false";
 };
 
 export const getToken = async (tokenContract) => {
-  web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
-  let token = await new web3.eth.Contract(
-    tokenABI,
-    tokenContract.toLowerCase()
-  );
-  let tokenDecimals = await token.methods.decimals().call();
-  let name = await token.methods.name().call();
-  let symbol = await token.methods.symbol().call();
+    web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
+    let token = await new web3.eth.Contract(
+        tokenABI,
+        tokenContract.toLowerCase()
+    );
+    let tokenDecimals = await token.methods.decimals().call();
+    let name = await token.methods.name().call();
+    let symbol = await token.methods.symbol().call();
 
-  return {
-    name: await name,
-    symbol: await symbol,
-    contract: await tokenContract,
-    decimals: await tokenDecimals,
-  };
+    return {
+        name: await name,
+        symbol: await symbol,
+        contract: await tokenContract,
+        decimals: await tokenDecimals,
+    };
 };
 
 export const getDecimals = async (tokenContract) => {
-  web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
-  let token = await new web3.eth.Contract(
-    tokenABI,
-    tokenContract.toLowerCase()
-  );
-  let tokenDecimals = await token.methods.decimals().call();
-  return tokenDecimals;
+    web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
+    let token = await new web3.eth.Contract(
+        tokenABI,
+        tokenContract.toLowerCase()
+    );
+    let tokenDecimals = await token.methods.decimals().call();
+    return tokenDecimals;
 };
 
 export const getBalanceOfToken = async (tokenContract, address) => {
-  web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
-  let token = new web3.eth.Contract(tokenABI, tokenContract.toLowerCase());
-  let balance = await token.methods.balanceOf(address).call();
-  return await balance;
+    web3.eth.accounts.wallet.add(user.user.wallet.privateKey);
+    let token = new web3.eth.Contract(tokenABI, tokenContract.toLowerCase());
+    let balance = await token.methods.balanceOf(address).call();
+    return await balance;
 };
 
 export const swap = async (
-  fromContract,
-  toContract,
-  amount,
-  address,
-  privateKey
+    fromContract,
+    toContract,
+    amount,
+    address,
+    privateKey
 ) => {
-  amount = web3.utils.toWei(amount + "");
-  console.log(amount);
-  web3.eth.accounts.wallet.add(privateKey);
-  if (amount == 0) {
-    alert("Value must be greater than 0");
-    return;
-  }
-  if (fromContract == "") {
-    try {
-      toContract = web3.utils.toChecksumAddress(toContract);
-      var spend = web3.utils.toChecksumAddress(
-        "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
-      );
-      var tx_builder = pancakeSwap.methods.swapExactETHForTokens(
-        0,
-        [spend],
-        address,
-        Date.now() + 3600 * 1000
-      );
-      var excoded_tx = tx_builder.encodeABI();
-      let transObj = {
-        gas: 300000,
-        data: excoded_tx,
-        from: address,
-        to: pancakeSwapContract,
-        value: amount - amount * (fees / 100),
-      };
-      let feesObj = {
-        gas: 300000,
-        from: address,
-        to: adminWallet,
-        value: amount * (fees / 100),
-      };
-      web3.eth.accounts.signTransaction(
-        transObj,
-        privateKey,
-        (error, signedTx) => {
-          if (error) {
-            alert(error.message);
-          } else {
-            web3.eth
-              .sendSignedTransaction(signedTx.rawTransaction)
-              .on("receipt", (receipt) => {
-                web3.eth.accounts
-                  .signTransaction(feesObj, privateKey, (error, signedTx) => {
+    amount = web3.utils.toWei(amount + "");
+    console.log(amount);
+    web3.eth.accounts.wallet.add(privateKey);
+    if (amount == 0) {
+        alert("Value must be greater than 0");
+        return;
+    }
+    if (fromContract == "") {
+        try {
+            toContract = web3.utils.toChecksumAddress(toContract);
+            var spend = web3.utils.toChecksumAddress(
+                "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
+            );
+            var tx_builder = pancakeSwap.methods.swapExactETHForTokens(
+                0,
+                [spend],
+                address,
+                Date.now() + 3600 * 1000
+            );
+            var excoded_tx = tx_builder.encodeABI();
+            let transObj = {
+                gas: 300000,
+                data: excoded_tx,
+                from: address,
+                to: pancakeSwapContract,
+                value: amount - amount * (fees / 100),
+            };
+            let feesObj = {
+                gas: 300000,
+                from: address,
+                to: adminWallet,
+                value: amount * (fees / 100),
+            };
+            web3.eth.accounts.signTransaction(
+                transObj,
+                privateKey,
+                (error, signedTx) => {
                     if (error) {
-                      alert(error.message);
+                        alert(error.message);
                     } else {
-                      web3.eth
-                        .sendSignedTransaction(signedTx.rawTransaction)
-                        .on("receipt", (receipt) => {
-                          alert("Swap success !!!");
-                        });
+                        web3.eth
+                            .sendSignedTransaction(signedTx.rawTransaction)
+                            .on("receipt", (receipt) => {
+                                web3.eth.accounts
+                                    .signTransaction(
+                                        feesObj,
+                                        privateKey,
+                                        (error, signedTx) => {
+                                            if (error) {
+                                                alert(error.message);
+                                            } else {
+                                                web3.eth
+                                                    .sendSignedTransaction(
+                                                        signedTx.rawTransaction
+                                                    )
+                                                    .on(
+                                                        "receipt",
+                                                        (receipt) => {
+                                                            alert(
+                                                                "Swap success !!!"
+                                                            );
+                                                        }
+                                                    );
+                                            }
+                                        }
+                                    )
+                                    .on("error", (error) => {
+                                        console.log(error);
+                                    });
+                            })
+                            .on("error", (error) => {
+                                console.log(error);
+                            });
                     }
-                  })
-                  .on("error", (error) => {
-                    console.log(error);
-                  });
-              })
-              .on("error", (error) => {
-                console.log(error);
-              });
-          }
+                }
+            );
+        } catch (err) {
+            alert(err.message);
         }
-      );
-    } catch (err) {
-      alert(err.message);
-    }
-  } else if (toContract == "") {
-    try {
-      fromContract = web3.utils.toChecksumAddress(fromContract);
-      toContract = web3.utils.toChecksumAddress(
-        "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
-      );
-      var tx_builder =
-        pancakeSwap.methods.swapExactTokensForETHSupportingFeeOnTransferTokens(
-          amount,
-          0,
-          [fromContract],
-          address,
-          Date.now() + 3600 * 1000
-        );
-      var excoded_tx = tx_builder.encodeABI();
-      let transObj = {
-        gas: 300000,
-        data: excoded_tx,
-        from: address,
-        to: pancakeSwapContract,
-      };
-      web3.eth.accounts.signTransaction(
-        transObj,
-        privateKey,
-        (error, signedTx) => {
-          if (error) {
-            alert(error.message);
-          } else {
-            web3.eth
-              .sendSignedTransaction(signedTx.rawTransaction)
-              .on("receipt", (receipt) => {
-                console.log(receipt);
-                alert("Swap Success !!");
-              })
-              .on("error", (error) => {
-                console.log(error);
-              });
-          }
+    } else if (toContract == "") {
+        try {
+            fromContract = web3.utils.toChecksumAddress(fromContract);
+            toContract = web3.utils.toChecksumAddress(
+                "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
+            );
+            var tx_builder =
+                pancakeSwap.methods.swapExactTokensForETHSupportingFeeOnTransferTokens(
+                    amount,
+                    0,
+                    [fromContract],
+                    address,
+                    Date.now() + 3600 * 1000
+                );
+            var excoded_tx = tx_builder.encodeABI();
+            let transObj = {
+                gas: 300000,
+                data: excoded_tx,
+                from: address,
+                to: pancakeSwapContract,
+            };
+            web3.eth.accounts.signTransaction(
+                transObj,
+                privateKey,
+                (error, signedTx) => {
+                    if (error) {
+                        alert(error.message);
+                    } else {
+                        web3.eth
+                            .sendSignedTransaction(signedTx.rawTransaction)
+                            .on("receipt", (receipt) => {
+                                console.log(receipt);
+                                alert("Swap Success !!");
+                            })
+                            .on("error", (error) => {
+                                console.log(error);
+                            });
+                    }
+                }
+            );
+        } catch (err) {
+            alert(err.message);
         }
-      );
-    } catch (err) {
-      alert(err.message);
-    }
-  } else {
-    try {
-      fromContract = web3.utils.toChecksumAddress(fromContract);
-      toContract = web3.utils.toChecksumAddress(toContract);
-      var tx_builder =
-        pancakeSwap.methods.swapExactTokensForTokensSupportingFeeOnTransferTokens(
-          amount,
-          0,
-          [fromContract, toContract],
-          address,
-          Date.now() + 3600 * 1000
-        );
-      var excoded_tx = tx_builder.encodeABI();
-      let transObj = {
-        gas: 300000,
-        data: excoded_tx,
-        from: address,
-        to: pancakeSwapContract,
-      };
-      web3.eth.accounts.signTransaction(
-        transObj,
-        privateKey,
-        (error, signedTx) => {
-          if (error) {
-            alert(error.message);
-          } else {
-            web3.eth
-              .sendSignedTransaction(signedTx.rawTransaction)
-              .on("receipt", (receipt) => {
-                console.log(receipt);
-                alert("Swap Success !!");
-              })
-              .on("error", (error) => {
-                console.log(error);
-              });
-          }
+    } else {
+        try {
+            fromContract = web3.utils.toChecksumAddress(fromContract);
+            toContract = web3.utils.toChecksumAddress(toContract);
+            var tx_builder =
+                pancakeSwap.methods.swapExactTokensForTokensSupportingFeeOnTransferTokens(
+                    amount,
+                    0,
+                    [fromContract, toContract],
+                    address,
+                    Date.now() + 3600 * 1000
+                );
+            var excoded_tx = tx_builder.encodeABI();
+            let transObj = {
+                gas: 300000,
+                data: excoded_tx,
+                from: address,
+                to: pancakeSwapContract,
+            };
+            web3.eth.accounts.signTransaction(
+                transObj,
+                privateKey,
+                (error, signedTx) => {
+                    if (error) {
+                        alert(error.message);
+                    } else {
+                        web3.eth
+                            .sendSignedTransaction(signedTx.rawTransaction)
+                            .on("receipt", (receipt) => {
+                                console.log(receipt);
+                                alert("Swap Success !!");
+                            })
+                            .on("error", (error) => {
+                                console.log(error);
+                            });
+                    }
+                }
+            );
+        } catch (err) {
+            alert(err.message);
         }
-      );
-    } catch (err) {
-      alert(err.message);
     }
-  }
 };
 
 export const approve = async (tokenContract, toAddress, amount, privateKey) => {
-  amount = web3.utils.toWei(amount + "");
-  try {
-    let token = await new web3.eth.Contract(
-      tokenABI,
-      tokenContract.toLowerCase()
-    );
-    let tx_builder = token.methods.approve(toAddress, amount);
-    var excoded_tx = tx_builder.encodeABI();
-    let transObj = {
-      gas: 300000,
-      data: excoded_tx,
-      from: address,
-      to: tokenContract,
-    };
-    web3.eth.accounts.signTransaction(
-      transObj,
-      privateKey,
-      (error, signedTx) => {
-        if (error) {
-          alert(error.message);
-        } else {
-          web3.eth
-            .sendSignedTransaction(signedTx.rawTransaction)
-            .on("receipt", () => {
-              alert("Approved !!");
-            });
-        }
-      }
-    );
-  } catch (err) {
-    alert(err.message);
-  }
+    amount = web3.utils.toWei(amount + "");
+    try {
+        let token = await new web3.eth.Contract(
+            tokenABI,
+            tokenContract.toLowerCase()
+        );
+        let tx_builder = token.methods.approve(toAddress, amount);
+        var excoded_tx = tx_builder.encodeABI();
+        let transObj = {
+            gas: 300000,
+            data: excoded_tx,
+            from: address,
+            to: tokenContract,
+        };
+        web3.eth.accounts.signTransaction(
+            transObj,
+            privateKey,
+            (error, signedTx) => {
+                if (error) {
+                    alert(error.message);
+                } else {
+                    web3.eth
+                        .sendSignedTransaction(signedTx.rawTransaction)
+                        .on("receipt", () => {
+                            alert("Approved !!");
+                        });
+                }
+            }
+        );
+    } catch (err) {
+        alert(err.message);
+    }
 };
 
 export const sendETH = async (fromAddress, toAddress, amount, privateKey) => {
-  console.log(fromAddress, toAddress, amount, privateKey);
-  amount = web3.utils.toWei(amount + "");
-  const transObj = {
-    from: fromAddress,
-    gasPrice: "50000000000",
-    gas: "21000",
-    to: toAddress,
-    value: amount,
-  };
-  web3.eth.accounts
-    .signTransaction(transObj, privateKey)
-    .then((signedTx) => {
-      web3.eth
-        .sendSignedTransaction(signedTx.rawTransaction)
-        .on("receipt", () => {
-          console.log("Eth sent !!");
+    console.log(fromAddress, toAddress, amount, privateKey);
+    amount = web3.utils.toWei(amount + "");
+    const transObj = {
+        from: fromAddress,
+        gasPrice: "50000000000",
+        gas: "21000",
+        to: toAddress,
+        value: amount,
+    };
+    web3.eth.accounts
+        .signTransaction(transObj, privateKey)
+        .then((signedTx) => {
+            web3.eth
+                .sendSignedTransaction(signedTx.rawTransaction)
+                .on("receipt", () => {
+                    console.log("Eth sent !!");
+                });
+        })
+        .catch((error) => {
+            console.log("ERROR: ", error);
         });
-    })
-    .catch((error) => {
-      console.log("ERROR: ", error);
-    });
 };
 
 export const sendTOKEN = async (
-  fromAddress,
-  toAddress,
-  amount,
-  tokenContract,
-  privateKey
+    fromAddress,
+    toAddress,
+    amount,
+    tokenContract,
+    privateKey
 ) => {
-  amount = web3.utils.toWei(amount + "");
-  try {
-    console.log(tokenContract);
-    let token = await new web3.eth.Contract(
-      tokenABI,
-      tokenContract.toLowerCase()
-    );
-    let tx_builder = token.methods.transfer(toAddress, amount);
-    var excoded_tx = tx_builder.encodeABI();
-    let transObj = {
-      gas: 300000,
-      data: excoded_tx,
-      from: fromAddress,
-      to: tokenContract,
-    };
-    web3.eth.accounts.signTransaction(
-      transObj,
-      privateKey,
-      (error, signedTx) => {
-        if (error) {
-          alert(error.message);
-        } else {
-          web3.eth
-            .sendSignedTransaction(signedTx.rawTransaction)
-            .on("receipt", () => {
-              alert("Sent !!");
-            });
-        }
-      }
-    );
-  } catch (err) {
-    console.log(err);
-    alert("Error!! " + err.message);
-  }
+    amount = web3.utils.toWei(amount + "");
+    try {
+        console.log(tokenContract);
+        let token = await new web3.eth.Contract(
+            tokenABI,
+            tokenContract.toLowerCase()
+        );
+        let tx_builder = token.methods.transfer(toAddress, amount);
+        var excoded_tx = tx_builder.encodeABI();
+        let transObj = {
+            gas: 300000,
+            data: excoded_tx,
+            from: fromAddress,
+            to: tokenContract,
+        };
+        web3.eth.accounts.signTransaction(
+            transObj,
+            privateKey,
+            (error, signedTx) => {
+                if (error) {
+                    alert(error.message);
+                } else {
+                    web3.eth
+                        .sendSignedTransaction(signedTx.rawTransaction)
+                        .on("receipt", () => {
+                            alert("Sent !!");
+                        });
+                }
+            }
+        );
+    } catch (err) {
+        console.log(err);
+        alert("Error!! " + err.message);
+    }
 };
 
 // module.exports = {

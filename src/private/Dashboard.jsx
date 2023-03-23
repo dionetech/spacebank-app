@@ -3,7 +3,6 @@ import { RiAddCircleLine } from "react-icons/ri";
 import { BsArrowUpRight, BsArrowDownLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Web3 from "web3";
 import TrPinModal from "../components/modal/TrPinModal";
 import { useCycle } from "framer-motion";
 import SendAssetModal from "../components/modal/SendAssetModal";
@@ -19,90 +18,31 @@ import { successToast } from "../config";
 import { user } from "../auth/authToken";
 import { ImSpinner2, ImSpinner8 } from "react-icons/im";
 import BalanceLoader from "../utils/balanceLoader";
+import { convertDate } from "../utils/convertDate";
 
 const Dashboard = ({
     activeUser,
     token,
-    getBalance,
+    balance,
+    balances,
+    loading,
     reloadUser,
     removeToken,
-    convertDate,
 }) => {
-    const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
     const [pinModal, cyclePinModal] = useState(false);
     const [assetModal, cycleAssetModal] = useCycle(false, true);
     const [transactions, setTransactions] = useState([]);
-    const [currency, setCurrency] = useState(["", "BNB", 18]);
-    const [currencyTo, setCurrencyTo] = useState([
-        "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
-        "BUSD",
-        18,
-    ]);
-    const [w, setW] = useState(false);
-    const [balance, setBalance] = useState();
-    const [balances, setBalances] = useState([]);
-    const [slippage, setSlippage] = useState(0.5);
-    const [balanceFrom, setBalanceFrom] = useState(0);
-    const [balanceTo, setBalanceTo] = useState(0);
-    const [amount, setAmount] = useState(0);
-    const [amountTo, setAmountTo] = useState(0);
-    const [loading, setLoading] = useState({
-        loading: true,
-        status: "in-progress",
-        error: "",
-    });
-
-    async function getAllBalances() {
-        if (w) {
-            let map = [];
-            for (let i = 0; i < currencyList.length; i++) {
-                if (currencyList[i].contract == "") {
-                    map.push(Number(balance));
-                } else {
-                    map.push(
-                        Number(
-                            await getBalanceOfToken(
-                                currencyList[i].contract,
-                                activeUser.user.wallet.address
-                            )
-                        ) /
-                            10 ** 18
-                    );
-                }
-            }
-            return map;
-        }
-    }
+    // const [currency, setCurrency] = useState(["", "BNB", 18]);
+    // const [currencyTo, setCurrencyTo] = useState([
+    //     "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
+    //     "BUSD",
+    //     18,
+    // ]);
+    // const [slippage, setSlippage] = useState(0.5);
 
     useEffect(() => {
-        setW(true);
-        getBalance().then((bal) => {
-            setBalance(bal / 10 ** 18);
-        });
         setTransactions(activeUser.transactions);
-
-        getAllBalances()
-            .then((bal) => {
-                setBalances(bal ? bal : []);
-                if (bal) {
-                    console.log("BBL: ", bal);
-                    setTimeout(function () {
-                        setLoading({
-                            loading: false,
-                            status: "success",
-                        });
-                    }, 1500);
-                }
-            })
-            .catch((err) => {
-                console.log("ERR: ", err);
-                setLoading({
-                    loading: false,
-                    status: "failed",
-                    error: "Network Error",
-                });
-            });
-    }, [balances, balance]);
+    }, []);
 
     const copyAddress = (e) => {
         e.preventDefault();
@@ -251,7 +191,7 @@ const Dashboard = ({
                                                                             <span className="titleSpan text-right">
                                                                                 {bal
                                                                                     ? bal
-                                                                                    : 0}{" "}
+                                                                                    : ""}{" "}
                                                                                 {
                                                                                     curr.name
                                                                                 }

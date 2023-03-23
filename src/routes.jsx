@@ -17,11 +17,45 @@ import { API_URL } from "./config";
 import BuyData from "./private/transaction/BuyData";
 import PayBills from "./private/transaction/PayBills";
 import GiftCard from "./private/transaction/GiftCard";
+import {
+    getBalanceOfToken,
+    sendETH,
+    sendTOKEN,
+    getAmountsOut,
+} from "./helpers/pancakeswapHelper";
+import { currencyList } from "./helpers/CurrencyHelper";
 
 export const Router = () => {
     const { token, removeToken, setToken, user, createAccount, getBalance } =
         AuthContext();
+    const [balance, setBalance] = useState();
+    const [balances, setBalances] = useState([0, 0, 0, 0]);
+    const [loading, setLoading] = useState({
+        loading: true,
+        status: "in-progress",
+        error: "",
+    });
     const [initialLoad, setInitialLoad] = useState(false);
+
+    async function getAllBalances(walletAddress) {
+        let map = [];
+        for (let i = 0; i < currencyList.length; i++) {
+            if (currencyList[i].contract == "") {
+                map.push(Number(balance));
+            } else {
+                map.push(
+                    Number(
+                        await getBalanceOfToken(
+                            currencyList[i].contract,
+                            walletAddress
+                        )
+                    ) /
+                        10 ** 18
+                );
+            }
+        }
+        return map;
+    }
 
     const reloadUser = () => {
         if (token) {
@@ -46,31 +80,42 @@ export const Router = () => {
     useEffect(() => {
         if (initialLoad === false) {
             reloadUser();
+            const walletAddress = user.user.wallet.address;
+            getBalance(walletAddress).then((bal) => {
+                const tempBal = bal;
+                setBalance(tempBal / 10 ** 18);
+
+                getAllBalances(walletAddress)
+                    .then((bal) => {
+                        if (bal) {
+                            var tempBalance = [
+                                tempBal / 10 ** 18,
+                                bal[1],
+                                bal[2],
+                                bal[3],
+                            ];
+                            setBalances(tempBalance);
+                            console.log("BALL: ", tempBalance);
+                            setTimeout(function () {
+                                setLoading({
+                                    loading: false,
+                                    status: "success",
+                                });
+                            }, 500);
+                        }
+                    })
+                    .catch((err) => {
+                        console.log("ERR: ", err);
+                        setLoading({
+                            loading: false,
+                            status: "failed",
+                            error: "Network Error",
+                        });
+                    });
+            });
             setInitialLoad(true);
         }
-    }, [initialLoad]);
-
-    const convertDate = (date, returnData) => {
-        const dummyDate = new Date(String(date.split("T")[0]));
-        var dt = new Date(date);
-        var h = dt.getHours(),
-            m = dt.getMinutes();
-        var _time = h > 12 ? h - 12 + ":" + m + " PM" : h + ":" + m + " AM";
-        const month = new Intl.DateTimeFormat("en-US", {
-            month: "long",
-        }).format(dummyDate);
-        const day = dummyDate.getDate();
-
-        if (returnData === "day") {
-            return String(day);
-        }
-        if (returnData === "month") {
-            return String(month.slice(0, 3));
-        }
-        if (returnData === "fulldate") {
-            return `${String(day)} ${String(month.slice(0, 3))}, ${_time}`;
-        }
-    };
+    }, []);
 
     return (
         <>
@@ -84,10 +129,11 @@ export const Router = () => {
                                 <Dashboard
                                     token={token}
                                     activeUser={user}
-                                    getBalance={getBalance}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
-                                    convertDate={convertDate}
+                                    balance={balance}
+                                    balances={balances}
+                                    loading={loading}
                                 />
                             ) : (
                                 <Login setToken={setToken} />
@@ -104,7 +150,6 @@ export const Router = () => {
                                     activeUser={user}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
-                                    convertDate={convertDate}
                                 />
                             ) : (
                                 <Login setToken={setToken} />

@@ -21,9 +21,8 @@ export default function AuthContext() {
         return web3.eth.accounts.create();
     };
 
-    const getBalance = async () => {
-        var account = getUser();
-        return await web3.eth.getBalance(account.user.wallet.address);
+    const getBalance = async (walletAddress) => {
+        return await web3.eth.getBalance(walletAddress);
     };
 
     const saveToken = (userToken, userData) => {
