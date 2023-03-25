@@ -19,6 +19,8 @@ import { user } from "../auth/authToken";
 import { ImSpinner2, ImSpinner8 } from "react-icons/im";
 import BalanceLoader from "../utils/balanceLoader";
 import { convertDate } from "../utils/convertDate";
+import { coinValue } from "../utils/coinValue";
+import { transactionIcon } from "../utils/transactionIcon";
 
 const Dashboard = ({
     activeUser,
@@ -32,6 +34,7 @@ const Dashboard = ({
     const [pinModal, cyclePinModal] = useState(false);
     const [assetModal, cycleAssetModal] = useCycle(false, true);
     const [transactions, setTransactions] = useState([]);
+    const [allBalance, setAllBalance] = useState(0);
     // const [currency, setCurrency] = useState(["", "BNB", 18]);
     // const [currencyTo, setCurrencyTo] = useState([
     //     "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
@@ -42,7 +45,17 @@ const Dashboard = ({
 
     useEffect(() => {
         setTransactions(activeUser.transactions);
-    }, []);
+        const val = coinValue(
+            balances[0],
+            balances[1],
+            balances[2],
+            balances[3],
+            "dollar",
+            true
+        );
+        setAllBalance(val);
+        console.log("VAL: ", val);
+    }, [balances, activeUser]);
 
     const copyAddress = (e) => {
         e.preventDefault();
@@ -76,13 +89,13 @@ const Dashboard = ({
                 getBalanceOfToken={getBalanceOfToken}
                 sendETH={sendETH}
                 sendTOKEN={sendTOKEN}
+                token={token}
+                reloadUser={reloadUser}
             />
             <section className="dashboardSection">
                 <div className="dashboardHeader">
                     <div className="currentBalance">
-                        <h3>
-                            ${(parseFloat(balances[0]) * 322.88).toFixed(2)}
-                        </h3>
+                        <h3>${parseFloat(allBalance).toFixed(2)}</h3>
                         <p>
                             Total balance from all accounts <span>NGN</span>
                         </p>
@@ -107,10 +120,7 @@ const Dashboard = ({
                                     </div>
                                     <div className="statsDivContent">
                                         <h4>
-                                            $
-                                            {(
-                                                parseFloat(balances[0]) * 322.88
-                                            ).toFixed(2)}
+                                            ${parseFloat(allBalance).toFixed(2)}
                                         </h4>
                                     </div>
                                     <div className="statsDivFooter">
@@ -191,7 +201,7 @@ const Dashboard = ({
                                                                             <span className="titleSpan text-right">
                                                                                 {bal
                                                                                     ? bal
-                                                                                    : ""}{" "}
+                                                                                    : 0}{" "}
                                                                                 {
                                                                                     curr.name
                                                                                 }
@@ -237,9 +247,9 @@ const Dashboard = ({
                                                         <li key={index}>
                                                             <div className="initialDiv">
                                                                 <img
-                                                                    src={
-                                                                        transaction.icon
-                                                                    }
+                                                                    src={transactionIcon(
+                                                                        transaction
+                                                                    )}
                                                                     style={{
                                                                         width: "26px",
                                                                         height: "26px",
@@ -263,7 +273,6 @@ const Dashboard = ({
                                                             <div>
                                                                 <p>
                                                                     <span className="titleSpan text-right">
-                                                                        ₦
                                                                         {
                                                                             transaction.amount
                                                                         }

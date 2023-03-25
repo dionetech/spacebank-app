@@ -17,13 +17,9 @@ import { API_URL } from "./config";
 import BuyData from "./private/transaction/BuyData";
 import PayBills from "./private/transaction/PayBills";
 import GiftCard from "./private/transaction/GiftCard";
-import {
-    getBalanceOfToken,
-    sendETH,
-    sendTOKEN,
-    getAmountsOut,
-} from "./helpers/pancakeswapHelper";
+import { getBalanceOfToken } from "./helpers/pancakeswapHelper";
 import { currencyList } from "./helpers/CurrencyHelper";
+import Accounts from "./private/Accounts";
 
 export const Router = () => {
     const { token, removeToken, setToken, user, createAccount, getBalance } =
@@ -59,6 +55,11 @@ export const Router = () => {
 
     const reloadUser = () => {
         if (token) {
+            setLoading({
+                loading: true,
+                status: "in-progress",
+                error: "",
+            });
             axios({
                 method: "GET",
                 headers: {
@@ -69,10 +70,43 @@ export const Router = () => {
                 .then((res) => {
                     if (res.data.success) {
                         setToken(token, res.data.data);
+
+                        const walletAddress = res.data.data.user.wallet.address;
+                        getBalance(walletAddress).then((bal) => {
+                            const tempBal = bal;
+                            setBalance(tempBal / 10 ** 18);
+
+                            getAllBalances(walletAddress)
+                                .then((bal) => {
+                                    if (bal) {
+                                        var tempBalance = [
+                                            tempBal / 10 ** 18,
+                                            bal[1],
+                                            bal[2],
+                                            bal[3],
+                                        ];
+                                        setBalances(tempBalance);
+                                        setTimeout(function () {
+                                            setLoading({
+                                                loading: false,
+                                                status: "success",
+                                            });
+                                        }, 500);
+                                    }
+                                })
+                                .catch((err) => {
+                                    console.log("ERR: ", err);
+                                    setLoading({
+                                        loading: false,
+                                        status: "failed",
+                                        error: "Network Error",
+                                    });
+                                });
+                        });
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log("ERROR: ", error);
                 });
         }
     };
@@ -80,39 +114,6 @@ export const Router = () => {
     useEffect(() => {
         if (initialLoad === false) {
             reloadUser();
-            const walletAddress = user.user.wallet.address;
-            getBalance(walletAddress).then((bal) => {
-                const tempBal = bal;
-                setBalance(tempBal / 10 ** 18);
-
-                getAllBalances(walletAddress)
-                    .then((bal) => {
-                        if (bal) {
-                            var tempBalance = [
-                                tempBal / 10 ** 18,
-                                bal[1],
-                                bal[2],
-                                bal[3],
-                            ];
-                            setBalances(tempBalance);
-                            console.log("BALL: ", tempBalance);
-                            setTimeout(function () {
-                                setLoading({
-                                    loading: false,
-                                    status: "success",
-                                });
-                            }, 500);
-                        }
-                    })
-                    .catch((err) => {
-                        console.log("ERR: ", err);
-                        setLoading({
-                            loading: false,
-                            status: "failed",
-                            error: "Network Error",
-                        });
-                    });
-            });
             setInitialLoad(true);
         }
     }, []);
@@ -134,6 +135,22 @@ export const Router = () => {
                                     balance={balance}
                                     balances={balances}
                                     loading={loading}
+                                />
+                            ) : (
+                                <Login setToken={setToken} />
+                            )
+                        }
+                    />
+
+                    <Route
+                        path="/accounts"
+                        element={
+                            token ? (
+                                <Accounts
+                                    token={token}
+                                    activeUser={user}
+                                    removeToken={removeToken}
+                                    reloadUser={reloadUser}
                                 />
                             ) : (
                                 <Login setToken={setToken} />

@@ -70,7 +70,7 @@ export const swap = async (
     console.log(amount);
     web3.eth.accounts.wallet.add(privateKey);
     if (amount == 0) {
-        alert("Value must be greater than 0");
+        console.log("Value must be greater than 0");
         return;
     }
     if (fromContract == "") {
@@ -104,7 +104,7 @@ export const swap = async (
                 privateKey,
                 (error, signedTx) => {
                     if (error) {
-                        alert(error.message);
+                        console.log("ERROR: ", error.message);
                     } else {
                         web3.eth
                             .sendSignedTransaction(signedTx.rawTransaction)
@@ -115,7 +115,10 @@ export const swap = async (
                                         privateKey,
                                         (error, signedTx) => {
                                             if (error) {
-                                                alert(error.message);
+                                                console.log(
+                                                    "ERROR: ",
+                                                    error.message
+                                                );
                                             } else {
                                                 web3.eth
                                                     .sendSignedTransaction(
@@ -124,7 +127,7 @@ export const swap = async (
                                                     .on(
                                                         "receipt",
                                                         (receipt) => {
-                                                            alert(
+                                                            console.log(
                                                                 "Swap success !!!"
                                                             );
                                                         }
@@ -143,7 +146,7 @@ export const swap = async (
                 }
             );
         } catch (err) {
-            alert(err.message);
+            console.log("ERROR: ", err.message);
         }
     } else if (toContract == "") {
         try {
@@ -171,13 +174,13 @@ export const swap = async (
                 privateKey,
                 (error, signedTx) => {
                     if (error) {
-                        alert(error.message);
+                        console.log(error.message);
                     } else {
                         web3.eth
                             .sendSignedTransaction(signedTx.rawTransaction)
                             .on("receipt", (receipt) => {
                                 console.log(receipt);
-                                alert("Swap Success !!");
+                                console.log("Swap Success !!");
                             })
                             .on("error", (error) => {
                                 console.log(error);
@@ -186,7 +189,7 @@ export const swap = async (
                 }
             );
         } catch (err) {
-            alert(err.message);
+            console.log(err.message);
         }
     } else {
         try {
@@ -212,13 +215,13 @@ export const swap = async (
                 privateKey,
                 (error, signedTx) => {
                     if (error) {
-                        alert(error.message);
+                        console.log(error.message);
                     } else {
                         web3.eth
                             .sendSignedTransaction(signedTx.rawTransaction)
                             .on("receipt", (receipt) => {
                                 console.log(receipt);
-                                alert("Swap Success !!");
+                                console.log("Swap Success !!");
                             })
                             .on("error", (error) => {
                                 console.log(error);
@@ -227,7 +230,7 @@ export const swap = async (
                 }
             );
         } catch (err) {
-            alert(err.message);
+            console.log(err.message);
         }
     }
 };
@@ -252,23 +255,22 @@ export const approve = async (tokenContract, toAddress, amount, privateKey) => {
             privateKey,
             (error, signedTx) => {
                 if (error) {
-                    alert(error.message);
+                    console.log(error.message);
                 } else {
                     web3.eth
                         .sendSignedTransaction(signedTx.rawTransaction)
                         .on("receipt", () => {
-                            alert("Approved !!");
+                            console.log("Approved !!");
                         });
                 }
             }
         );
     } catch (err) {
-        alert(err.message);
+        console.log(err.message);
     }
 };
 
 export const sendETH = async (fromAddress, toAddress, amount, privateKey) => {
-    console.log(fromAddress, toAddress, amount, privateKey);
     amount = web3.utils.toWei(amount + "");
     const transObj = {
         from: fromAddress,
@@ -318,19 +320,19 @@ export const sendTOKEN = async (
             privateKey,
             (error, signedTx) => {
                 if (error) {
-                    alert(error.message);
+                    console.log("ERROR: ", error.message);
                 } else {
                     web3.eth
                         .sendSignedTransaction(signedTx.rawTransaction)
                         .on("receipt", () => {
-                            alert("Sent !!");
+                            console.log("Sent !!");
                         });
                 }
             }
         );
     } catch (err) {
         console.log(err);
-        alert("Error!! " + err.message);
+        console.log("Error!! " + err.message);
     }
 };
 
