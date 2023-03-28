@@ -284,8 +284,8 @@ export const sendETH = async (fromAddress, toAddress, amount, privateKey) => {
         .then((signedTx) => {
             web3.eth
                 .sendSignedTransaction(signedTx.rawTransaction)
-                .on("receipt", () => {
-                    console.log("Eth sent !!");
+                .on("receipt", (trdt) => {
+                    console.log("Eth sent !!: ", trdt);
                 });
         })
         .catch((error) => {

@@ -11,8 +11,11 @@ const Transactions = ({ activeUser, token, removeToken }) => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
-        setTransactions(activeUser.transactions);
-        console.log("TR: ", activeUser.transactions);
+        const setTranFunc = () => {
+            console.log("TR: ", activeUser.transactions);
+            setTransactions(activeUser.transactions);
+        };
+        return setTranFunc;
     }, []);
 
     return (

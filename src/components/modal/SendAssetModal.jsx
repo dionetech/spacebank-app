@@ -48,6 +48,7 @@ const SendAssetModal = ({
     const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
+
         if (sendToken === "") {
             sendETH(
                 activeUser.user.wallet.address,
@@ -55,39 +56,6 @@ const SendAssetModal = ({
                 amount,
                 activeUser.user.wallet.privateKey
             );
-            axios({
-                method: "POST",
-                data: {
-                    fromAddress: activeUser.user.wallet.address,
-                    toAddress: walletAddress,
-                    amount: amount,
-                    privateKey: activeUser.user.wallet.privateKey,
-                    networkIcon: asset,
-                },
-                url: `${API_URL}/transactions/crypto/send`,
-                headers: {
-                    "x-auth-token": token,
-                },
-            })
-                .then((res) => {
-                    if (res.data.success) {
-                        reloadUser();
-                        setTimeout(() => {
-                            setProcessing(false);
-                            successToast(
-                                `You sent ${amount}${asset} to ${String(
-                                    walletAddress
-                                ).slice(0, 10)}...`
-                            );
-                            cycleAssetModal();
-                        }, 1000);
-                    }
-                })
-                .catch((error) => {
-                    console.log("ERROR: ", error);
-                    setProcessing(false);
-                    errorToast("An error occured");
-                });
         } else {
             sendTOKEN(
                 activeUser.user.wallet.address,
@@ -96,39 +64,40 @@ const SendAssetModal = ({
                 sendToken,
                 activeUser.user.wallet.privateKey
             );
-            axios({
-                method: "POST",
-                data: {
-                    fromAddress: activeUser.user.wallet.address,
-                    toAddress: walletAddress,
-                    amount: amount,
-                    privateKey: activeUser.user.wallet.privateKey,
-                    networkIcon: asset,
-                },
-                url: `${API_URL}/transactions/crypto/send`,
-                headers: {
-                    "x-auth-token": token,
-                },
-            })
-                .then((res) => {
-                    if (res.data.success) {
-                        reloadUser();
-                        setTimeout(() => {
-                            setProcessing(false);
-                            successToast(
-                                `You sent ${amount}${asset} to ${String(
-                                    walletAddress
-                                ).slice(0, 10)}...`
-                            );
-                            cycleAssetModal();
-                        }, 1000);
-                    }
-                })
-                .catch((error) => {
-                    console.log("ERROR: ", error);
-                    setProcessing(false);
-                });
         }
+        axios({
+            method: "POST",
+            data: {
+                fromAddress: activeUser.user.wallet.address,
+                toAddress: walletAddress,
+                amount: amount,
+                privateKey: activeUser.user.wallet.privateKey,
+                networkIcon: asset,
+            },
+            url: `${API_URL}/transactions/crypto/send`,
+            headers: {
+                "x-auth-token": token,
+            },
+        })
+            .then((res) => {
+                if (res.data.success) {
+                    reloadUser();
+                    setTimeout(() => {
+                        setProcessing(false);
+                        successToast(
+                            `You sent ${amount}${asset} to ${String(
+                                walletAddress
+                            ).slice(0, 10)}...`
+                        );
+                        cycleAssetModal();
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                console.log("ERROR: ", error);
+                setProcessing(false);
+                errorToast("An error occured");
+            });
     };
 
     return (

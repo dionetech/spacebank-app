@@ -54,8 +54,8 @@ const Dashboard = ({
             true
         );
         setAllBalance(val);
-        console.log("VAL: ", val);
-    }, [balances, activeUser]);
+        return;
+    }, [balances, activeUser, setAllBalance]);
 
     const copyAddress = (e) => {
         e.preventDefault();
@@ -124,7 +124,10 @@ const Dashboard = ({
                                         </h4>
                                     </div>
                                     <div className="statsDivFooter">
-                                        <p>84 Transactions</p>
+                                        <p>
+                                            {activeUser.transactions.length}{" "}
+                                            Transactions
+                                        </p>
                                         <span>+10%</span>
                                     </div>
                                 </div>

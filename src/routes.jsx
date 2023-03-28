@@ -31,7 +31,6 @@ export const Router = () => {
         status: "in-progress",
         error: "",
     });
-    const [initialLoad, setInitialLoad] = useState(false);
 
     async function getAllBalances(walletAddress) {
         let map = [];
@@ -112,10 +111,7 @@ export const Router = () => {
     };
 
     useEffect(() => {
-        if (initialLoad === false) {
-            reloadUser();
-            setInitialLoad(true);
-        }
+        return reloadUser;
     }, []);
 
     return (
@@ -151,6 +147,9 @@ export const Router = () => {
                                     activeUser={user}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
+                                    balance={balance}
+                                    balances={balances}
+                                    loading={loading}
                                 />
                             ) : (
                                 <Login setToken={setToken} />
@@ -215,6 +214,8 @@ export const Router = () => {
                                     activeUser={user}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
+                                    balance={balance}
+                                    balances={balances}
                                 />
                             ) : (
                                 <Login setToken={setToken} />

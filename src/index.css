@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Maitree:wght@200;300;400;500;600;700;800;900&family=Syne:wght@400;500;600&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Mulish:wght@200;300;400;500;600;700;800;900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Quicksand:wght@300;400;500;600;700&family=Rubik:wght@300;400;500;600;700;800;900&family=Secular+One&display=swap');
 @font-face {font-family: blanka; src: url('https://res.cloudinary.com/iodiary/raw/upload/v1641255618/fonts/blanka_naxhhv.otf');
     font-display: swap;}
@@ -28,6 +28,7 @@
 	--quicksand: 'Quicksand', sans-serif;
 	--rubik: 'Rubik', sans-serif;
 	--secular: 'Secular One', sans-serif;
+    --inter: 'Inter', sans-serif;
 	--blanka: blanka;
     --cubano: cubano;
     --phantom: phantom;
@@ -919,19 +920,19 @@ textarea.customInput{
     color: var(--black);
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button{
-    font-family: var(--syne);
-    font-weight: 500!important;
-    font-size: 12px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 11px;
     box-shadow: none!important;
     background-color: transparent;
-    padding: 10px 15px;
+    padding: 8px 15px;
     border: none!important;
     display: flex;
     align-items: center;
     outline: none!important;
     background-color: var(--accent-color);
     color: var(--white);
-    border-radius: 8px;
+    border-radius: 5px;
     transition: 0.3s all ease-in-out;
 }
 .dashboardSection .dashboardContent .dashboardAccountStats .accountStatsHeader button:hover{
@@ -1162,78 +1163,6 @@ textarea.customInput{
     font-weight: 500!important;
     font-size: 19px;
     margin-top: 10px;
-}
-
-/* Account Section and Styles */
-.accountSection{
-    border: none;
-    padding: 10px 0px;
-    padding-bottom: 80px;
-    margin-left: -79px;
-}
-
-    /* No Account Tab */
-.accountSection .noAccountTab{
-    padding: 50px 0px;
-    padding-right: 70px;
-    display: flex;
-    justify-content: center;
-}
-.accountSection .noAccountTab .noAccountTabContent{
-    padding: 10px 0px;
-}
-.accountSection .noAccountTab .noAccountTabContent .imageDiv{
-    padding: 40px 10px;
-    padding-top: 0px;
-    text-align: center;
-}
-.accountSection .noAccountTab .noAccountTabContent .imageDiv img{
-    object-position: center;
-    object-fit: contain!important;
-}
-.accountSection .noAccountTab .noAccountTabContent h4{
-    font-size: 23px;
-    font-family: var(--cubano);
-    color: var(--black);
-    margin: 0px;
-    font-weight: 600!important;
-    text-align: center;
-    letter-spacing: 0.5px;
-}
-.accountSection .noAccountTab .noAccountTabContent p{
-    font-family: var(--syne);
-    text-align: center;
-    margin: 0px;
-    padding: 15px 330px;
-    font-size: 13px;
-    line-height: px;
-    font-weight: 500!important;
-    color: var(--dark-slate);
-}
-.accountSection .noAccountTab .noAccountTabContent .buttonDiv{
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.accountSection .noAccountTab .noAccountTabContent .buttonDiv button{
-    font-family: var(--slab);
-    font-weight: 500!important;
-    font-size: 14px;
-    box-shadow: none!important;
-    background-color: transparent;
-    padding: 10px;
-    border: none!important;
-    display: flex;
-    align-items: center;
-    outline: none!important;
-    color: var(--accent-color);
-}
-.accountSection .noAccountTab .noAccountTabContent .buttonDiv button svg{
-    margin-right: 7px;
-    margin-top: 0.5px;
-    color: var(--accent-color)!important;
 }
 
 /* Account Details Section */
@@ -2201,11 +2130,11 @@ textarea.customInput{
     box-shadow: none!important;
     border: none!important;
     outline: none!important;
-    padding: 15px 40px;
+    padding: 13px 30px;
     color: var(--white);
     font-family: var(--syne);
     font-weight: 500!important;
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: .5px;
     border-radius: 8px;
 }
@@ -2600,6 +2529,203 @@ textarea.customInput{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Account Section and Styles */
+
+.accountSection{
+    padding: 20px 0px;
+    padding-right: 75px;
+}
+
+    /* No Account Tab */
+.accountSection .noAccountTab{
+    padding: 50px 0px;
+    padding-right: 70px;
+    display: flex;
+    justify-content: center;
+}
+.accountSection .noAccountTab .noAccountTabContent{
+    padding: 10px 0px;
+}
+.accountSection .noAccountTab .noAccountTabContent .imageDiv{
+    padding: 40px 10px;
+    padding-top: 0px;
+    text-align: center;
+}
+.accountSection .noAccountTab .noAccountTabContent .imageDiv img{
+    object-position: center;
+    object-fit: contain!important;
+}
+.accountSection .noAccountTab .noAccountTabContent h4{
+    font-size: 23px;
+    font-family: var(--cubano);
+    color: var(--black);
+    margin: 0px;
+    font-weight: 600!important;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+.accountSection .noAccountTab .noAccountTabContent p{
+    font-family: var(--syne);
+    text-align: center;
+    margin: 0px;
+    padding: 15px 330px;
+    font-size: 13px;
+    line-height: px;
+    font-weight: 500!important;
+    color: var(--dark-slate);
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv{
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv button{
+    font-family: var(--slab);
+    font-weight: 500!important;
+    font-size: 14px;
+    box-shadow: none!important;
+    background-color: transparent;
+    padding: 10px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--accent-color);
+}
+.accountSection .noAccountTab .noAccountTabContent .buttonDiv button svg{
+    margin-right: 7px;
+    margin-top: 0.5px;
+    color: var(--accent-color)!important;
+}
+.accountSection .transactionSectionHeader{
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accountSection .transactionSectionHeader div h4{
+    font-family: var(--cubano);
+    font-weight: 800!important;
+    font-size: 26px;
+    margin: 0px;
+}
+.accountSection .transactionSectionHeader div p{
+    margin: 0px;
+    padding: 8px 0px;
+    font-family: var(--syne);
+    font-weight: 500!important;
+    font-size: 14px;
+    color: var(--dark-slate);
+}
+.accountSection .transactionSectionHeader div p span{
+    color: var(--accent-color);
+    font-weight: 600!important;
+}
+.accountSection .transactionSectionHeader div a{
+    font-family: var(--karla);
+    font-weight: 700!important;
+    font-size: 13px;
+    box-shadow: none!important;
+    padding: 7px 15px;
+    border: none!important;
+    display: flex;
+    align-items: center;
+    outline: none!important;
+    color: var(--white);
+    background-color: var(--black);
+    border-radius: 6px;
+}
+.accountSection .transactionSectionHeader div a svg{
+    margin-right: 5px;
+    font-size: 16px;
+    color: var(--white);
+}
+.accountSection .accountSectionContent{
+    padding: 10px 0px;
+    padding-bottom: 100px;
+}
+.accountSection .accountSectionContent .accountCurrCard{
+    margin: 15px 0px;
+    padding: 15px;
+    border: 0.6px solid rgba(0,0,0,0.09);
+    border-radius: 10px;
+    transition: 0.4s all ease-in-out;
+}
+.accountSection .accountSectionContent .accountCurrCard:hover{
+    border: 0.6px solid rgba(0,0,0,0);
+    -webkit-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    -moz-box-shadow: 0 4px 14px 4.5px #f7f7f7;
+    box-shadow: 0 4px 14px 4.5px #f7f7f7;
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 8px;
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader p{
+    margin: 0px;
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader p span{
+    display: block;
+    font-family: var(--inter);
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader p span:first-child{
+    font-size: 13px;
+    font-weight: 600!important;
+    color: var(--black);
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader p span:last-child{
+    font-family: var(--inter);
+    font-size: 12px;
+    font-weight: 500!important;
+    color: rgba(0,0,0,0.8);
+}
+.accountSection .accountSectionContent .accountCurrCard .currHeader img{
+    width: 25px!important;
+    height: 25px!important;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent{
+    border: none;
+    padding-top: 8px;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent h3{
+    margin: 0px;
+    font-family: var(--inter);
+    font-size: 15px;
+    font-weight: 700!important;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p{
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2px;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p span{
+    font-size: 12px;
+    font-family: var(--inter);
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p span:first-child{
+    font-weight: 600!important;
+    color: rgba(0,0,0,0.4);
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p span:last-child{
+    font-weight: 600!important;
+    font-size: 11px;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p span:last-child a{
+    display: flex;
+    padding: 0px 2px;
+    color: var(--black);
+    transition: 0.3s all ease-in-out;
+}
+.accountSection .accountSectionContent .accountCurrCard .currContent p span:last-child a:hover{
+    filter: brightness(50%);
 }
 
 .peer2peerSection{

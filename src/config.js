@@ -18,3 +18,6 @@ export const BEARER_TOKEN = "nkdoe6209912028vcsasyet51";
 export const successToast = (success) => toast.success(`${success}`, TS_STYLE);
 export const errorToast = (error) => toast.error(`${error}`, TS_STYLE);
 export const warningToast = (error) => toast.warning(`${error}`, TS_STYLE);
+export const DOLLAR_BNB = 0.00301204819;
+export const BNB_DOLLAR = 332;
+export const DOLLAR_NAIRA = 755;
