@@ -1,8 +1,21 @@
-const SettingSecurity = ({ activeUser }) => {
+import { useCycle } from "framer-motion";
+import SecuritySettingsModal from "../../components/modal/SecuritySettingsModal";
+import { convertDate } from "../../utils/convertDate";
+
+const SettingSecurity = ({ activeUser, token, reloadUser }) => {
+    const [openModal, cycleOpenModal] = useCycle(false, true);
+
     return (
         <section className="profileSettingsDiv">
+            <SecuritySettingsModal
+                user={activeUser}
+                cycleOpenModal={cycleOpenModal}
+                openModal={openModal}
+                token={token}
+                reloadUser={reloadUser}
+            />
             <>
-                <h4>Login Details</h4>
+                <h4>Security details</h4>
                 <div className="settingDetailsDiv">
                     <ul>
                         <li>
@@ -11,35 +24,55 @@ const SettingSecurity = ({ activeUser }) => {
                         </li>
                         <li>
                             <span>Security questions</span>
-                            <p>Your fathers name</p>
+                            <p>
+                                {activeUser.security.security_question
+                                    ? activeUser.security.security_question
+                                          .question
+                                    : "Not set"}
+                            </p>
                         </li>
                         <li>
                             <span>2-Step verification</span>
-                            <p>Enabled</p>
+                            <p>
+                                {activeUser.security.twoStepVerification
+                                    ? "Enabled"
+                                    : "Disabled"}
+                            </p>
                         </li>
                     </ul>
                 </div>
             </>
             <div className="spacingDiv" />
             <>
-                <h4>Security credentials</h4>
+                <h4>Login sessions</h4>
                 <div className="settingDetailsDiv">
                     <ul>
-                        <li>
-                            <span>01 Apr 2021 at 06:25PM</span>
-                            <p>Mac OS Safari 15.1</p>
-                        </li>
-                        <li>
-                            <span>20 Oct 2021 at 04:32AM</span>
-                            <p>Windows 11 Mozilla Firefox</p>
-                        </li>
-                        <li>
-                            <span>01 Apr 2021 at 06:25PM</span>
-                            <p>iOS Safari 15.1</p>
-                        </li>
+                        {activeUser.sessions.map((session) => {
+                            return (
+                                <li key={session._id}>
+                                    <span>
+                                        {convertDate(
+                                            session.createdAt,
+                                            "fulldate"
+                                        )}{" "}
+                                        at{" "}
+                                        {convertDate(session.createdAt, "time")}
+                                    </span>
+                                    <p>
+                                        {session.deviceInfo.userAgent.slice(
+                                            0,
+                                            41
+                                        )}
+                                    </p>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
             </>
+            <div className="settingsButtonDiv">
+                <button onClick={cycleOpenModal}>Update Security</button>
+            </div>
         </section>
     );
 };

@@ -7,7 +7,7 @@ import ProtectedLayout from "../layout/ProtectedLayout";
 import { convertDate } from "../utils/convertDate";
 import MobileTransactions from "./mobile/MobileTransactions";
 
-const Transactions = ({ activeUser, token, removeToken }) => {
+const Transactions = ({ activeUser, token, removeToken, balances }) => {
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {
@@ -27,7 +27,10 @@ const Transactions = ({ activeUser, token, removeToken }) => {
             <section className="transactionSection main">
                 {transactions.length !== 0 ? (
                     <>
-                        <TransactionHeader activeUser={activeUser} />
+                        <TransactionHeader
+                            activeUser={activeUser}
+                            balances={balances}
+                        />
                         <TransactionNav />
                         <TransactionList
                             transactions={transactions}

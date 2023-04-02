@@ -105,7 +105,11 @@ export const Router = () => {
                     }
                 })
                 .catch((error) => {
-                    console.log("ERROR: ", error);
+                    setLoading({
+                        loading: false,
+                        status: "failed",
+                        error: `Error: ${error}`,
+                    });
                 });
         }
     };
@@ -166,6 +170,9 @@ export const Router = () => {
                                     activeUser={user}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
+                                    balance={balance}
+                                    balances={balances}
+                                    loading={loading}
                                 />
                             ) : (
                                 <Login setToken={setToken} />
@@ -198,6 +205,8 @@ export const Router = () => {
                                     activeUser={user}
                                     removeToken={removeToken}
                                     reloadUser={reloadUser}
+                                    balance={balance}
+                                    balances={balances}
                                 />
                             ) : (
                                 <Login setToken={setToken} />
@@ -279,6 +288,7 @@ export const Router = () => {
                                     token={token}
                                     activeUser={user}
                                     removeToken={removeToken}
+                                    reloadUser={reloadUser}
                                 />
                             ) : (
                                 <Login setToken={setToken} />

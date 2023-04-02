@@ -15,6 +15,26 @@ const SettingNotifications = ({ activeUser }) => {
                             <span>Promotion and tips</span>
                             <p>Receive coupons, promotions, surveys</p>
                         </li>
+                        <li>
+                            <span>Promotion and tips</span>
+                            <p>Receive coupons, promotions, surveys</p>
+                        </li>{" "}
+                        <li>
+                            <span>Promotion and tips</span>
+                            <p>Receive coupons, promotions, surveys</p>
+                        </li>{" "}
+                        <li>
+                            <span>Promotion and tips</span>
+                            <p>Receive coupons, promotions, surveys</p>
+                        </li>{" "}
+                        <li>
+                            <span>Promotion and tips</span>
+                            <p>Receive coupons, promotions, surveys</p>
+                        </li>{" "}
+                        <li>
+                            <span>Promotion and tips</span>
+                            <p>Receive coupons, promotions, surveys</p>
+                        </li>
                     </ul>
                 </div>
             </>

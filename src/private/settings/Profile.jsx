@@ -1,8 +1,19 @@
+import { useCycle } from "framer-motion";
+import ProfileSettingsModal from "../../components/modal/ProfileSettingsModal";
 import { convertDate } from "../../utils/convertDate";
 
-const SettingProfile = ({ activeUser }) => {
+const SettingProfile = ({ activeUser, token, reloadUser }) => {
+    const [openModal, cycleOpenModal] = useCycle(false, true);
+
     return (
         <section className="profileSettingsDiv">
+            <ProfileSettingsModal
+                user={activeUser}
+                cycleOpenModal={cycleOpenModal}
+                openModal={openModal}
+                token={token}
+                reloadUser={reloadUser}
+            />
             <>
                 <h4>Account Information</h4>
                 <div className="settingDetailsDiv">
@@ -17,7 +28,7 @@ const SettingProfile = ({ activeUser }) => {
                         </li>
                         <li>
                             <span>Gender</span>
-                            <p>
+                            <p className="capitalize">
                                 {activeUser.user.gender
                                     ? `${activeUser.user.gender}`
                                     : "Not set"}
@@ -61,6 +72,9 @@ const SettingProfile = ({ activeUser }) => {
                     </ul>
                 </div>
             </>
+            <div className="settingsButtonDiv">
+                <button onClick={cycleOpenModal}>Update Profile</button>
+            </div>
         </section>
     );
 };

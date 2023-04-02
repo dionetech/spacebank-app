@@ -2,32 +2,32 @@ import { useState } from "react";
 import { useEffect } from "react";
 import TrByDate from "../../components/nav/app/TrByDate";
 import { convertDate } from "../../utils/convertDate";
-import { createFilter } from 'react-search-input';
+import { createFilter } from "react-search-input";
 // import { Link } from "react-router-dom";
 // import { AiOutlineTransaction } from "react-icons/ai";
 
-const KEYS_TO_FILTERS = ['description'];
-
+const KEYS_TO_FILTERS = ["description"];
 
 const MobileTransactions = ({ transactions }) => {
-
     const [dateList, setDateList] = useState([]);
     const [searchInput, setSearchInput] = useState("");
 
-    const filteredTransactions = transactions.filter(createFilter(searchInput, KEYS_TO_FILTERS))
+    const filteredTransactions = transactions.filter(
+        createFilter(searchInput, KEYS_TO_FILTERS)
+    );
 
     useEffect(() => {
         const dates = [];
 
         transactions.map((tr) => {
             const trDate = String(convertDate(tr.createdAt, "ddmmyy"));
-            if (!dates.includes(trDate)){
+            if (!dates.includes(trDate)) {
                 dates.push(trDate);
-            }    
-        })
+            }
+        });
 
         setDateList(dates);
-    }, [transactions])
+    }, [transactions]);
 
     return (
         <section className="mobileTransactionSection">
@@ -47,19 +47,17 @@ const MobileTransactions = ({ transactions }) => {
                     <AiOutlineTransaction /> New Transaction
                 </Link> */}
             </div>
-            {
-                dateList.map((date, index) => {
-                    return (
-                        <TrByDate
-                            key={index}
-                            date={date}
-                            transactions={filteredTransactions}
-                        />
-                    )
-                })
-            }
+            {dateList.map((date, index) => {
+                return (
+                    <TrByDate
+                        key={index}
+                        date={date}
+                        transactions={filteredTransactions}
+                    />
+                );
+            })}
         </section>
-    )
-}
+    );
+};
 
 export default MobileTransactions;

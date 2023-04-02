@@ -3,10 +3,17 @@ import { useReducer, useState, useRef } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
-import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
+import { API_URL, errorToast, successToast } from "../../config";
 
-const PinModal = ({ pinModal, cyclePinModal, token, username, amount, description, reloadUser }) => {
-
+const PinModal = ({
+    pinModal,
+    cyclePinModal,
+    token,
+    username,
+    amount,
+    description,
+    reloadUser,
+}) => {
     const [processing, setProcessing] = useState(false);
     const [pin, setPin] = useState("");
     const [redirectToDashboard, setRedirectToDashboard] = useState(false);
@@ -14,55 +21,60 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
     const sendFunds = (e) => {
         e.preventDefault();
         setProcessing(true);
-        
-		axios({
-			method: "POST",
-			data: {
+
+        axios({
+            method: "POST",
+            data: {
                 token: token,
-				pin: parseInt(pin),
+                pin: parseInt(pin),
                 amount: parseInt(amount),
                 username: username,
                 reason: description,
-			},
+            },
             url: `${API_URL}/transactions/send-money/p2p`,
             headers: {
-                'x-auth-token': token,
+                "x-auth-token": token,
             },
-		})
-		.then((res) => {
-			setProcessing(false);
-            console.log("RES: ", res);
-            if (res.data.success){
-                successToast(`You just sent $${amount} to ${username}`);
-                reloadUser();
-                setRedirectToDashboard(true);
-            }else{
-                errorToast("An error occured");
-            }
-		})
-		.catch((error) => {
-			setProcessing(false);
-            console.log("ERROR: ", error);
-            try{
-                errorToast(error.response.data.error);
-            }catch{
-                errorToast("An error occured, try again");
-            }
-		})
-    }
+        })
+            .then((res) => {
+                setProcessing(false);
+                console.log("RES: ", res);
+                if (res.data.success) {
+                    successToast(`You just sent $${amount} to ${username}`);
+                    reloadUser();
+                    setRedirectToDashboard(true);
+                } else {
+                    errorToast("An error occured");
+                }
+            })
+            .catch((error) => {
+                setProcessing(false);
+                console.log("ERROR: ", error);
+                try {
+                    errorToast(error.response.data.error);
+                } catch {
+                    errorToast("An error occured, try again");
+                }
+            });
+    };
 
     return (
         <AnimatePresence>
-            {redirectToDashboard?<Navigate to="/" />:""}
-            { pinModal && (
+            {redirectToDashboard ? <Navigate to="/" /> : ""}
+            {pinModal && (
                 <motion.div
                     className="fixed-top customBackdrop p2pBackdrop"
                     onClick={cyclePinModal}
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1}}
+                    animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <motion.div onClick={(e) => {e.stopPropagation();}} className="customModal transactionModal">
+                    <motion.div
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
+                        className="customModal transactionModal"
+                    >
                         <div className="modalContent">
                             <div className="p2pPinTab">
                                 <h5>Confirm</h5>
@@ -72,7 +84,9 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
                                         <span>NGN Balance</span>
                                     </p>
                                     <p>
-                                        <i className="lastChild">Transaction Fee</i>
+                                        <i className="lastChild">
+                                            Transaction Fee
+                                        </i>
                                         <span>₦0.00</span>
                                     </p>
                                 </div>
@@ -93,7 +107,9 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
                                     </p>
                                 </div>
                                 <div className="enterPinDiv">
-                                    <p className="text-center">Please, type in your transaction PIN.</p>
+                                    <p className="text-center">
+                                        Please, type in your transaction PIN.
+                                    </p>
                                     <form onSubmit={sendFunds}>
                                         <div className="row justify-content-center">
                                             <div className="col-xl-10">
@@ -110,13 +126,21 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
                                                 whileHover={{ scale: 1.1 }}
                                                 onClick={cyclePinModal}
                                                 type="button"
-                                            >Cancel</motion.button>
+                                            >
+                                                Cancel
+                                            </motion.button>
                                             <motion.button
                                                 whileHover={{ scale: 1.1 }}
                                                 whileTap={{ scale: 0.9 }}
                                                 type="submit"
                                                 className="spin"
-                                            >{processing?<ImSpinner8 />:"Confirm"}</motion.button>
+                                            >
+                                                {processing ? (
+                                                    <ImSpinner8 />
+                                                ) : (
+                                                    "Confirm"
+                                                )}
+                                            </motion.button>
                                         </div>
                                     </form>
                                 </div>
@@ -126,25 +150,27 @@ const PinModal = ({ pinModal, cyclePinModal, token, username, amount, descriptio
                 </motion.div>
             )}
         </AnimatePresence>
-    )
-}
+    );
+};
 
 const CodeInput = ({ setPin }) => {
     const itemsRef = useRef([]);
-  
+
     const codeChangeHandler = (event) => {
         const [, codeFieldIndex] = event.target.name.split("-");
         let fieldIntIndex = parseInt(codeFieldIndex, 10);
         setPin((prevState) => prevState + event.target.value);
-  
+
         if (fieldIntIndex < 3) {
             itemsRef.current[fieldIntIndex + 1].focus();
         } else {
-            const field = document.querySelector(`Input[name=code-${fieldIntIndex}]`);
+            const field = document.querySelector(
+                `Input[name=code-${fieldIntIndex}]`
+            );
             field.blur();
         }
     };
-  
+
     const codeInputFields = new Array(4)
         .fill(0)
         .map((item, index) => (
@@ -159,7 +185,7 @@ const CodeInput = ({ setPin }) => {
                 required
             />
         ));
-  
+
     return <>{codeInputFields}</>;
 };
 

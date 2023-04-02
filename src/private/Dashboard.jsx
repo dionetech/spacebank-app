@@ -10,13 +10,10 @@ import {
     getBalanceOfToken,
     sendETH,
     sendTOKEN,
-    getAmountsOut,
 } from "../helpers/pancakeswapHelper";
 import { currencyList } from "../helpers/CurrencyHelper";
 import CryptoIcons from "../utils/cryptoIcons";
 import { successToast } from "../config";
-import { user } from "../auth/authToken";
-import { ImSpinner2, ImSpinner8 } from "react-icons/im";
 import BalanceLoader from "../utils/balanceLoader";
 import { convertDate } from "../utils/convertDate";
 import { coinValue } from "../utils/coinValue";
@@ -97,7 +94,7 @@ const Dashboard = ({
                     <div className="currentBalance">
                         <h3>${parseFloat(allBalance).toFixed(2)}</h3>
                         <p>
-                            Total balance from all accounts <span>NGN</span>
+                            Total balance from all accounts <span>USD</span>
                         </p>
                     </div>
                     <div className="openAccount">
@@ -125,8 +122,7 @@ const Dashboard = ({
                                     </div>
                                     <div className="statsDivFooter">
                                         <p>
-                                            {activeUser.transactions.length}{" "}
-                                            Transactions
+                                            {transactions.length} Transactions
                                         </p>
                                         <span>+10%</span>
                                     </div>
@@ -140,13 +136,7 @@ const Dashboard = ({
                                         </span>
                                     </div>
                                     <div className="statsDivContent">
-                                        <h4>
-                                            $
-                                            {
-                                                activeUser.balances.deposits
-                                                    .$numberDecimal
-                                            }
-                                        </h4>
+                                        <h4>$12.00</h4>
                                     </div>
                                     <div className="statsDivFooter">
                                         <p>58 Transactions</p>

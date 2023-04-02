@@ -1,6 +1,4 @@
-import { useCycle } from "framer-motion";
 import { useEffect, useState } from "react";
-import ProfileSettingsModal from "../components/modal/ProfileSettingsModal";
 import SettingNav from "../components/section/SettingNav";
 import ProtectedLayout from "../layout/ProtectedLayout";
 import SettingNotifications from "./settings/Notifications";
@@ -8,9 +6,8 @@ import SettingPayments from "./settings/Payments";
 import SettingProfile from "./settings/Profile";
 import SettingSecurity from "./settings/Security";
 
-const Settings = ({ activeUser, token, removeToken }) => {
-    const [openModal, cycleOpenModal] = useCycle(false, true);
-    const [activeTab, setActiveTab] = useState("");
+const Settings = ({ activeUser, token, removeToken, reloadUser }) => {
+    const [activeTab, setActiveTab] = useState("index");
 
     const pathname = window.location.href.split("=")[1];
 
@@ -22,44 +19,48 @@ const Settings = ({ activeUser, token, removeToken }) => {
         setActiveTab(tabName);
     };
 
-    const toggleModal = (e) => {
-        e.preventDefault();
-        cycleOpenModal();
-    };
-
     return (
         <ProtectedLayout
-            navTitle="Profile Settings"
+            navTitle="Settings"
             user={activeUser}
             removeToken={removeToken}
         >
             <section className="settingSection">
-                <ProfileSettingsModal
-                    user={activeUser}
-                    cycleOpenModal={cycleOpenModal}
-                    openModal={openModal}
-                    token={token}
-                />
-
                 <SettingNav active={activeTab} changeTab={changeTab} />
 
                 {activeTab === "index" && (
-                    <SettingProfile activeUser={activeUser} />
+                    <SettingProfile
+                        activeUser={activeUser}
+                        token={token}
+                        reloadUser={reloadUser}
+                    />
                 )}
                 {activeTab === "security" && (
-                    <SettingSecurity activeUser={activeUser} />
+                    <SettingSecurity
+                        activeUser={activeUser}
+                        token={token}
+                        reloadUser={reloadUser}
+                    />
                 )}
                 {activeTab === "notification" && (
-                    <SettingNotifications activeUser={activeUser} />
+                    <SettingNotifications
+                        activeUser={activeUser}
+                        token={token}
+                        reloadUser={reloadUser}
+                    />
                 )}
                 {activeTab === "payment" && (
-                    <SettingPayments activeUser={activeUser} />
+                    <SettingPayments
+                        activeUser={activeUser}
+                        token={token}
+                        reloadUser={reloadUser}
+                    />
                 )}
 
-                <div className="settingsButtonDiv">
+                {/* <div className="settingsButtonDiv">
                     <button onClick={toggleModal}>Update Settings</button>
                     <button>Cancel</button>
-                </div>
+                </div> */}
                 <br />
                 <br />
                 <br />
