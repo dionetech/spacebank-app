@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Web3 from "web3";
 
-const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+let web3;
+
+try {
+    web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545");
+} catch {
+    console.log("Failed");
+}
 
 export default function AuthContext() {
     const getToken = () => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createFilter } from "react-search-input";
 import GiftCardBox from "../../components/card/GiftCardBox";
+import { localGiftCard } from "../../data/giftCard";
 import {
-    localGiftCard,
     usGiftCard,
     frGiftCard,
     ghGiftCard,
@@ -15,7 +15,7 @@ import {
     esGiftCard,
     gbGiftCard,
     zmGiftCard,
-} from "../../data/giftCard";
+} from "../../data/itGiftCard";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 
 const internationalCountries = [
@@ -69,13 +69,7 @@ const internationalCountries = [
     },
 ];
 
-const GiftCard = ({
-    activeUser,
-    token,
-    reloadUser,
-    removeToken,
-    convertDate,
-}) => {
+const GiftCard = ({ activeUser, token, reloadUser, removeToken }) => {
     const [activeTab, setActiveTab] = useState("local");
 
     return (

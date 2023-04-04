@@ -112,17 +112,25 @@ const SecuritySettingsModal = ({
 
 const SecurityTab = ({ token, user, reloadUser, cycleOpenModal }) => {
     const [securityQuestion, setSecurityQuestion] = useState(
-        user.security.security_question
-            ? user.security.security_question.question
+        user.security
+            ? user.security.security_question
+                ? user.security.security_question.question
+                : securityQuestions[0]
             : securityQuestions[0]
     );
     const [answer, setAnswer] = useState(
-        user.security.security_question
-            ? user.security.security_question.answer
+        user.security
+            ? user.security.security_question
+                ? user.security.security_question.answer
+                : ""
             : ""
     );
     const [securityNote, setSecurityNote] = useState(
-        user.security.security_note ? user.security.security_note : ""
+        user.security
+            ? user.security.security_note
+                ? user.security.security_note
+                : ""
+            : ""
     );
     const [processing, setProcessing] = useState(false);
 

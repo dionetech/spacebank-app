@@ -15,7 +15,7 @@ const TransactionHeader = ({ balances }) => {
             true
         );
 
-        setAllBalance(val);
+        setAllBalance(val ? val : 0);
         return;
     }, [balances, setAllBalance]);
 
@@ -28,9 +28,6 @@ const TransactionHeader = ({ balances }) => {
                 </p>
             </div>
             <div>
-                {/* <button>
-                    <AiOutlineTransaction /> New Transaction
-                </button> */}
                 <Link to="/transactions/new">
                     <AiOutlineTransaction /> New Transaction
                 </Link>

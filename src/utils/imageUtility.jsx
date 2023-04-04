@@ -16,3 +16,9 @@ export const transactionIcon = (transaction) => {
     }
     return transaction.icon;
 };
+
+export const imageError = (e) => {
+    console.log("Image Error");
+    e.target.currentSrc = "hello";
+    console.log(e.target.currentSrc);
+};

@@ -1,26 +1,28 @@
 import { Link } from "react-router-dom";
-import { balanceList, navList } from "../../../data/sidebarList";
+import { navList } from "../../../data/sidebarList";
 
 const Sidebar = () => {
     return (
         <aside className="appCustomSidebar">
             <div className="iconBar">
-                <h3>Space <span> Bank</span></h3>
+                <h3>
+                    Space<span> Bank</span>
+                </h3>
             </div>
-            
+
             <div className="navListBody">
                 <h4>Navigation</h4>
 
                 <ul>
-                {
-                    navList.map((item, index) => {
+                    {navList.map((item, index) => {
                         return (
-                        <li key={index}>
-                            <Link to={`${item.link}`}>{item.icon} <i>{item.title}</i></Link>
-                        </li>
-                        )
-                    })
-                }
+                            <li key={index}>
+                                <Link to={`${item.link}`}>
+                                    {item.icon} <i>{item.title}</i>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
 
@@ -39,9 +41,8 @@ const Sidebar = () => {
                 }
                 </ul>
             </div> */}
-
         </aside>
-    )
-}
+    );
+};
 
 export default Sidebar;

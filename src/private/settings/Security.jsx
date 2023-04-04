@@ -5,6 +5,8 @@ import { convertDate } from "../../utils/convertDate";
 const SettingSecurity = ({ activeUser, token, reloadUser }) => {
     const [openModal, cycleOpenModal] = useCycle(false, true);
 
+    console.log("active user", activeUser);
+
     return (
         <section className="profileSettingsDiv">
             <SecuritySettingsModal
@@ -25,17 +27,21 @@ const SettingSecurity = ({ activeUser, token, reloadUser }) => {
                         <li>
                             <span>Security questions</span>
                             <p>
-                                {activeUser.security.security_question
+                                {activeUser.security
                                     ? activeUser.security.security_question
-                                          .question
+                                        ? activeUser.security.security_question
+                                              .question
+                                        : "Not set"
                                     : "Not set"}
                             </p>
                         </li>
                         <li>
                             <span>2-Step verification</span>
                             <p>
-                                {activeUser.security.twoStepVerification
-                                    ? "Enabled"
+                                {activeUser.security
+                                    ? activeUser.security.twoStepVerification
+                                        ? "Enabled"
+                                        : "Disabled"
                                     : "Disabled"}
                             </p>
                         </li>

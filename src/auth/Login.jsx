@@ -115,7 +115,7 @@ const Login = ({ setToken }) => {
                             </>
                         ) : (
                             <>
-                                <h2>Log in</h2>
+                                <h2>Sign in</h2>
                                 <p>
                                     Enter a proper email address and password to
                                     get started
@@ -169,9 +169,7 @@ const Login = ({ setToken }) => {
                                             </div>
                                         </div>
                                         <div className="authButtonDiv">
-                                            <motion.button
-                                                whileHover={{ scale: 1.1 }}
-                                                whileTap={{ scale: 0.9 }}
+                                            <button
                                                 disabled={processing}
                                                 className="spin"
                                             >
@@ -180,7 +178,7 @@ const Login = ({ setToken }) => {
                                                 ) : (
                                                     "Log in"
                                                 )}
-                                            </motion.button>
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

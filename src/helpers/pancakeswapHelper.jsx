@@ -1,8 +1,17 @@
 import Web3 from "web3";
-import { user } from "../auth/authToken";
+// import { user } from "../auth/authToken";
 import { pancakeABI, tokenABI } from "./abiHelper";
 
-const web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+const user = JSON.parse(window.localStorage.getItem("spacebank_user"));
+
+let web3;
+
+try {
+    web3 = new Web3("https://data-seed-prebsc-1-s1.binance.org:8545/");
+} catch {
+    console.log("Failed");
+}
+
 let pancakeSwapContract = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
 let adminWallet = "0x10ED43C718714eb63d5aA57B78B54704E256024E";
 let fees = 5; // %

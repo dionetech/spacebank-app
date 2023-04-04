@@ -20,6 +20,7 @@ import GiftCard from "./private/transaction/GiftCard";
 import { getBalanceOfToken } from "./helpers/pancakeswapHelper";
 import { currencyList } from "./helpers/CurrencyHelper";
 import Accounts from "./private/Accounts";
+import CoinAccount from "./private/account/CoinAccount";
 
 export const Router = () => {
     const { token, removeToken, setToken, user, createAccount, getBalance } =
@@ -69,39 +70,52 @@ export const Router = () => {
                 .then((res) => {
                     if (res.data.success) {
                         setToken(token, res.data.data);
-
                         const walletAddress = res.data.data.user.wallet.address;
-                        getBalance(walletAddress).then((bal) => {
-                            const tempBal = bal;
-                            setBalance(tempBal / 10 ** 18);
 
-                            getAllBalances(walletAddress)
-                                .then((bal) => {
-                                    if (bal) {
-                                        var tempBalance = [
-                                            tempBal / 10 ** 18,
-                                            bal[1],
-                                            bal[2],
-                                            bal[3],
-                                        ];
-                                        setBalances(tempBalance);
-                                        setTimeout(function () {
-                                            setLoading({
-                                                loading: false,
-                                                status: "success",
-                                            });
-                                        }, 500);
-                                    }
-                                })
-                                .catch((err) => {
-                                    console.log("ERR: ", err);
-                                    setLoading({
-                                        loading: false,
-                                        status: "failed",
-                                        error: "Network Error",
+                        getBalance(walletAddress)
+                            .then((bal) => {
+                                const tempBal = bal;
+                                setBalance(tempBal / 10 ** 18);
+
+                                getAllBalances(walletAddress)
+                                    .then((bal) => {
+                                        if (bal) {
+                                            var tempBalance = [
+                                                tempBal / 10 ** 18,
+                                                bal[1],
+                                                bal[2],
+                                                bal[3],
+                                            ];
+                                            setBalances(tempBalance);
+                                            setTimeout(function () {
+                                                setLoading({
+                                                    loading: false,
+                                                    status: "success",
+                                                });
+                                            }, 500);
+                                        }
+                                    })
+                                    .catch((err) => {
+                                        console.log("ERR: ", err);
+                                        setBalance();
+                                        setBalances([]);
+                                        setLoading({
+                                            loading: false,
+                                            status: "failed",
+                                            error: "Network Error",
+                                        });
                                     });
+                            })
+                            .catch((err) => {
+                                console.log("ERR: ", err);
+                                setBalance();
+                                setBalances([]);
+                                setLoading({
+                                    loading: false,
+                                    status: "failed",
+                                    error: "Network Error",
                                 });
-                        });
+                            });
                     }
                 })
                 .catch((error) => {
@@ -147,6 +161,25 @@ export const Router = () => {
                         element={
                             token ? (
                                 <Accounts
+                                    token={token}
+                                    activeUser={user}
+                                    removeToken={removeToken}
+                                    reloadUser={reloadUser}
+                                    balance={balance}
+                                    balances={balances}
+                                    loading={loading}
+                                />
+                            ) : (
+                                <Login setToken={setToken} />
+                            )
+                        }
+                    />
+
+                    <Route
+                        path="/accounts/:coin"
+                        element={
+                            token ? (
+                                <CoinAccount
                                     token={token}
                                     activeUser={user}
                                     removeToken={removeToken}

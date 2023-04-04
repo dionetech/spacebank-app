@@ -12,12 +12,11 @@ import {
     sendTOKEN,
 } from "../helpers/pancakeswapHelper";
 import { currencyList } from "../helpers/CurrencyHelper";
-import CryptoIcons from "../utils/cryptoIcons";
 import { successToast } from "../config";
 import BalanceLoader from "../utils/balanceLoader";
-import { convertDate } from "../utils/convertDate";
 import { coinValue } from "../utils/coinValue";
-import { transactionIcon } from "../utils/transactionIcon";
+import SingleTrList from "../components/card/SingleTrList";
+import SingleCoinList from "../components/card/SingleCoinList";
 
 const Dashboard = ({
     activeUser,
@@ -50,7 +49,7 @@ const Dashboard = ({
             "dollar",
             true
         );
-        setAllBalance(val);
+        setAllBalance(val ? val : 0);
         return;
     }, [balances, activeUser, setAllBalance]);
 
@@ -170,42 +169,11 @@ const Dashboard = ({
                                                             let bal =
                                                                 balances[index];
                                                             return (
-                                                                <li key={index}>
-                                                                    <div className="initialDiv">
-                                                                        <CryptoIcons
-                                                                            coin={
-                                                                                curr.name
-                                                                            }
-                                                                        />
-                                                                        <p>
-                                                                            <span className="titleSpan">
-                                                                                {
-                                                                                    curr.name
-                                                                                }
-                                                                            </span>
-                                                                            <span className="subtitleSpan">
-                                                                                Wallet
-                                                                                account
-                                                                            </span>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div>
-                                                                        <p>
-                                                                            <span className="titleSpan text-right">
-                                                                                {bal
-                                                                                    ? bal
-                                                                                    : 0}{" "}
-                                                                                {
-                                                                                    curr.name
-                                                                                }
-                                                                            </span>
-                                                                            <span className="subtitleSpan">
-                                                                                Wallet
-                                                                                balance
-                                                                            </span>
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
+                                                                <SingleCoinList
+                                                                    key={index}
+                                                                    curr={curr}
+                                                                    bal={bal}
+                                                                />
                                                             );
                                                         }
                                                     )}
@@ -237,42 +205,12 @@ const Dashboard = ({
                                                 .slice(0, 7)
                                                 .map((transaction, index) => {
                                                     return (
-                                                        <li key={index}>
-                                                            <div className="initialDiv">
-                                                                <img
-                                                                    src={transactionIcon(
-                                                                        transaction
-                                                                    )}
-                                                                    style={{
-                                                                        width: "26px",
-                                                                        height: "26px",
-                                                                    }}
-                                                                    alt="Transaction Card Icon"
-                                                                />
-                                                                <p>
-                                                                    <span className="titleSpan">
-                                                                        {
-                                                                            transaction.description
-                                                                        }
-                                                                    </span>
-                                                                    <span className="subtitleSpan">
-                                                                        {convertDate(
-                                                                            transaction.createdAt,
-                                                                            "fulldate"
-                                                                        )}
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-                                                            <div>
-                                                                <p>
-                                                                    <span className="titleSpan text-right">
-                                                                        {
-                                                                            transaction.amount
-                                                                        }
-                                                                    </span>
-                                                                </p>
-                                                            </div>
-                                                        </li>
+                                                        <SingleTrList
+                                                            key={index}
+                                                            transaction={
+                                                                transaction
+                                                            }
+                                                        />
                                                     );
                                                 })}
                                         </ul>

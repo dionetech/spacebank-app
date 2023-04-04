@@ -4,25 +4,21 @@ import { BiLogOut, BiCog } from "react-icons/bi";
 import { AiOutlineUser } from "react-icons/ai";
 
 const ProfileDropdown = ({ cycleOpenModal, removeToken }) => {
-
     const logUserOut = (e) => {
         e.preventDefault();
         removeToken();
         cycleOpenModal();
-    }
+    };
 
     return (
         <>
             <div className="dropdownContent profileDropdown">
                 <div className="dropdownCard">
                     <Link to="/settings" className="active">
-                        <BiCog /> Account Settings
+                        <BiCog /> Profile Settings
                     </Link>
-                    <Link to="/settings/authentication">
-                        <AiOutlineUser /> Authentication
-                    </Link>
-                    <Link to="/user/dealings/recharge">
-                        <IoIosRedo /> Quick deposit
+                    <Link to="/transactions">
+                        <IoIosRedo /> Transactions
                     </Link>
                     <Link to="/transactions/new/transfer">
                         <IoIosUndo /> Send Money
@@ -33,7 +29,7 @@ const ProfileDropdown = ({ cycleOpenModal, removeToken }) => {
                 </div>
             </div>
         </>
-    )
-}
+    );
+};
 
 export default ProfileDropdown;

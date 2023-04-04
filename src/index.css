@@ -52,6 +52,17 @@ body{
     -webkit-touch-callout: none!important;
 	scroll-behavior: smooth!important;
 }
+::-webkit-scrollbar {
+    width: 10px;
+	background-color: #F1F1F1;
+    padding: 10px!important;
+}
+::-webkit-scrollbar-thumb {
+    background-color: var(--black);
+    border-radius: 10px;
+}
+
+
 html{
     scroll-behavior: smooth!important;
 }
@@ -67,9 +78,10 @@ img{
     object-position: center!important;
 }
 .Toastify .Toastify__toast-body{
-    font-family: var(--karla)!important;
-	font-weight: 500!important;
-	font-size: 13px;
+    font-family: var(--inter)!important;
+	font-weight: 600!important;
+	font-size: 12px;
+    letter-spacing: -0.5px;
 }
 .alert{
     border: 1px solid var(--accent-color);
@@ -102,6 +114,24 @@ img{
 .subInfo strong{
     font-size: 14px;
     font-weight: 700!important;
+}
+
+/* Image Replacement */
+.replaceTrImage{
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background: #c0c0c0;
+    background: -webkit-linear-gradient(to right, #c0c0c0, #f1f1f1);
+    background: linear-gradient(to right, #c0c0c0, #f1f1f1);
+}
+.replaceCryptoImage{
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #c0c0c0;
+    background: -webkit-linear-gradient(to right, #c0c0c0, #f1f1f1);
+    background: linear-gradient(to right, #c0c0c0, #f1f1f1);
 }
 
 /* App Global Styles */
@@ -155,13 +185,12 @@ img{
     border-radius: 50%;
 }
 .authApp nav ul li a{
-    font-family: var(--secular);
-    font-weight: 700!important;
-    color: var(--dark-black);
-    font-size: 18px;
-    color: var(--accent-color);
+    font-family: var(--inter);
+    font-weight: 800!important;
+    font-size: 19px;
     margin-left: 8px;
-    color: orange;
+    color: var(--accent-color);
+    letter-spacing: -1px;
 }
 .authApp nav ul li a span{
     color: var(--black);
@@ -178,6 +207,7 @@ img{
     position: sticky!important;
     top: 0;
     height: 100vh;
+    margin-right: -15px;
 }
 .authApp .authSection .authGradientDiv div{
     border: none;
@@ -191,10 +221,11 @@ img{
     text-align: center;
     margin: 0px;
     padding: 50px 0px;
-    font-family: var(--secular);
-    font-weight: 200!important;
-    line-height: 35px;
-    font-size: 22px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    line-height: 30px;
+    font-size: 20px;
+    letter-spacing: -0.5px;
 }
 .authApp .authSection .authLoginSection{
     padding: 20px 120px;
@@ -204,19 +235,21 @@ img{
 }
 
 .authApp .authSection .authLoginSection h2{
-    font-family: var(--secular);
-    font-size: 30px;
-    font-weight: 800!important;
+    font-family: var(--inter);
+    font-size: 23px;
+    letter-spacing: -1px;
+    font-weight: 700!important;
     color: var(--black);
     margin: 0px;
 }
 .authApp .authSection .authLoginSection p{
     margin: 0px;
     color: var(--dark-slate);
-    font-family: var(--syne);
+    font-family: var(--inter);
     padding: 5px 2px;
-    font-weight: 500!important;
+    font-weight: 600!important;
     font-size: 14px;
+    letter-spacing: -0.5px;
 }
 .authApp .authSection .authLoginSection .qrCodeDiv{
     padding: 40px 20px;
@@ -241,9 +274,9 @@ img{
     border: 1.5px solid rgba(0,0,0,0.05)!important;
     background-color: #F5F6F7;
     padding: 10px;
-    font-family: var(--maitree);
-    font-weight: 500!important;
-    font-size: 13px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 12px;
     border-radius: 8px;
 }
 .authApp .authSection .authLoginSection .buttonDiv button svg{
@@ -257,23 +290,30 @@ img{
 }
 .authApp .authSection .authLoginSection .forgottenPasswordDiv a{
     font-size: 13px;
-    font-family: var(--syne);
-    font-weight: 500!important;
-    color: var(--accent-color);
-    padding: 5px 10px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    color: var(--dark-slate);
+    letter-spacing: -0.5px;
+    padding: 5px 0px;
+    transition: 0.3s all ease-in-out;
+}
+.authApp .authSection .authLoginSection .forgottenPasswordDiv a:hover{
+    color: var(--black);
 }
 .authApp .authSection .authLoginSection .noAccountDiv{
     padding: 20px 15px;
 }
 .authApp .authSection .authLoginSection .noAccountDiv span{
-    font-family: var(--syne);
-    font-weight: 500!important;
+    font-family: var(--inter);
+    font-weight: 600!important;
     color: var(--dark-slate);
     font-size: 14px;
+    letter-spacing: -0.5px;
     margin-top: auto;
 }
 .authApp .authSection .authLoginSection .noAccountDiv span a{
     transition: 0.3s all ease-in-out;
+    color: var(--accent-color);
 }
 
 .authApp .authSection .authLoginSection .authRegisterDiv{
@@ -288,37 +328,42 @@ img{
     width: 100%;
     outline: none!important;
     box-shadow: none!important;
-    border: 1.5px solid rgba(0,0,0,0.05)!important;
-    background-color: var(--accent-color);
+    background-color: var(--black);
     padding: 13px 20px;
     padding-bottom: 12px;
-    font-family: var(--syne);
-    font-weight: 500!important;
-    font-size: 13px;
-    border-radius: 8px;
+    border: 1.5px solid var(--black);
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    border-radius: 4px;
     color: var(--white);
     display: flex;
     align-content: center;
     justify-content: center;
+    transition: 0.3s all ease-in-out;
+}
+.authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button:hover{
+    transform: scale(1.05);
+}
+.authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button:focus{
+    transform: scale(0.9);
 }
 .authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button:disabled{
-    background-color: var(--accent-hover);
-    border: 2px solid var(--accent-hover);
+    background-color: rgba(0,0,0,0.09);
+    border: 1.5px solid rgba(0,0,0,0.05);
     filter: blur(0.5px) brightness(90%);
-    border: 1.5px solid transparent!important;
-    color: var(--accent-color);
-    padding: 16px 10px;
+    color: var(--black);
+    padding: 15px 10px;
+    cursor: no-drop;
 }
-
-/* .authApp .authSection .authLoginSection .authRegisterDiv .authButtonDiv button.spin{
-    padding: 17px 10px;
-} */
 
 .customLabel{
     font-family: var(--inter);
-    font-weight: 600!important;
+    font-weight: 700!important;
     color: rgba(0,0,0,0.8);
-    font-size: 12px;
+    font-size: 14px;
+    letter-spacing: -0.5px;
     padding: 0px 3px;
 }
 .customInput{
@@ -460,17 +505,19 @@ textarea.customInput{
     cursor: pointer;
 }
 .appCustomSidebar .iconBar h3{
-    font-family: var(--secular);
+    font-family: var(--inter);
     font-size: 18px;
     font-weight: 800!important;
     display: block;
     width: 100%;
     padding: 0px 10px;
     margin-top: 3px;
-    color: orange;
+    letter-spacing: -1px;
+    color: var(--accent-color);
 }
 .appCustomSidebar .iconBar h3 span{
     color: var(--black);
+    margin-left: -1px;
 }
 .appCustomSidebar .navListBody{
     padding: 15px 25px;
@@ -478,15 +525,17 @@ textarea.customInput{
 }
 .appCustomSidebar .navListBody h4{
     font-size: 15px;
-    font-family: var(--secular);
-    font-weight: 400!important;
+    font-family: var(--inter);
+    font-weight: 700!important;
+    letter-spacing: -0.5px;
     margin: 0px;
     padding: 0px 15px;
     color: var(--black);
 }
 .appCustomSidebar .navListBody ul{
     list-style: none;
-    padding: 10px 9px;
+    padding: 10px 20px;
+    padding-right: 0px;
     margin: 0px;
 }
 .appCustomSidebar .navListBody ul li{
@@ -498,8 +547,10 @@ textarea.customInput{
     align-items: center;
     padding: 10px 5px;
     color: var(--dark-slate);
-    font-family: var(--syne);
-    font-size: 13px;
+    font-family: var(--inter);
+    font-size: 12px;
+    font-weight: 600!important;
+    letter-spacing: -0.6px;
     transition: 0.3s all ease-in-out;
 }
 .appCustomSidebar .navListBody ul li a:hover{
@@ -509,7 +560,7 @@ textarea.customInput{
     color: var(--black);
 }
 .appCustomSidebar .navListBody ul li a svg{
-    margin-right: 12px;
+    margin-right: 7px;
 }
 .appCustomSidebar .navListBody ul li a i{
     font-style: normal;
@@ -554,9 +605,10 @@ textarea.customInput{
     align-items: center;
 }
 .appCustomNavbar ul div li.navbarTitle{
-    font-family: var(--cubano);
     font-size: 16px;
-    font-weight: 600!important;
+    font-family: var(--inter);
+    font-weight: 700!important;
+    letter-spacing: -0.8px;
     color: var(--dark-black);
 }
 .appCustomNavbar ul div input.searchInput{
@@ -595,13 +647,27 @@ textarea.customInput{
     border-radius: 50%;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
-    width: 33px!important;
-    height: 100%!important;
+    width: 30px!important;
+    height: 30px!important;
     display: flex;
     align-items: center;
     margin-left: 10px;
 }
 .appCustomNavbar ul div li img:hover{
+    transform: scale(0.8);
+}
+.appCustomNavbar ul div li .replaceNavImg{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #c0c0c0;
+    background: -webkit-linear-gradient(to right, #c0c0c0, #f1f1f1);
+    background: linear-gradient(to right, #c0c0c0, #f1f1f1); 
+    margin-left: 10px;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+}
+.appCustomNavbar ul div li .replaceNavImg:hover{
     transform: scale(0.8);
 }
 .gravatarImg.sb-avatar--gravatar{
@@ -656,7 +722,7 @@ textarea.customInput{
     padding: 5px 10px;
     width: 100%;
     display: block!important;
-    border: 2px solid rgba(0,0,0,0.05);
+    border: 1.5px solid rgba(0,0,0,0.03);
     box-shadow: none;
     background-color: var(--white);
     border-radius: 10px;
@@ -727,9 +793,10 @@ textarea.customInput{
     width: 100%;
     padding: 2px;
     color: var(--dark-slate);
-    font-family: var(--syne);
+    font-family: var(--inter);
     font-weight: 500!important;
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: -0.5px;
     transition: 0.3s all ease-in-out;
 }
 .appCustomFooter ul div li a:hover{
@@ -1066,8 +1133,9 @@ textarea.customInput{
     margin: 0px;
     color: var(--black);
     font-size: 16px;
-    font-family: var(--rubik);
-    font-weight: 500!important;
+    letter-spacing: -0.7px;
+    font-family: var(--inter);
+    font-weight: 700!important;
 }
 
 .dashboardSection .dashboardContent .transactionStatsDiv{
@@ -1131,7 +1199,7 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv img{
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: var(--black);
     border: 1.5px solid rgba(0,0,0,0.1);
     object-fit: contain!important;
     object-position: center!important;
@@ -2555,6 +2623,39 @@ textarea.customInput{
     padding: 20px 0px;
     padding-right: 75px;
 }
+.accountLoader{
+    padding: 20px 15px;
+    width: 100%;
+}
+.accountLoader .loadingStatus{
+    padding: 20px;
+    width: 100%;
+    height: 150px;
+    border-radius: 6px;
+    background-color: #f1f1f1;
+    display: flex;
+}
+.accountLoader .loadingStatus p.loader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    color: var(--black);
+    font-size: 20px;
+}
+.accountLoader .loadingStatus p.failed{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    color: var(--black);
+    font-size: 16px;
+    letter-spacing: -0.7px;
+    font-family: var(--inter);
+    font-weight: 700!important;
+}
 
     /* No Account Tab */
 .accountSection .noAccountTab{
@@ -2585,13 +2686,13 @@ textarea.customInput{
     letter-spacing: 0.5px;
 }
 .accountSection .noAccountTab .noAccountTabContent p{
-    font-family: var(--syne);
+    font-family: var(--inter);
     text-align: center;
     margin: 0px;
     padding: 15px 330px;
-    font-size: 13px;
-    line-height: px;
-    font-weight: 500!important;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+    font-weight: 600!important;
     color: var(--dark-slate);
 }
 .accountSection .noAccountTab .noAccountTabContent .buttonDiv{
@@ -2602,9 +2703,10 @@ textarea.customInput{
     align-items: center;
 }
 .accountSection .noAccountTab .noAccountTabContent .buttonDiv button{
-    font-family: var(--slab);
-    font-weight: 500!important;
-    font-size: 14px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 13px;
+    letter-spacing: -0.5px;
     box-shadow: none!important;
     background-color: transparent;
     padding: 10px;
@@ -2767,18 +2869,18 @@ textarea.customInput{
     justify-content: center;
     align-items: center;
     color: var(--white);
-    background-color: var(--accent-color);
+    background-color: var(--black);
     transition: 0.3s all ease-in-out;
     box-shadow: none!important;
     border: none!important;
     outline: none!important;
     padding: 15px 40px;
     color: var(--white);
-    font-family: var(--slab);
-    font-weight: 400!important;
+    font-family: var(--inter);
+    font-weight: 600!important;
     font-size: 13px;
-    letter-spacing: .5px;
-    border-radius: 8px;
+    letter-spacing: -0.5px;
+    border-radius: 4px;
 }
 .peer2peerSection .buttonDiv button svg{
 	font-size: 15px;
@@ -2818,9 +2920,10 @@ textarea.customInput{
     margin: 0px;
     margin-top: 10px;
     text-align: center;
-    font-family: var(--syne);
-    font-weight: 500!important;
-    font-size: 18px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
 }
 
 
@@ -2902,8 +3005,8 @@ textarea.customInput{
 .customBackdrop{
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(4px);
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
     z-index: 10000!important;
     display: flex;
     justify-content: center;
@@ -3059,11 +3162,11 @@ textarea.customInput{
     outline: none!important;
     padding: 11px 50px;
     color: var(--white);
-    font-family: var(--syne);
-    font-weight: 500!important;
+    font-family: var(--inter);
+    font-weight: 600!important;
     font-size: 14px;
-    letter-spacing: .5px;
-    border-radius: 8px;
+    letter-spacing: -0.5px;
+    border-radius: 4px;
 }
 .customModal.logoutModal div.modalContent .buttonDiv button:last-child{
 	background-color: red;
@@ -3153,13 +3256,13 @@ textarea.customInput{
 .customModal.transactionModal div.modalContent .buttonDiv button{
 	margin-left: 0px;
 	margin-right: 25px;
-	background-color: rgb(0, 82, 255, 0.1);
-	color: var(--accent-color);
+	background-color: rgb(0, 0, 0, 0.1);
+	color: var(--black);
 }
 .customModal.transactionModal div.modalContent .buttonDiv button:last-child{
 	margin-right: 0px;
 	margin-left: 25px;
-	background-color: #0052FF;
+	background-color: var(--black);
 	color: var(--white);
 }
 

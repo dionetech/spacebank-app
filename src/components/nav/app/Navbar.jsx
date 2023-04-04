@@ -1,12 +1,11 @@
-import { Link } from "react-router-dom";
-import { VscBell } from "react-icons/vsc";
 import ProfileDropdown from "../../dropdown/ProfileDropdown";
 import LogoutModal from "../../modal/LogoutModal";
 import { useCycle } from "framer-motion";
+import { useState } from "react";
 
 const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
-
     const [openModal, cycleOpenModal] = useCycle(false, true);
+    const [ifImageError, setIfImageError] = useState(false);
 
     return (
         <>
@@ -33,11 +32,16 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                             </Link>
                         </li> */}
                         <li className="customDropdown profile">
-                            <img
-                                src={user.profilePhoto}
-                                alt="User Image"
-                                style={{ width: "30px", height: "30px" }}
-                            />
+                            {!ifImageError ? (
+                                <img
+                                    src={user.profilePhoto}
+                                    alt="User Image"
+                                    style={{ width: "30px", height: "30px" }}
+                                    onError={() => setIfImageError(true)}
+                                />
+                            ) : (
+                                <div className="replaceNavImg"></div>
+                            )}
                             <ProfileDropdown
                                 removeToken={removeToken}
                                 cycleOpenModal={cycleOpenModal}
@@ -47,7 +51,7 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                 </ul>
             </nav>
         </>
-    )
-}
+    );
+};
 
 export default Navbar;

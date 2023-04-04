@@ -1,14 +1,13 @@
-import ProtectedLayout from "../layout/ProtectedLayout";
-// import { successToast } from "../config";
+import ProtectedLayout from "../../layout/ProtectedLayout";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { coinValue } from "../utils/coinValue";
-import { currencyList } from "../helpers/CurrencyHelper";
-import CryptoIcons from "../utils/cryptoIcons";
-import BalanceLoader from "../utils/balanceLoader";
+import { coinValue } from "../../utils/coinValue";
+import { currencyList } from "../../helpers/CurrencyHelper";
+import CryptoIcons from "../../utils/cryptoIcons";
+import BalanceLoader from "../../utils/balanceLoader";
 
-const Accounts = ({
+const CoinAccount = ({
     activeUser,
     token,
     balance,
@@ -37,7 +36,7 @@ const Accounts = ({
             "dollar"
         );
 
-        setAllBalance(val ? val : 0);
+        setAllBalance(val);
         setAllBalanceJSON(jsonBL);
         return;
     }, [balances, setAllBalance, setAllBalanceJSON]);
@@ -146,9 +145,7 @@ const Accounts = ({
                                                                     )}
                                                                 </span>
                                                                 <span>
-                                                                    <Link
-                                                                        to={`/accounts/${curr.name.toLowerCase()}`}
-                                                                    >
+                                                                    <Link to="/transactions">
                                                                         Transactions
                                                                     </Link>
                                                                 </span>
@@ -160,15 +157,11 @@ const Accounts = ({
                                         })}
                                     </>
                                 ) : (
-                                    <div className="accountLoader">
-                                        <BalanceLoader loading={loading} />
-                                    </div>
+                                    <BalanceLoader loading={loading} />
                                 )}
                             </>
                         ) : (
-                            <div className="accountLoader">
-                                <BalanceLoader loading={loading} />
-                            </div>
+                            <BalanceLoader loading={loading} />
                         )}
                     </div>
                 </div>
@@ -177,4 +170,4 @@ const Accounts = ({
     );
 };
 
-export default Accounts;
+export default CoinAccount;
