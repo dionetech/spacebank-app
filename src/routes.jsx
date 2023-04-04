@@ -133,7 +133,7 @@ export const Router = () => {
     };
 
     useEffect(() => {
-        return reloadUser;
+        reloadUser();
     }, []);
 
     return (
