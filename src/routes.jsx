@@ -54,7 +54,9 @@ export const Router = () => {
     }
 
     const reloadUser = () => {
+        console.log("Started Calling Reload User");
         if (token) {
+            console.log("Got past the token section");
             setLoading({
                 loading: true,
                 status: "in-progress",
@@ -125,6 +127,8 @@ export const Router = () => {
                         error: `Error: ${error}`,
                     });
                 });
+        } else {
+            console.log("Ok.... Didn't call again");
         }
     };
 

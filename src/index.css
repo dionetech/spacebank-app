@@ -1199,7 +1199,7 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div.initialDiv img{
     border-radius: 50%;
-    background-color: var(--black);
+    background-color: var(--white);
     border: 1.5px solid rgba(0,0,0,0.1);
     object-fit: contain!important;
     object-position: center!important;

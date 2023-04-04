@@ -3,7 +3,7 @@ import { convertDate } from "../../utils/convertDate";
 import { transactionIcon } from "../../utils/imageUtility";
 
 const SingleTrList = ({ transaction, trPage }) => {
-    const [ifImageError, setIfImageError] = useState(true);
+    const [ifImageError, setIfImageError] = useState(false);
 
     const getTransactionType = (type) => {
         if (type === "buy-airtime") {
