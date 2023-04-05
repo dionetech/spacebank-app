@@ -32,7 +32,7 @@ const Dashboard = ({
     const [assetModal, cycleAssetModal] = useCycle(false, true);
     const [transactions, setTransactions] = useState([]);
     const [allBalance, setAllBalance] = useState(0);
-    const [hideBalance, setHideBalance] = useState(true);
+    const [hideBalance, setHideBalance] = useState(false);
     // const [currency, setCurrency] = useState(["", "BNB", 18]);
     // const [currencyTo, setCurrencyTo] = useState([
     //     "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
