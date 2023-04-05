@@ -19,14 +19,14 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                         <li className="navbarTitle">{navTitle}</li>
                     </div>
                     <div>
-                        <form>
+                        {/* <form>
                             <input
                                 type="search"
                                 className="form-control searchInput"
                                 placeholder="Type to search ..."
                             />
                         </form>
-                        {/* <li>
+                        <li>
                             <Link href="/darkmode" id="bellIcon">
                                 <a href="/darkmode" onClick={toggleDarkmode}><BiMoon /></a>
                             </Link>

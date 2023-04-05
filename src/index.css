@@ -858,6 +858,12 @@ textarea.customInput{
     letter-spacing: -1px;
     color: var(--black);
 }
+.dashboardSection .dashboardHeader .currentBalance h3 span{
+    cursor: pointer;
+}
+.blurBalance{
+    filter: blur(5px);
+}
 .dashboardSection .dashboardHeader .currentBalance p{
     font-size: 12px;
     font-family: var(--inter);
@@ -948,6 +954,9 @@ textarea.customInput{
     font-weight: 700!important;
     margin: 0px;
 }
+.dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivContent h4 span{
+    cursor: pointer;
+}
 .dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivFooter{
     display: flex;
     justify-content: space-between;
@@ -956,14 +965,15 @@ textarea.customInput{
     color: var(--black);
     font-size: 10px;
     font-family: var(--inter);
-    font-weight: 500!important;
+    font-weight: 600!important;
+    letter-spacing: -0.5px;
     margin: 0px;
 }
 .dashboardSection .dashboardContent .dashboardStats .statsDiv .statsDivFooter span{
     color: var(--black);
     font-size: 10px;
-    font-family: var(--slab);
-    font-weight: 600!important;
+    font-family: var(--inter);
+    font-weight: 500!important;
 }
 .dashboardSection .dashboardContent .dashboardStats .statsDiv.incomeStats .statsDivFooter span, .dashboardSection .dashboardContent .dashboardStats .statsDiv.incomeStats .statsDivHeader span{
     color: var(--custom-green);

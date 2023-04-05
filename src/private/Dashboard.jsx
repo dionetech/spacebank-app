@@ -17,6 +17,7 @@ import BalanceLoader from "../utils/balanceLoader";
 import { coinValue } from "../utils/coinValue";
 import SingleTrList from "../components/card/SingleTrList";
 import SingleCoinList from "../components/card/SingleCoinList";
+import { getOutFlowTransactions } from "../utils/transactionUtility";
 
 const Dashboard = ({
     activeUser,
@@ -31,6 +32,7 @@ const Dashboard = ({
     const [assetModal, cycleAssetModal] = useCycle(false, true);
     const [transactions, setTransactions] = useState([]);
     const [allBalance, setAllBalance] = useState(0);
+    const [hideBalance, setHideBalance] = useState(true);
     // const [currency, setCurrency] = useState(["", "BNB", 18]);
     // const [currencyTo, setCurrencyTo] = useState([
     //     "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56",
@@ -91,7 +93,14 @@ const Dashboard = ({
             <section className="dashboardSection">
                 <div className="dashboardHeader">
                     <div className="currentBalance">
-                        <h3>${parseFloat(allBalance).toFixed(2)}</h3>
+                        <h3>
+                            <span
+                                className={hideBalance ? "blurBalance" : ""}
+                                onClick={() => setHideBalance(!hideBalance)}
+                            >
+                                ${parseFloat(allBalance).toFixed(2)}
+                            </span>
+                        </h3>
                         <p>
                             Total balance from all accounts <span>USD</span>
                         </p>
@@ -109,14 +118,28 @@ const Dashboard = ({
                             <div className="dashboardStats">
                                 <div className="statsDiv incomeStats">
                                     <div className="statsDivHeader">
-                                        <h5>Income</h5>
+                                        <h5>Inflow</h5>
                                         <span>
                                             <BsArrowUpRight />
                                         </span>
                                     </div>
                                     <div className="statsDivContent">
                                         <h4>
-                                            ${parseFloat(allBalance).toFixed(2)}
+                                            <span
+                                                className={
+                                                    hideBalance
+                                                        ? "blurBalance"
+                                                        : ""
+                                                }
+                                                onClick={() =>
+                                                    setHideBalance(!hideBalance)
+                                                }
+                                            >
+                                                $
+                                                {parseFloat(allBalance).toFixed(
+                                                    2
+                                                )}
+                                            </span>
                                         </h4>
                                     </div>
                                     <div className="statsDivFooter">
@@ -129,16 +152,35 @@ const Dashboard = ({
 
                                 <div className="statsDiv spendingStats">
                                     <div className="statsDivHeader">
-                                        <h5>Spendings</h5>
+                                        <h5>Outflow</h5>
                                         <span>
                                             <BsArrowDownLeft />
                                         </span>
                                     </div>
                                     <div className="statsDivContent">
-                                        <h4>$12.00</h4>
+                                        <h4>
+                                            <span
+                                                className={
+                                                    hideBalance
+                                                        ? "blurBalance"
+                                                        : ""
+                                                }
+                                                onClick={() =>
+                                                    setHideBalance(!hideBalance)
+                                                }
+                                            >
+                                                $12.00
+                                            </span>
+                                        </h4>
                                     </div>
                                     <div className="statsDivFooter">
-                                        <p>58 Transactions</p>
+                                        <p>
+                                            {getOutFlowTransactions(
+                                                transactions,
+                                                "length"
+                                            )}{" "}
+                                            Transactions
+                                        </p>
                                         <span>-2%</span>
                                     </div>
                                 </div>
