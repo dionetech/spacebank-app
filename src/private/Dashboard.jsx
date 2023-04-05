@@ -169,7 +169,11 @@ const Dashboard = ({
                                                     setHideBalance(!hideBalance)
                                                 }
                                             >
-                                                $12.00
+                                                $
+                                                {getOutFlowTransactions(
+                                                    transactions,
+                                                    "total-amount"
+                                                )}
                                             </span>
                                         </h4>
                                     </div>
