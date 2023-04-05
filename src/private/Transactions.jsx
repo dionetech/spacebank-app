@@ -15,7 +15,8 @@ const Transactions = ({ activeUser, token, removeToken, balances }) => {
             console.log("TR: ", activeUser.transactions);
             setTransactions(activeUser.transactions);
         };
-        return setTranFunc;
+        setTranFunc();
+        return;
     }, []);
 
     return (
