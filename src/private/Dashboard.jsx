@@ -17,7 +17,10 @@ import BalanceLoader from "../utils/balanceLoader";
 import { coinValue } from "../utils/coinValue";
 import SingleTrList from "../components/card/SingleTrList";
 import SingleCoinList from "../components/card/SingleCoinList";
-import { getOutFlowTransactions } from "../utils/transactionUtility";
+import {
+    getInFlowTransactions,
+    getOutFlowTransactions,
+} from "../utils/transactionUtility";
 
 const Dashboard = ({
     activeUser,
@@ -136,17 +139,22 @@ const Dashboard = ({
                                                 }
                                             >
                                                 $
-                                                {parseFloat(allBalance).toFixed(
-                                                    2
+                                                {getInFlowTransactions(
+                                                    transactions,
+                                                    "total-amount"
                                                 )}
                                             </span>
                                         </h4>
                                     </div>
                                     <div className="statsDivFooter">
                                         <p>
-                                            {transactions.length} Transactions
+                                            {getInFlowTransactions(
+                                                transactions,
+                                                "length"
+                                            )}{" "}
+                                            Transactions
                                         </p>
-                                        <span>+10%</span>
+                                        {/* <span>+10%</span> */}
                                     </div>
                                 </div>
 
@@ -185,7 +193,7 @@ const Dashboard = ({
                                             )}{" "}
                                             Transactions
                                         </p>
-                                        <span>-2%</span>
+                                        {/* <span>-2%</span> */}
                                     </div>
                                 </div>
                             </div>
