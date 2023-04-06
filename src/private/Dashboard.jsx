@@ -21,6 +21,7 @@ import {
     getInFlowTransactions,
     getOutFlowTransactions,
 } from "../utils/transactionUtility";
+import { bnbToDollar } from "../utils/currenyConverter";
 
 const Dashboard = ({
     activeUser,
@@ -139,10 +140,12 @@ const Dashboard = ({
                                                 }
                                             >
                                                 $
-                                                {getInFlowTransactions(
-                                                    transactions,
-                                                    "total-amount"
-                                                )}
+                                                {bnbToDollar(
+                                                    getInFlowTransactions(
+                                                        transactions,
+                                                        "total-amount"
+                                                    )
+                                                ).toFixed(2)}
                                             </span>
                                         </h4>
                                     </div>

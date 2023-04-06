@@ -30,7 +30,12 @@ const SendMoney = ({
                         setCurrentTab={setCurrentTab}
                     />
                     {currentTab === "p2p" && (
-                        <P2pTab token={token} reloadUser={reloadUser} />
+                        <P2pTab
+                            token={token}
+                            reloadUser={reloadUser}
+                            activeUser={activeUser}
+                            balances={balances}
+                        />
                     )}
                     {currentTab === "bank" && <BankTab token={token} />}
                     {currentTab === "crypto" && (
@@ -47,20 +52,120 @@ const SendMoney = ({
     );
 };
 
-const P2pTab = ({ token, reloadUser }) => {
+const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
     const [pinModal, cyclePinModal] = useCycle(false, true);
+    const [asset, setAsset] = useState("bnb");
     const [amount, setAmount] = useState("");
     const [description, setDescription] = useState("");
     const [username, setUsername] = useState("");
     const [processing, setProcessing] = useState(false);
 
+    const [sendTokenBal, setSendTokenBal] = useState(0);
+    const [sendToken, setSendToken] = useState("");
+
+    useEffect(() => {
+        if (balances) {
+            currencyList.map((curr, index) => {
+                if (curr.name.toLowerCase() === asset) {
+                    let bal = balances[index];
+                    setSendTokenBal(bal);
+                }
+            });
+        }
+    }, [asset, balances, sendTokenBal]);
+
+    const changeTokenOnSelect = (e) => {
+        const val = e.target.value;
+        setAsset(val);
+        currencyList.map((curr) => {
+            if (curr.name.toLowerCase() === val) {
+                setSendToken(curr.contract);
+            }
+        });
+    };
+
     const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
-        setTimeout(() => {
+
+        if (username === activeUser.user.username) {
             setProcessing(false);
-            cyclePinModal();
-        }, 2000);
+            errorToast("Can't send funds to yourself");
+            return;
+        }
+
+        axios({
+            method: "GET",
+            url: `${API_URL}/users/username/${username}`,
+            headers: {
+                "x-auth-token": token,
+            },
+        })
+            .then(async (res) => {
+                if (res.data.success) {
+                    const walletAddress = res.data.data.user.wallet.address;
+                    if (sendToken === "") {
+                        sendETH(
+                            activeUser.user.wallet.address,
+                            walletAddress,
+                            amount,
+                            activeUser.user.wallet.privateKey
+                        );
+                    } else {
+                        sendTOKEN(
+                            activeUser.user.wallet.address,
+                            walletAddress,
+                            amount,
+                            sendToken,
+                            activeUser.user.wallet.privateKey
+                        );
+                    }
+                    axios({
+                        method: "POST",
+                        data: {
+                            fromAddress: activeUser.user.wallet.address,
+                            toAddress: walletAddress,
+                            amount: amount,
+                            privateKey: activeUser.user.wallet.privateKey,
+                            networkIcon: asset,
+                            username: username,
+                        },
+                        url: `${API_URL}/transactions/send-money/p2p`,
+                        headers: {
+                            "x-auth-token": token,
+                        },
+                    })
+                        .then((res) => {
+                            if (res.data.success) {
+                                reloadUser();
+                                setTimeout(() => {
+                                    setProcessing(false);
+                                    successToast(
+                                        `You sent ${amount}${asset} to ${username}`
+                                    );
+                                }, 1000);
+                            }
+                        })
+                        .catch((error) => {
+                            console.log("ERROR: ", error);
+                            setProcessing(false);
+                            try {
+                                errorToast(error.response.data.error);
+                            } catch {
+                                errorToast("An error occured, try again");
+                            }
+                        });
+                }
+            })
+            .catch((error) => {
+                console.log("SECOND ERROR: ", error);
+                setProcessing(false);
+                try {
+                    errorToast(error.response.data.error);
+                } catch {
+                    errorToast("An error occured, try again");
+                }
+            });
     };
 
     return (
@@ -84,7 +189,7 @@ const P2pTab = ({ token, reloadUser }) => {
                                         htmlFor="spacebankFName"
                                         className="customLabel"
                                     >
-                                        Amount (₦)
+                                        Amount ($)
                                     </label>
                                     <input
                                         id="spacebankAmount"
@@ -100,7 +205,36 @@ const P2pTab = ({ token, reloadUser }) => {
                                 </div>
                             </div>
 
-                            <div className="col-6 modalFormCol">
+                            <div className="col-md-6 modalFormCol">
+                                <div className="form-group">
+                                    <label
+                                        htmlFor="spacebankAsset"
+                                        className="customLabel"
+                                    >
+                                        Asset ({asset.toUpperCase()})
+                                    </label>
+                                    <select
+                                        id="spacebankAsset"
+                                        name="spacebankAsset"
+                                        onChange={changeTokenOnSelect}
+                                        className="form-control selectDropdown"
+                                        defaultValue={asset}
+                                    >
+                                        {currencyList.map((curr, index) => {
+                                            return (
+                                                <option
+                                                    key={index}
+                                                    value={curr.name.toLowerCase()}
+                                                >
+                                                    {curr.name}
+                                                </option>
+                                            );
+                                        })}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="col-xl-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="spacebankTRUsername"
@@ -122,8 +256,7 @@ const P2pTab = ({ token, reloadUser }) => {
                                 </div>
                             </div>
 
-                            <div className="col-xl-12">
-                                <br />
+                            <div className="col-xl-6">
                                 <div className="form-group">
                                     <label
                                         htmlFor="spacebankDescription"
@@ -156,129 +289,6 @@ const P2pTab = ({ token, reloadUser }) => {
                             </motion.button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const P2pPinTab = ({ amount, description, username, token }) => {
-    const [pin, setPin] = useState("");
-    const [processing, setProcessing] = useState(false);
-
-    const sendFunds = (e) => {
-        e.preventDefault();
-        setProcessing(true);
-        console.log(username, amount, description, pin);
-        axios({
-            method: "POST",
-            data: {
-                token: token,
-                pin: pin,
-                amount: amount,
-                username: username,
-                reason: description,
-            },
-            url: `${API_URL}/user/p2p-transfer`,
-            headers: {
-                "x-auth-token": token,
-            },
-        })
-            .then((res) => {
-                setProcessing(false);
-                console.log("RES: ", res);
-                if (res.data.error) {
-                    errorToast(res.data.message);
-                    return "";
-                }
-            })
-            .catch((error) => {
-                setProcessing(false);
-                console.log("ERROR: ", error);
-                errorToast("An Error Occurred");
-            });
-    };
-
-    return (
-        <div className="p2pPinTab">
-            <h5>Confirm</h5>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>From</i>
-                    <span>NGN Balance</span>
-                </p>
-                <p>
-                    <i className="lastChild">Transaction Fee</i>
-                    <span>₦0.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>To</i>
-                    <span>{username}</span>
-                </p>
-                <p>
-                    <i className="lastChild">Amount</i>
-                    <span>₦{amount}.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>Message</i>
-                    <span>{description}</span>
-                </p>
-            </div>
-            <div className="enterPinDiv">
-                <p className="text-center">
-                    Please, type in your transaction PIN.
-                </p>
-                <form onSubmit={sendFunds}>
-                    <div className="row justify-content-center">
-                        <div className="col-xl-7">
-                            <div className="form-group">
-                                <input
-                                    id="spacebankTrPin"
-                                    name="spacebankTrPin"
-                                    type="text"
-                                    required={true}
-                                    value={pin}
-                                    onChange={(e) => setPin(e.target.value)}
-                                    className="form-control customInput appInput"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buttonDiv">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            type="submit"
-                            className="spin"
-                        >
-                            {processing ? <ImSpinner8 /> : "Confirm"}
-                        </motion.button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
-};
-
-const BankTab = ({ token }) => {
-    const [activeTab, setActiveTab] = useState("initial");
-    const [amount, setAmount] = useState("");
-    const [accountNumber, setAccountNumber] = useState("");
-    const [bank, setBank] = useState("");
-    const [description, setDescription] = useState("");
-    const [processing, setProcessing] = useState(false);
-
-    return (
-        <div className="newTransferSubTab">
-            <div className="row justify-content-center">
-                <div className="col-xl-8">
-                    <h5 className="notAvailable">
-                        This feature is not yet still
-                    </h5>
                 </div>
             </div>
         </div>
@@ -468,12 +478,135 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
     );
 };
 
+const P2pPinTab = ({ amount, description, username, token }) => {
+    const [pin, setPin] = useState("");
+    const [processing, setProcessing] = useState(false);
+
+    const sendFunds = (e) => {
+        e.preventDefault();
+        setProcessing(true);
+        console.log(username, amount, description, pin);
+        axios({
+            method: "POST",
+            data: {
+                token: token,
+                pin: pin,
+                amount: amount,
+                username: username,
+                reason: description,
+            },
+            url: `${API_URL}/user/p2p-transfer`,
+            headers: {
+                "x-auth-token": token,
+            },
+        })
+            .then((res) => {
+                setProcessing(false);
+                console.log("RES: ", res);
+                if (res.data.error) {
+                    errorToast(res.data.message);
+                    return "";
+                }
+            })
+            .catch((error) => {
+                setProcessing(false);
+                console.log("ERROR: ", error);
+                errorToast("An Error Occurred");
+            });
+    };
+
+    return (
+        <div className="p2pPinTab">
+            <h5>Confirm</h5>
+            <div className="pinEnteredInfo">
+                <p>
+                    <i>From</i>
+                    <span>NGN Balance</span>
+                </p>
+                <p>
+                    <i className="lastChild">Transaction Fee</i>
+                    <span>₦0.00</span>
+                </p>
+            </div>
+            <div className="pinEnteredInfo">
+                <p>
+                    <i>To</i>
+                    <span>{username}</span>
+                </p>
+                <p>
+                    <i className="lastChild">Amount</i>
+                    <span>₦{amount}.00</span>
+                </p>
+            </div>
+            <div className="pinEnteredInfo">
+                <p>
+                    <i>Message</i>
+                    <span>{description}</span>
+                </p>
+            </div>
+            <div className="enterPinDiv">
+                <p className="text-center">
+                    Please, type in your transaction PIN.
+                </p>
+                <form onSubmit={sendFunds}>
+                    <div className="row justify-content-center">
+                        <div className="col-xl-7">
+                            <div className="form-group">
+                                <input
+                                    id="spacebankTrPin"
+                                    name="spacebankTrPin"
+                                    type="text"
+                                    required={true}
+                                    value={pin}
+                                    onChange={(e) => setPin(e.target.value)}
+                                    className="form-control customInput appInput"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="buttonDiv">
+                        <motion.button
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            type="submit"
+                            className="spin"
+                        >
+                            {processing ? <ImSpinner8 /> : "Confirm"}
+                        </motion.button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+const BankTab = ({ token }) => {
+    const [activeTab, setActiveTab] = useState("initial");
+    const [amount, setAmount] = useState("");
+    const [accountNumber, setAccountNumber] = useState("");
+    const [bank, setBank] = useState("");
+    const [description, setDescription] = useState("");
+    const [processing, setProcessing] = useState(false);
+
+    return (
+        <div className="newTransferSubTab">
+            <div className="row justify-content-center">
+                <div className="col-xl-8">
+                    <h5 className="notAvailable">
+                        This feature is not yet still
+                    </h5>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const TransferNav = ({ currentTab, setCurrentTab }) => {
     return (
         <nav className="newTransferNav">
             <select onChange={(e) => setCurrentTab(e.target.value)}>
                 <option value="p2p">P2P Transaction</option>
-                <option value="bank">Bank Account</option>
+                {/* <option value="bank">Bank Account</option> */}
                 <option value="crypto">Crypto Wallet</option>
             </select>
             <ul>
@@ -485,14 +618,14 @@ const TransferNav = ({ currentTab, setCurrentTab }) => {
                         P2P Transaction
                     </span>
                 </li>
-                <li>
+                {/* <li>
                     <span
                         className={currentTab === "bank" ? "active" : ""}
                         onClick={() => setCurrentTab("bank")}
                     >
                         Bank Account
                     </span>
-                </li>
+                </li> */}
                 <li>
                     <span
                         className={currentTab === "crypto" ? "active" : ""}

@@ -31,6 +31,9 @@ const Navbar = ({ navTitle, toggleDarkmode, user, removeToken }) => {
                                 <a href="/darkmode" onClick={toggleDarkmode}><BiMoon /></a>
                             </Link>
                         </li> */}
+                        <li>
+                            <span>Hi, {user.username}</span>
+                        </li>
                         <li className="customDropdown profile">
                             {!ifImageError ? (
                                 <img
