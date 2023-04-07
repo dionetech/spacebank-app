@@ -2254,55 +2254,71 @@ textarea.customInput{
 }
 .transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab h5{
 	margin: 0px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	text-align: center;
-	font-size: 18px;
-	font-family: var(--secular);
-	font-weight: 600!important;
+	font-size: 17px;
+	font-family: var(--inter);
+	font-weight: 700!important;
+    letter-spacing: -0.5px;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo{
+.customModal div.modalContent .p2pPinTab{
+	border: none;
+	padding: 0px;
+    padding-right: 10px;
+}
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo{
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid rgba(0,0,0,0.02);
-	padding: 10px 1px;
+	border-bottom: 1px solid rgba(0,0,0,0.06);
+	padding: 7px 1px;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p{
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p{
 	margin: 0px;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p i{
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i{
 	display: block;
 	width: 100%;
 	font-style: normal;
-	font-size: 13px;
-	padding: 3px 0px;
-	font-family: var(--karla);
-	font-weight: 400!important;
+	font-size: 11px;
+	padding: 1px 0px;
+	font-family: var(--inter);
+	font-weight: 500!important;
+    letter-spacing: -0.5px;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p i.lastChild{
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i.lastChild{
 	text-align: right;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p span{
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span{
 	display: block;
 	width: 100%;
 	font-style: normal;
 	color: var(--black);
-	font-size: 15px;
-	padding: 3px 0px;
-	font-family: var(--karla);
+	font-size: 13px;
+	padding: 1px 0px;
+	font-family: var(--inter);
+    letter-spacing: -0.5px;
 	font-weight: 600!important;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .pinEnteredInfo p span:last-child{
+.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span:last-child{
 	text-align: right;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .enterPinDiv{
-	padding: 30px 0px;
+.customModal div.modalContent .p2pPinTab .enterPinDiv{
+	padding: 15px 0px;
+    padding-bottom: 0px;
 }
-.transactionSection .newTransferDiv .newTransferSubTab .p2pPinTab .enterPinDiv p{
+.customModal div.modalContent .p2pPinTab .enterPinDiv p{
 	margin: 0px;
 	margin-bottom: 15px;
-	font-family: var(--karla);
-	font-weight: 500!important;
+	font-family: var(--inter);
+    font-size: 13px;
+	font-weight: 600!important;
+    letter-spacing: -0.5px;
 	color: var(--black);
+}
+.customModal div.modalContent .enterPinDiv input{
+	text-align: center;
+    border-radius: 4px;
+    padding: 20px 5px;
 }
 .transactionSection.giftCardSection .giftCardNav{
     border: none;
@@ -3206,66 +3222,6 @@ textarea.customInput{
 }
 .customModal div.modalContent .buttonDiv button{
 	width: 100%;
-}
-.customModal div.modalContent .p2pPinTab{
-	border: none;
-	padding: 0px 20px;
-	padding-left: 15px;
-}
-.customModal div.modalContent .p2pPinTab h5{
-	margin: 0px;
-	margin-bottom: 20px;
-	text-align: center;
-	font-size: 18px;
-	font-family: var(--cubano);
-	font-weight: 500!important;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo{
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid rgba(0,0,0,0.06);
-	padding: 10px 1px;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo p{
-	margin: 0px;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i{
-	display: block;
-	width: 100%;
-	font-style: normal;
-	font-size: 13px;
-	padding: 3px 0px;
-	font-family: var(--karla);
-	font-weight: 400!important;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo p i.lastChild{
-	text-align: right;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span{
-	display: block;
-	width: 100%;
-	font-style: normal;
-	color: var(--black);
-	font-size: 15px;
-	padding: 3px 0px;
-	font-family: var(--karla);
-	font-weight: 600!important;
-}
-.customModal div.modalContent .p2pPinTab .pinEnteredInfo p span:last-child{
-	text-align: right;
-}
-.customModal div.modalContent .p2pPinTab .enterPinDiv{
-	padding: 30px 0px;
-}
-.customModal div.modalContent .p2pPinTab .enterPinDiv p{
-	margin: 0px;
-	margin-bottom: 15px;
-	font-family: var(--karla);
-	font-weight: 500!important;
-	color: var(--black);
-}
-.customModal div.modalContent .enterPinDiv input{
-	text-align: center;
 }
 .customModal.transactionModal div.modalContent h5.walletBalance{
     margin: 0px;

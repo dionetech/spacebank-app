@@ -70,7 +70,6 @@ export const Router = () => {
                 url: `${API_URL}/users/${user.user._id}`,
             })
                 .then((res) => {
-                    console.log("USER: ", res.data.data);
                     if (res.data.success) {
                         setToken(token, res.data.data);
                         const walletAddress = res.data.data.user.wallet.address;

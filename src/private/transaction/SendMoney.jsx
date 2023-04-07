@@ -4,9 +4,9 @@ import { motion, useCycle } from "framer-motion";
 import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
-import PinModal from "../../components/modal/PinModal";
 import { sendETH, sendTOKEN } from "../../helpers/pancakeswapHelper";
 import { currencyList } from "../../helpers/CurrencyHelper";
+import VerifyPinModal from "../../components/modal/VerifyPinModal";
 
 const SendMoney = ({
     activeUser,
@@ -62,6 +62,7 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
 
     const [sendTokenBal, setSendTokenBal] = useState(0);
     const [sendToken, setSendToken] = useState("");
+    const [recWalletAddress, setRecWalletAddress] = useState("");
 
     useEffect(() => {
         if (balances) {
@@ -103,62 +104,68 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
         })
             .then(async (res) => {
                 if (res.data.success) {
-                    const walletAddress = res.data.data.user.wallet.address;
-                    if (sendToken === "") {
-                        sendETH(
-                            activeUser.user.wallet.address,
-                            walletAddress,
-                            amount,
-                            activeUser.user.wallet.privateKey
-                        );
-                    } else {
-                        sendTOKEN(
-                            activeUser.user.wallet.address,
-                            walletAddress,
-                            amount,
-                            sendToken,
-                            activeUser.user.wallet.privateKey
-                        );
-                    }
-                    axios({
-                        method: "POST",
-                        data: {
-                            fromAddress: activeUser.user.wallet.address,
-                            toAddress: walletAddress,
-                            amount: amount,
-                            privateKey: activeUser.user.wallet.privateKey,
-                            networkIcon: asset,
-                            username: username,
-                        },
-                        url: `${API_URL}/transactions/send-money/p2p`,
-                        headers: {
-                            "x-auth-token": token,
-                        },
-                    })
-                        .then((res) => {
-                            if (res.data.success) {
-                                reloadUser();
-                                setTimeout(() => {
-                                    setProcessing(false);
-                                    successToast(
-                                        `You sent ${amount}${asset} to ${username}`
-                                    );
-                                }, 1000);
-                            }
-                        })
-                        .catch((error) => {
-                            console.log("ERROR: ", error);
-                            setProcessing(false);
-                            try {
-                                errorToast(error.response.data.error);
-                            } catch {
-                                errorToast("An error occured, try again");
-                            }
-                        });
+                    setRecWalletAddress(res.data.data.user.wallet.address);
+                    cyclePinModal();
                 }
             })
             .catch((error) => {
                 console.log("SECOND ERROR: ", error);
+                setProcessing(false);
+                try {
+                    errorToast(error.response.data.error);
+                } catch {
+                    errorToast(`An error occured: ${error.message}`);
+                }
+            });
+    };
+
+    const actionToTake = () => {
+        console.log("STK: ", sendToken);
+        console.log(recWalletAddress, amount);
+        if (sendToken === "") {
+            sendETH(
+                activeUser.user.wallet.address,
+                recWalletAddress,
+                amount,
+                activeUser.user.wallet.privateKey
+            );
+        } else {
+            sendTOKEN(
+                activeUser.user.wallet.address,
+                recWalletAddress,
+                amount,
+                sendToken,
+                activeUser.user.wallet.privateKey
+            );
+        }
+        axios({
+            method: "POST",
+            data: {
+                fromAddress: activeUser.user.wallet.address,
+                toAddress: recWalletAddress,
+                amount: amount,
+                privateKey: activeUser.user.wallet.privateKey,
+                networkIcon: asset,
+                username: username,
+            },
+            url: `${API_URL}/transactions/send-money/p2p`,
+            headers: {
+                "x-auth-token": token,
+            },
+        })
+            .then((res) => {
+                if (res.data.success) {
+                    reloadUser();
+                    setTimeout(() => {
+                        setProcessing(false);
+                        successToast(
+                            `You sent ${amount}${asset} to ${username}`
+                        );
+                    }, 1000);
+                }
+            })
+            .catch((error) => {
+                console.log("ERROR: ", error);
                 setProcessing(false);
                 try {
                     errorToast(error.response.data.error);
@@ -170,17 +177,15 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
 
     return (
         <div className="newTransferSubTab">
+            <VerifyPinModal
+                pinModal={pinModal}
+                cyclePinModal={cyclePinModal}
+                actionToTake={actionToTake}
+                activeUser={activeUser}
+                disableProcessing={() => setProcessing(false)}
+            />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
-                    <PinModal
-                        amount={amount}
-                        username={username}
-                        description={description}
-                        token={token}
-                        pinModal={pinModal}
-                        cyclePinModal={cyclePinModal}
-                        reloadUser={reloadUser}
-                    />
                     <form onSubmit={processTransaction}>
                         <div className="row">
                             <div className="col-6 modalFormCol">
@@ -369,14 +374,17 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                                 walletAddress
                             ).slice(0, 10)}...`
                         );
-                        cycleAssetModal();
                     }, 1000);
                 }
             })
             .catch((error) => {
                 console.log("ERROR: ", error);
                 setProcessing(false);
-                errorToast("An error occured");
+                try {
+                    errorToast(error.response.data.error);
+                } catch {
+                    errorToast("An error occured, try again");
+                }
             });
     };
 
