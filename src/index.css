@@ -2320,6 +2320,22 @@ textarea.customInput{
     border-radius: 4px;
     padding: 20px 5px;
 }
+#defaultPasswordText{
+    display: flex;
+    margin-top: -10px;
+}
+#defaultPasswordText span{
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    color: var(--white);
+    background-color: var(--black);
+    display: flex;
+    padding: 10px 15px;
+    border-radius: 2px;
+}
 .transactionSection.giftCardSection .giftCardNav{
     border: none;
 }

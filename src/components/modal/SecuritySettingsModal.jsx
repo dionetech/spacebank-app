@@ -59,13 +59,25 @@ const SecuritySettingsModal = ({
                                 <li>
                                     <button
                                         className={
+                                            activeTab === "trpin"
+                                                ? "active"
+                                                : ""
+                                        }
+                                        onClick={() => setActiveTab("trpin")}
+                                    >
+                                        Transaction Pin
+                                    </button>
+                                </li>
+                                {/* <li>
+                                    <button
+                                        className={
                                             activeTab === "2fa" ? "active" : ""
                                         }
                                         onClick={() => setActiveTab("2fa")}
                                     >
                                         2-Factor Authentication
                                     </button>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                         <div className="modalContent">
@@ -82,6 +94,17 @@ const SecuritySettingsModal = ({
                             )}
                             {activeTab === "password" ? (
                                 <PasswordTab
+                                    activeTab={activeTab}
+                                    token={token}
+                                    cycleOpenModal={cycleOpenModal}
+                                    user={user}
+                                    reloadUser={reloadUser}
+                                />
+                            ) : (
+                                ""
+                            )}
+                            {activeTab === "trpin" ? (
+                                <TransactionPin
                                     activeTab={activeTab}
                                     token={token}
                                     cycleOpenModal={cycleOpenModal}
@@ -309,6 +332,106 @@ const PasswordTab = ({ token, user, reloadUser, cycleOpenModal }) => {
                             className="customLabel"
                         >
                             New Password
+                        </label>
+                        <input
+                            id="spacebankPassword"
+                            name="spacebankPassword"
+                            type="text"
+                            required={true}
+                            value={newPassword}
+                            onChange={(e) => setNewPassword(e.target.value)}
+                            className="form-control customInput appInput"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="buttonDiv">
+                <button type="submit" className="spin" disabled={processing}>
+                    {processing ? <ImSpinner8 /> : "Update Password"}
+                </button>
+            </div>
+        </form>
+    );
+};
+
+const TransactionPin = ({ token, user, reloadUser, cycleOpenModal }) => {
+    const [password, setPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [processing, setProcessing] = useState(false);
+
+    const changePassword = (e) => {
+        e.preventDefault();
+        setProcessing(true);
+
+        if (String(password) !== String(user.user.transactionPassword)) {
+            errorToast("Incorrect password");
+            setProcessing(false);
+            return;
+        }
+
+        axios({
+            method: "PUT",
+            data: { password, newPassword },
+            url: `${API_URL}/users/${user.user._id}/update-transactionpassword`,
+            headers: {
+                "x-auth-token": token,
+            },
+        })
+            .then((res) => {
+                reloadUser();
+                if (res.data.success) {
+                    successToast("Transaction pin successfully updated");
+                    setProcessing(false);
+                    cycleOpenModal();
+                }
+            })
+            .catch((error) => {
+                try {
+                    errorToast(error.response.data.error);
+                } catch {
+                    errorToast("An error occured: ", error.message);
+                }
+                setProcessing(false);
+            });
+    };
+
+    return (
+        <form onSubmit={changePassword}>
+            {String(user.user.transactionPassword) === "1234" ? (
+                <legend id="defaultPasswordText">
+                    <span>Your default pin is: 1234</span>
+                </legend>
+            ) : (
+                ""
+            )}
+            <div className="row">
+                <div className="col-xl-6">
+                    <div className="form-group">
+                        <label
+                            htmlFor="spacebankPassword"
+                            className="customLabel"
+                        >
+                            Current Pin
+                        </label>
+                        <input
+                            id="spacebankPassword"
+                            name="spacebankPassword"
+                            type="text"
+                            required={true}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="form-control customInput appInput"
+                        />
+                    </div>
+                </div>
+
+                <div className="col-xl-6">
+                    <div className="form-group">
+                        <label
+                            htmlFor="spacebankNewPassword"
+                            className="customLabel"
+                        >
+                            New Pin
                         </label>
                         <input
                             id="spacebankPassword"

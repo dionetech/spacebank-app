@@ -5,8 +5,6 @@ import { convertDate } from "../../utils/convertDate";
 const SettingSecurity = ({ activeUser, token, reloadUser }) => {
     const [openModal, cycleOpenModal] = useCycle(false, true);
 
-    console.log("active user", activeUser);
-
     return (
         <section className="profileSettingsDiv">
             <SecuritySettingsModal

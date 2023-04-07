@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { motion, useCycle } from "framer-motion";
-import { API_URL, BEARER_TOKEN, errorToast, successToast } from "../../config";
+import { API_URL, errorToast, successToast } from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 import { sendETH, sendTOKEN } from "../../helpers/pancakeswapHelper";
 import { currencyList } from "../../helpers/CurrencyHelper";
 import VerifyPinModal from "../../components/modal/VerifyPinModal";
+import { Navigate } from "react-router-dom";
 
 const SendMoney = ({
     activeUser,
@@ -63,6 +64,7 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
     const [sendTokenBal, setSendTokenBal] = useState(0);
     const [sendToken, setSendToken] = useState("");
     const [recWalletAddress, setRecWalletAddress] = useState("");
+    const [redirectToTr, setRedirectToTr] = useState(false);
 
     useEffect(() => {
         if (balances) {
@@ -161,6 +163,7 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
                         successToast(
                             `You sent ${amount}${asset} to ${username}`
                         );
+                        setRedirectToTr(true);
                     }, 1000);
                 }
             })
@@ -177,12 +180,17 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
 
     return (
         <div className="newTransferSubTab">
+            {redirectToTr ? <Navigate to="/transactions" /> : ""}
             <VerifyPinModal
                 pinModal={pinModal}
                 cyclePinModal={cyclePinModal}
                 actionToTake={actionToTake}
                 activeUser={activeUser}
                 disableProcessing={() => setProcessing(false)}
+                description={description}
+                username={username}
+                amount={amount}
+                currency={asset}
             />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
@@ -194,7 +202,7 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
                                         htmlFor="spacebankFName"
                                         className="customLabel"
                                     >
-                                        Amount ($)
+                                        Amount ({asset.toUpperCase()})
                                     </label>
                                     <input
                                         id="spacebankAmount"
@@ -301,6 +309,7 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
 };
 
 const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
+    const [pinModal, cyclePinModal] = useCycle(false, true);
     const [asset, setAsset] = useState("bnb");
     const [amount, setAmount] = useState("");
     const [walletAddress, setWalletAddress] = useState("");
@@ -308,6 +317,7 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
 
     const [sendTokenBal, setSendTokenBal] = useState(0);
     const [sendToken, setSendToken] = useState("");
+    const [redirectToTr, setRedirectToTr] = useState(false);
 
     useEffect(() => {
         if (balances) {
@@ -333,7 +343,10 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
     const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
+        cyclePinModal();
+    };
 
+    const actionToTake = () => {
         if (sendToken === "") {
             sendETH(
                 activeUser.user.wallet.address,
@@ -374,6 +387,7 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                                 walletAddress
                             ).slice(0, 10)}...`
                         );
+                        setRedirectToTr(true);
                     }, 1000);
                 }
             })
@@ -390,6 +404,17 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
 
     return (
         <div className="newTransferSubTab">
+            {redirectToTr ? <Navigate to="/transactions" /> : ""}
+            <VerifyPinModal
+                pinModal={pinModal}
+                cyclePinModal={cyclePinModal}
+                actionToTake={actionToTake}
+                activeUser={activeUser}
+                disableProcessing={() => setProcessing(false)}
+                username={`${walletAddress.slice(0, 10)}...`}
+                amount={amount}
+                currency={asset}
+            />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
                     <form onSubmit={processTransaction}>

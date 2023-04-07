@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
 import { errorToast } from "../../config";
+import { bnbToDollar } from "../../utils/currenyConverter";
 
 const VerifyPinModal = ({
     pinModal,
@@ -9,6 +10,10 @@ const VerifyPinModal = ({
     activeUser,
     actionToTake,
     disableProcessing,
+    description,
+    username,
+    amount,
+    currency,
 }) => {
     const [processing, setProcessing] = useState(false);
     const [pin, setPin] = useState("");
@@ -51,29 +56,40 @@ const VerifyPinModal = ({
                                 <div className="pinEnteredInfo">
                                     <p>
                                         <i>From</i>
-                                        <span>NGN Balance</span>
+                                        <span>USD Balance</span>
                                     </p>
                                     <p>
                                         <i className="lastChild">
                                             Transaction Fee
                                         </i>
-                                        <span>₦0.00</span>
+                                        <span>$0.00</span>
                                     </p>
                                 </div>
                                 <div className="pinEnteredInfo">
                                     <p>
                                         <i>To</i>
-                                        <span>urbandev__</span>
+                                        <span>
+                                            {username ? username : "someone"}
+                                        </span>
                                     </p>
                                     <p>
                                         <i className="lastChild">Amount</i>
-                                        <span>$2.00</span>
+                                        <span>
+                                            $
+                                            {bnbToDollar(
+                                                parseFloat(amount)
+                                            ).toFixed(2)}
+                                        </span>
                                     </p>
                                 </div>
                                 <div className="pinEnteredInfo">
                                     <p>
                                         <i>Message</i>
-                                        <span>Flex bro</span>
+                                        <span>
+                                            {description
+                                                ? description
+                                                : `you are sending ${amount}${currency.toUpperCase()} to ${username}`}
+                                        </span>
                                     </p>
                                 </div>
                                 <div className="enterPinDiv">
