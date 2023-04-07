@@ -19,10 +19,6 @@ const SettingSecurity = ({ activeUser, token, reloadUser }) => {
                 <div className="settingDetailsDiv">
                     <ul>
                         <li>
-                            <span>Current password</span>
-                            <p>************</p>
-                        </li>
-                        <li>
                             <span>Security questions</span>
                             <p>
                                 {activeUser.security
@@ -34,6 +30,14 @@ const SettingSecurity = ({ activeUser, token, reloadUser }) => {
                             </p>
                         </li>
                         <li>
+                            <span>Current password</span>
+                            <p>************</p>
+                        </li>
+                        <li>
+                            <span>Transaction pin</span>
+                            <p>****</p>
+                        </li>
+                        {/* <li>
                             <span>2-Step verification</span>
                             <p>
                                 {activeUser.security
@@ -42,7 +46,7 @@ const SettingSecurity = ({ activeUser, token, reloadUser }) => {
                                         : "Disabled"
                                     : "Disabled"}
                             </p>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </>
