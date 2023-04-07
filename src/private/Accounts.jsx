@@ -147,7 +147,7 @@ const Accounts = ({
                                                                 </span>
                                                                 <span>
                                                                     <Link
-                                                                        to={`/accounts/${curr.name.toLowerCase()}`}
+                                                                        to={`/transactions?wallet=${curr.name.toLowerCase()}`}
                                                                     >
                                                                         Transactions
                                                                     </Link>

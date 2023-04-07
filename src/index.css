@@ -1261,9 +1261,10 @@ textarea.customInput{
 }
 .dashboardSection .dashboardContent .transactionStatsDiv  .emptyContent h5{
     text-align: center;
-    font-family: var(--secular);
-    font-weight: 500!important;
-    font-size: 19px;
+    font-family: var(--inter);
+    font-weight: 600!important;
+    font-size: 17px;
+    letter-spacing: -0.5px;
     margin-top: 10px;
 }
 
@@ -1981,10 +1982,11 @@ textarea.customInput{
     -webkit-box-shadow: 0px 12px 24px -12px rgba(0, 0, 0, 0.5)!important; */
 }
 .transactionSection .transactionList .emptyContent h5{
-    font-family: var(--secular);
-    font-weight: 500!important;
-    font-size: 18px;
+    font-family: var(--inter);
+    font-weight: 700!important;
+    font-size: 17px;
     margin-top: 10px;
+    letter-spacing: -1px;
     text-align: center;
 }
 
