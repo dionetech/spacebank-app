@@ -184,7 +184,7 @@ const Dashboard = ({
                                                 {getOutFlowTransactions(
                                                     transactions,
                                                     "total-amount"
-                                                )}
+                                                ).toFixed(5)}
                                             </span>
                                         </h4>
                                     </div>

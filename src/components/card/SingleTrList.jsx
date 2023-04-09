@@ -1,9 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { convertDate } from "../../utils/convertDate";
+import { bnbToDollar, nairaToDollar } from "../../utils/currenyConverter";
 import { transactionIcon } from "../../utils/imageUtility";
 
 const SingleTrList = ({ transaction, trPage }) => {
     const [ifImageError, setIfImageError] = useState(false);
+    const [trAmount, setTrAmount] = useState("");
+
+    useEffect(() => {
+        let amount;
+        if (transaction.extraInfo) {
+            if (transaction.extraInfo.amountIn === "naira") {
+                amount = nairaToDollar(parseInt(transaction.amount));
+                setTrAmount(amount);
+            }
+        } else {
+            setTrAmount(bnbToDollar(parseFloat(transaction.amount)));
+        }
+    }, []);
 
     const getTransactionType = (type) => {
         if (type === "buy-airtime") {
@@ -50,7 +64,7 @@ const SingleTrList = ({ transaction, trPage }) => {
                     <div>
                         <p>
                             <span className="titleSpan text-right">
-                                {transaction.amount}
+                                {parseFloat(trAmount)}
                             </span>
                         </p>
                     </div>
@@ -83,7 +97,7 @@ const SingleTrList = ({ transaction, trPage }) => {
                     <div>
                         <p>
                             <span className="titleSpan text-right">
-                                ₦{transaction.amount}
+                                ${parseFloat(trAmount).toFixed(2)}
                             </span>
                             <span className="subtitleSpan text-right">
                                 {convertDate(transaction.createdAt, "fulldate")}

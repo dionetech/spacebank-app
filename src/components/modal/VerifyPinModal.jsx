@@ -13,13 +13,19 @@ const VerifyPinModal = ({
     description,
     username,
     amount,
-    currency,
 }) => {
     const [processing, setProcessing] = useState(false);
     const [pin, setPin] = useState("");
 
+    const closeModal = () => {
+        setProcessing(false);
+        disableProcessing();
+        cyclePinModal();
+    };
+
     const pinFormAction = (e) => {
         e.preventDefault();
+        setProcessing(true);
         if (String(pin) !== String(activeUser.user.transactionPassword)) {
             setPin("");
             disableProcessing();
@@ -39,7 +45,7 @@ const VerifyPinModal = ({
             {pinModal && (
                 <motion.div
                     className="fixed-top customBackdrop p2pBackdrop"
-                    onClick={cyclePinModal}
+                    onClick={closeModal}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -85,11 +91,7 @@ const VerifyPinModal = ({
                                 <div className="pinEnteredInfo">
                                     <p>
                                         <i>Message</i>
-                                        <span>
-                                            {description
-                                                ? description
-                                                : `you are sending ${amount}${currency.toUpperCase()} to ${username}`}
-                                        </span>
+                                        <span>{description}</span>
                                     </p>
                                 </div>
                                 <div className="enterPinDiv">
@@ -110,7 +112,7 @@ const VerifyPinModal = ({
                                         <div className="buttonDiv">
                                             <motion.button
                                                 whileHover={{ scale: 1.1 }}
-                                                onClick={cyclePinModal}
+                                                onClick={closeModal}
                                                 type="button"
                                             >
                                                 Cancel

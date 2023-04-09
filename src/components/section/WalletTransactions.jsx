@@ -24,6 +24,12 @@ const BNBTab = ({ transactions }) => {
             if (!asset) return console.log("Falsy");
             if (asset === "bnb") {
                 dummyTr.push(tr);
+            } else {
+                if (tr.extraInfo) {
+                    if (tr.extraInfo.currency === "bnb") {
+                        dummyTr.push(tr);
+                    }
+                }
             }
         });
         setBnbTransactions(dummyTr);
@@ -70,6 +76,12 @@ const WBNBTab = ({ transactions }) => {
             if (!asset) return console.log("Falsy");
             if (asset === "wbnb") {
                 dummyTr.push(tr);
+            } else {
+                if (tr.extraInfo) {
+                    if (tr.extraInfo.currency === "wbnb") {
+                        dummyTr.push(tr);
+                    }
+                }
             }
         });
         setWbnbTransactions(dummyTr);
@@ -116,6 +128,12 @@ const USDTTab = ({ transactions }) => {
             if (!asset) return console.log("Falsy");
             if (asset === "usdt") {
                 dummyTr.push(tr);
+            } else {
+                if (tr.extraInfo) {
+                    if (tr.extraInfo.currency === "usdt") {
+                        dummyTr.push(tr);
+                    }
+                }
             }
         });
         setUsdtTransactions(dummyTr);
@@ -162,6 +180,12 @@ const BUSDTab = ({ transactions }) => {
             if (!asset) return console.log("Falsy");
             if (asset === "busd") {
                 dummyTr.push(tr);
+            } else {
+                if (tr.extraInfo) {
+                    if (tr.extraInfo.currency === "busd") {
+                        dummyTr.push(tr);
+                    }
+                }
             }
         });
         setBusdTransactions(dummyTr);

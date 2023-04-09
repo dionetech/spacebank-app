@@ -149,6 +149,10 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
                 privateKey: activeUser.user.wallet.privateKey,
                 networkIcon: asset,
                 username: username,
+                extraInfo: {
+                    currency: asset,
+                    amountIn: "bnb",
+                },
             },
             url: `${API_URL}/transactions/send-money/p2p`,
             headers: {
@@ -190,7 +194,6 @@ const P2pTab = ({ token, balances, activeUser, reloadUser }) => {
                 description={description}
                 username={username}
                 amount={amount}
-                currency={asset}
             />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
@@ -371,6 +374,10 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                 amount: amount,
                 privateKey: activeUser.user.wallet.privateKey,
                 networkIcon: asset,
+                extraInfo: {
+                    currency: asset,
+                    amountIn: asset,
+                },
             },
             url: `${API_URL}/transactions/crypto/send`,
             headers: {
@@ -413,7 +420,7 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                 disableProcessing={() => setProcessing(false)}
                 username={`${walletAddress.slice(0, 10)}...`}
                 amount={amount}
-                currency={asset}
+                description={`You are sending ${amount}${asset.toUpperCase()} to ${username}`}
             />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
@@ -506,108 +513,6 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    );
-};
-
-const P2pPinTab = ({ amount, description, username, token }) => {
-    const [pin, setPin] = useState("");
-    const [processing, setProcessing] = useState(false);
-
-    const sendFunds = (e) => {
-        e.preventDefault();
-        setProcessing(true);
-        console.log(username, amount, description, pin);
-        axios({
-            method: "POST",
-            data: {
-                token: token,
-                pin: pin,
-                amount: amount,
-                username: username,
-                reason: description,
-            },
-            url: `${API_URL}/user/p2p-transfer`,
-            headers: {
-                "x-auth-token": token,
-            },
-        })
-            .then((res) => {
-                setProcessing(false);
-                console.log("RES: ", res);
-                if (res.data.error) {
-                    errorToast(res.data.message);
-                    return "";
-                }
-            })
-            .catch((error) => {
-                setProcessing(false);
-                console.log("ERROR: ", error);
-                errorToast("An Error Occurred");
-            });
-    };
-
-    return (
-        <div className="p2pPinTab">
-            <h5>Confirm</h5>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>From</i>
-                    <span>NGN Balance</span>
-                </p>
-                <p>
-                    <i className="lastChild">Transaction Fee</i>
-                    <span>₦0.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>To</i>
-                    <span>{username}</span>
-                </p>
-                <p>
-                    <i className="lastChild">Amount</i>
-                    <span>₦{amount}.00</span>
-                </p>
-            </div>
-            <div className="pinEnteredInfo">
-                <p>
-                    <i>Message</i>
-                    <span>{description}</span>
-                </p>
-            </div>
-            <div className="enterPinDiv">
-                <p className="text-center">
-                    Please, type in your transaction PIN.
-                </p>
-                <form onSubmit={sendFunds}>
-                    <div className="row justify-content-center">
-                        <div className="col-xl-7">
-                            <div className="form-group">
-                                <input
-                                    id="spacebankTrPin"
-                                    name="spacebankTrPin"
-                                    type="text"
-                                    required={true}
-                                    value={pin}
-                                    onChange={(e) => setPin(e.target.value)}
-                                    className="form-control customInput appInput"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="buttonDiv">
-                        <motion.button
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            type="submit"
-                            className="spin"
-                        >
-                            {processing ? <ImSpinner8 /> : "Confirm"}
-                        </motion.button>
-                    </div>
-                </form>
             </div>
         </div>
     );

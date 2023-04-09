@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { ImSpinner8 } from "react-icons/im";
-import { motion } from "framer-motion";
-import { API_URL, DOLLAR_NAIRA, errorToast, successToast } from "../../config";
+import { motion, useCycle } from "framer-motion";
+import {
+    ADMIN_ADDRESS,
+    API_URL,
+    DOLLAR_NAIRA,
+    errorToast,
+    successToast,
+} from "../../config";
 import axios from "axios";
 import ProtectedLayout from "../../layout/ProtectedLayout";
 import { Navigate } from "react-router-dom";
 import { currencyList } from "../../helpers/CurrencyHelper";
 import { coinValue } from "../../utils/coinValue";
-import { dollarToBNB } from "../../utils/currenyConverter";
-import { sendETH } from "../../helpers/pancakeswapHelper";
+import { dollarToBNB, dollarToNaira } from "../../utils/currenyConverter";
+import { sendETH, sendTOKEN } from "../../helpers/pancakeswapHelper";
+import VerifyPinModal from "../../components/modal/VerifyPinModal";
 
 const networkList = [
     {
@@ -33,8 +40,6 @@ const networkList = [
     },
 ];
 
-const dollarRate = 750;
-
 const BuyAirtime = ({
     activeUser,
     token,
@@ -43,6 +48,7 @@ const BuyAirtime = ({
     balance,
     balances,
 }) => {
+    const [pinModal, cyclePinModal] = useCycle(false, true);
     const [amount, setAmount] = useState("");
     const [network, setNetwork] = useState("1");
     const [networkIcon, setNetworkIcon] = useState(
@@ -53,6 +59,8 @@ const BuyAirtime = ({
     const [processing, setProcessing] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [allBalance, setAllBalance] = useState({});
+    const [sendToken, setSendToken] = useState("");
+    const [trResponse, setTrResponse] = useState("");
 
     useEffect(() => {
         const val = coinValue(
@@ -76,30 +84,39 @@ const BuyAirtime = ({
         });
     };
 
-    const buyAirtime = (e) => {
+    const changeTokenOnSelect = (e) => {
+        const val = e.target.value;
+        setCurrency(val);
+        currencyList.map((curr) => {
+            if (curr.name.toLowerCase() === val) {
+                setSendToken(curr.contract);
+            }
+        });
+    };
+
+    const processTransaction = (e) => {
         e.preventDefault();
         setProcessing(true);
-
         if (amount < 1) {
-            errorToast("Amount cannot be less than $1");
+            errorToast("Airtime mount cannot be less than $1");
             setProcessing(false);
             return;
         }
+        cyclePinModal();
+    };
 
-        let currencyBalance;
-        const adminAddress = "0x5Ff33aECECa7fB5cE9CbEfC14b2eD5C87B1B6836";
+    const buyAirtime = () => {
+        // let currencyBalance;
+        const adminAddress = ADMIN_ADDRESS;
 
-        Object.keys(allBalance).map((key, index) => {
-            if (key === currency) {
-                currencyBalance = Object.values(allBalance)[index];
-                return;
-            }
-        });
+        // Object.keys(allBalance).map((key, index) => {
+        //     if (key === currency) {
+        //         currencyBalance = Object.values(allBalance)[index];
+        //         return;
+        //     }
+        // });
 
-        console.log("CCB: ", currencyBalance);
-        console.log("dTB: ", dollarToBNB(parseFloat(amount)));
-
-        if (currency === "bnb") {
+        if (sendToken === "") {
             sendETH(
                 activeUser.user.wallet.address,
                 adminAddress,
@@ -109,8 +126,8 @@ const BuyAirtime = ({
         } else {
             sendTOKEN(
                 activeUser.user.wallet.address,
-                walletAddress,
-                amount,
+                adminAddress,
+                dollarToBNB(parseFloat(amount)),
                 sendToken,
                 activeUser.user.wallet.privateKey
             );
@@ -121,8 +138,15 @@ const BuyAirtime = ({
             data: {
                 network,
                 phone,
-                amount: amount,
+                amount: dollarToNaira(parseFloat(amount)),
                 networkIcon,
+                fromAddress: activeUser.user.wallet.address,
+                toAddress: adminAddress,
+                privateKey: activeUser.user.wallet.privateKey,
+                extraInfo: {
+                    currency: currency,
+                    amountIn: "naira",
+                },
             },
             url: `${API_URL}/transactions/airtime/buy-airtime`,
             headers: {
@@ -130,7 +154,7 @@ const BuyAirtime = ({
             },
         })
             .then((res) => {
-                console.log("RES: ", res);
+                setProcessing(false);
                 reloadUser();
                 successToast(`You recharged $${amount} to ${phone}`);
                 setProcessing(false);
@@ -143,7 +167,7 @@ const BuyAirtime = ({
                     errorToast(error.response.data.error);
                     setRedirect(true);
                 } catch {
-                    errorToast("An Error Occurred");
+                    errorToast(`An Error Occurred: ${error.message}`);
                     setRedirect(true);
                 }
             });
@@ -156,12 +180,24 @@ const BuyAirtime = ({
             removeToken={removeToken}
         >
             {redirect ? <Navigate to="/transactions" /> : ""}
+            <VerifyPinModal
+                pinModal={pinModal}
+                cyclePinModal={cyclePinModal}
+                actionToTake={buyAirtime}
+                activeUser={activeUser}
+                disableProcessing={() => setProcessing(false)}
+                username={phone}
+                amount={dollarToBNB(parseFloat(amount))}
+                description={`You are purchasing airtime of $${parseFloat(
+                    amount
+                ).toFixed(2)}`}
+            />
             <section className="transactionSection">
                 <div className="newTransferDiv">
                     <div className="newTransferSubTab">
                         <div className="row justify-content-center">
                             <div className="col-xl-8">
-                                <form onSubmit={buyAirtime}>
+                                <form onSubmit={processTransaction}>
                                     <div className="row">
                                         <div className="col-6 modalFormCol">
                                             <div className="form-group">
@@ -259,10 +295,8 @@ const BuyAirtime = ({
                                                 <select
                                                     id="spacebankNetwork"
                                                     name="spacebankNetwork"
-                                                    onChange={(e) =>
-                                                        setCurrency(
-                                                            e.target.value
-                                                        )
+                                                    onChange={
+                                                        changeTokenOnSelect
                                                     }
                                                     className="form-control selectDropdown"
                                                     defaultValue={currency}
