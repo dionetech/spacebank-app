@@ -64,7 +64,7 @@ const SingleTrList = ({ transaction, trPage }) => {
                     <div>
                         <p>
                             <span className="titleSpan text-right">
-                                {parseFloat(trAmount)}
+                                ${parseFloat(trAmount).toFixed(2)}
                             </span>
                         </p>
                     </div>

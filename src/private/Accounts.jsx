@@ -69,9 +69,9 @@ const Accounts = ({
                         </p>
                     </div>
                     <div>
-                        <Link to="/transactions/new">
+                        {/* <Link to="/transactions/new">
                             <AiOutlinePlusCircle /> Open an account
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
 
