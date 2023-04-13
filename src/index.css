@@ -1252,6 +1252,16 @@ textarea.customInput{
     font-size: 10px;
     color: var(--dark-slate);
 }
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span.amountSpan{
+    font-weight: 600!important;
+    letter-spacing: -0.5px;
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span.amountSpan.green{
+    color: var(--green);
+}
+.dashboardSection .dashboardContent .transactionStatsDiv .transactionStatsContent ul li div p span.amountSpan.red{
+    color: var(--red);
+}
 .dashboardSection .dashboardContent .transactionStatsDiv  .emptyContent{
     border: none;
 }
@@ -1962,9 +1972,20 @@ textarea.customInput{
 .transactionSection .transactionList ul li div p span.titleSpan{
     font-family: var(--inter);
     font-weight: 500!important;
-    font-size: 12px;
+    font-size: 11px;
+    letter-spacing: -0.2px;
     color: var(--black);
     margin-bottom: 4px;
+}
+.transactionSection .transactionList ul li div p span.amountSpan{
+    font-weight: 600!important;
+    letter-spacing: -0.5px;
+}
+.transactionSection .transactionList ul li div p span.amountSpan.green{
+    color: var(--green);
+}
+.transactionSection .transactionList ul li div p span.amountSpan.red{
+    color: var(--red);
 }
 .transactionSection .transactionList ul li div p span.subtitleSpan{
     font-family: var(--inter);

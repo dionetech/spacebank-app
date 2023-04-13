@@ -1,17 +1,26 @@
 import { BiBarChart, BiNotepad, BiPieChart } from "react-icons/bi";
-import { AiFillDollarCircle, AiFillEuroCircle, AiFillPoundCircle, AiOutlineAccountBook, AiOutlineBars, AiOutlineCreditCard, AiOutlineTrademarkCircle, AiOutlineTransaction } from "react-icons/ai";
+import {
+    AiFillDollarCircle,
+    AiFillEuroCircle,
+    AiFillPoundCircle,
+    AiOutlineAccountBook,
+    AiOutlineBars,
+    AiOutlineCreditCard,
+    AiOutlineTrademarkCircle,
+    AiOutlineTransaction,
+} from "react-icons/ai";
 import { GiCog } from "react-icons/gi";
 
 export const navList = [
     {
         title: "Dashboard",
         icon: <BiPieChart />,
-        link: "/"
+        link: "/",
     },
     {
         title: "Accounts",
         icon: <AiOutlineAccountBook />,
-        link: "/accounts"
+        link: "/accounts",
     },
     // {
     //     title: "Cards",
@@ -21,7 +30,7 @@ export const navList = [
     {
         title: "Transactions",
         icon: <AiOutlineTransaction />,
-        link: "/transactions"
+        link: "/transactions",
     },
     // {
     //     title: "Invoicing",
@@ -33,24 +42,24 @@ export const navList = [
     //     icon: <AiOutlineTrademarkCircle />,
     //     link: "/trading"
     // },
-    {
-        title: "Reports",
-        icon: <BiBarChart />,
-        link: "/reports"
-    },
+    // {
+    //     title: "Reports",
+    //     icon: <BiBarChart />,
+    //     link: "/reports"
+    // },
     {
         title: "Settings",
         icon: <GiCog />,
-        link: "/settings"
+        link: "/settings",
     },
-]
+];
 
 export const navFooterList = [
     {
         title: "Dashboard",
         icon: <BiPieChart />,
         link: "/",
-        activeName: ""
+        activeName: "",
     },
     // {
     //     title: "Cards",
@@ -80,47 +89,47 @@ export const navFooterList = [
         title: "Settings",
         icon: <GiCog />,
         link: "/settings",
-        activeName: "settings"
+        activeName: "settings",
     },
-]
+];
 
 export const otherURL = [
     {
         title: "Accounts",
         icon: <AiOutlineAccountBook />,
-        link: "/accounts"
+        link: "/accounts",
     },
     {
         title: "Invoicing",
         icon: <BiNotepad />,
-        link: "/invoicing"
+        link: "/invoicing",
     },
     {
         title: "Trading",
         icon: <AiOutlineTrademarkCircle />,
-        link: "/trading"
+        link: "/trading",
     },
     {
         title: "Reports",
         icon: <BiBarChart />,
-        link: "/reports"
+        link: "/reports",
     },
-]
+];
 
 export const balanceList = [
     {
         title: "100,050.75 USD",
         icon: <AiFillDollarCircle />,
-        link: "/app"
+        link: "/app",
     },
     {
         title: "2310.40 EUR",
         icon: <AiFillEuroCircle />,
-        link: "/reports"
+        link: "/reports",
     },
     {
         title: "9455.50 GBP",
         icon: <AiFillPoundCircle />,
-        link: "/reports"
+        link: "/reports",
     },
-]
+];

@@ -20,6 +20,7 @@ const SingleTrList = ({ transaction, trPage }) => {
     }, []);
 
     const getTransactionType = (type) => {
+        console.log("TYPE: ", type);
         if (type === "buy-airtime") {
             return "Airtime Recharge";
         }
@@ -31,6 +32,33 @@ const SingleTrList = ({ transaction, trPage }) => {
         }
         if (type === "purchased-giftcard") {
             return "Purchased Giftcard";
+        }
+        if (type.split("-")[0] === "sent") {
+            return `Sent ${String(type.split("-")[1]).toUpperCase()}`;
+        }
+        if (type.split("-")[0] === "received") {
+            return `Received ${String(type.split("-")[1]).toUpperCase()}`;
+        }
+    };
+
+    const getTransactionColor = (type) => {
+        if (type === "buy-airtime") {
+            return "red";
+        }
+        if (type === "buy-data") {
+            return "red";
+        }
+        if (type === "pay-bill") {
+            return "red";
+        }
+        if (type === "purchased-giftcard") {
+            return "red";
+        }
+        if (type.split("-")[0] === "sent") {
+            return "red";
+        }
+        if (type.split("-")[0] === "received") {
+            return "green";
         }
     };
 
@@ -63,7 +91,11 @@ const SingleTrList = ({ transaction, trPage }) => {
                     </div>
                     <div>
                         <p>
-                            <span className="titleSpan text-right">
+                            <span
+                                className={`titleSpan text-right amountSpan ${getTransactionColor(
+                                    transaction.type
+                                )}`}
+                            >
                                 ${parseFloat(trAmount).toFixed(2)}
                             </span>
                         </p>
@@ -96,7 +128,11 @@ const SingleTrList = ({ transaction, trPage }) => {
                     </div>
                     <div>
                         <p>
-                            <span className="titleSpan text-right">
+                            <span
+                                className={`titleSpan text-right amountSpan ${getTransactionColor(
+                                    transaction.type
+                                )}`}
+                            >
                                 ${parseFloat(trAmount).toFixed(2)}
                             </span>
                             <span className="subtitleSpan text-right">

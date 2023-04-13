@@ -27,7 +27,7 @@ const SettingNav = ({ active, changeTab }) => {
                             <i>Security</i>
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link
                             to="/settings?tab=notification"
                             className={
@@ -38,7 +38,7 @@ const SettingNav = ({ active, changeTab }) => {
                             <VscBell />
                             <i>Notifications</i>
                         </Link>
-                    </li>
+                    </li> */}
                     {/* <li>
                         <Link
                             to="/settings?tab=payment"
