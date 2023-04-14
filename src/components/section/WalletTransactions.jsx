@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import SingleTrList from "../card/SingleTrList";
 
-const WalletTransactions = ({ transactions, activeTab }) => {
+const WalletTransactions = ({ transactions, activeTab, user }) => {
     const tab = activeTab.split("-")[1];
 
     return (
         <div className="transactionList">
-            {tab === "bnb" && <BNBTab transactions={transactions} />}
-            {tab === "wbnb" && <WBNBTab transactions={transactions} />}
-            {tab === "usdt" && <USDTTab transactions={transactions} />}
-            {tab === "busd" && <BUSDTab transactions={transactions} />}
+            {tab === "bnb" && (
+                <BNBTab user={user} transactions={transactions} />
+            )}
+            {tab === "wbnb" && (
+                <WBNBTab user={user} transactions={transactions} />
+            )}
+            {tab === "usdt" && (
+                <USDTTab user={user} transactions={transactions} />
+            )}
+            {tab === "busd" && (
+                <BUSDTab user={user} transactions={transactions} />
+            )}
         </div>
     );
 };
 
-const BNBTab = ({ transactions }) => {
+const BNBTab = ({ transactions, user }) => {
     const [bnbTransactions, setBnbTransactions] = useState([]);
 
     useEffect(() => {
@@ -45,6 +53,7 @@ const BNBTab = ({ transactions }) => {
                                 key={index}
                                 transaction={transaction}
                                 trPage={true}
+                                user={user}
                             />
                         );
                     })}
@@ -66,7 +75,7 @@ const BNBTab = ({ transactions }) => {
     );
 };
 
-const WBNBTab = ({ transactions }) => {
+const WBNBTab = ({ transactions, user }) => {
     const [wbnbTransactions, setWbnbTransactions] = useState([]);
 
     useEffect(() => {
@@ -97,6 +106,7 @@ const WBNBTab = ({ transactions }) => {
                                 key={index}
                                 transaction={transaction}
                                 trPage={true}
+                                user={user}
                             />
                         );
                     })}
@@ -118,7 +128,7 @@ const WBNBTab = ({ transactions }) => {
     );
 };
 
-const USDTTab = ({ transactions }) => {
+const USDTTab = ({ transactions, user }) => {
     const [usdtTransactions, setUsdtTransactions] = useState([]);
 
     useEffect(() => {
@@ -149,6 +159,7 @@ const USDTTab = ({ transactions }) => {
                                 key={index}
                                 transaction={transaction}
                                 trPage={true}
+                                user={user}
                             />
                         );
                     })}
@@ -170,7 +181,7 @@ const USDTTab = ({ transactions }) => {
     );
 };
 
-const BUSDTab = ({ transactions }) => {
+const BUSDTab = ({ transactions, user }) => {
     const [busdTransactions, setBusdTransactions] = useState([]);
 
     useEffect(() => {
@@ -201,6 +212,7 @@ const BUSDTab = ({ transactions }) => {
                                 key={index}
                                 transaction={transaction}
                                 trPage={true}
+                                user={user}
                             />
                         );
                     })}
