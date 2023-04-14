@@ -267,6 +267,7 @@ const Dashboard = ({
                                                             transaction={
                                                                 transaction
                                                             }
+                                                            user={activeUser}
                                                         />
                                                     );
                                                 })}

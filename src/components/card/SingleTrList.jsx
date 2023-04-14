@@ -3,11 +3,17 @@ import { convertDate } from "../../utils/convertDate";
 import { bnbToDollar, nairaToDollar } from "../../utils/currenyConverter";
 import { transactionIcon } from "../../utils/imageUtility";
 
-const SingleTrList = ({ transaction, trPage }) => {
+const SingleTrList = ({ transaction, trPage, user }) => {
     const [ifImageError, setIfImageError] = useState(false);
     const [trAmount, setTrAmount] = useState("");
+    const [isSender, setIsSender] = useState("");
 
     useEffect(() => {
+        if (user.user.wallet.address === transaction.sender) {
+            setIsSender(true);
+        } else {
+            setIsSender(false);
+        }
         let amount;
         if (transaction.extraInfo) {
             if (transaction.extraInfo.amountIn === "naira") {
@@ -15,7 +21,12 @@ const SingleTrList = ({ transaction, trPage }) => {
                 setTrAmount(amount);
             }
         } else {
-            setTrAmount(bnbToDollar(parseFloat(transaction.amount)));
+            if (transaction.icon === "usdt") {
+                setTrAmount(transaction.amount);
+            }
+            if (transaction.icon === "bnb") {
+                setTrAmount(bnbToDollar(transaction.amount));
+            }
         }
     }, []);
 
@@ -41,27 +52,6 @@ const SingleTrList = ({ transaction, trPage }) => {
         }
     };
 
-    const getTransactionColor = (type) => {
-        if (type === "buy-airtime") {
-            return "red";
-        }
-        if (type === "buy-data") {
-            return "red";
-        }
-        if (type === "pay-bill") {
-            return "red";
-        }
-        if (type === "purchased-giftcard") {
-            return "red";
-        }
-        if (type.split("-")[0] === "sent") {
-            return "red";
-        }
-        if (type.split("-")[0] === "received") {
-            return "green";
-        }
-    };
-
     return (
         <>
             {!trPage ? (
@@ -82,7 +72,9 @@ const SingleTrList = ({ transaction, trPage }) => {
                         )}
                         <p>
                             <span className="titleSpan">
-                                {transaction.description}
+                                {isSender
+                                    ? transaction.description
+                                    : transaction.receiverDescription}
                             </span>
                             <span className="subtitleSpan">
                                 {convertDate(transaction.createdAt, "fulldate")}
@@ -91,13 +83,15 @@ const SingleTrList = ({ transaction, trPage }) => {
                     </div>
                     <div>
                         <p>
-                            <span
-                                className={`titleSpan text-right amountSpan ${getTransactionColor(
-                                    transaction.type
-                                )}`}
-                            >
-                                ${parseFloat(trAmount).toFixed(2)}
-                            </span>
+                            {isSender ? (
+                                <span className="titleSpan text-right amountSpan red">
+                                    ${parseFloat(trAmount).toFixed(2)}
+                                </span>
+                            ) : (
+                                <span className="titleSpan text-right amountSpan green">
+                                    ${parseFloat(trAmount).toFixed(2)}
+                                </span>
+                            )}
                         </p>
                     </div>
                 </li>
