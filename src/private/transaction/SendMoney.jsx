@@ -420,7 +420,10 @@ const CryptoTab = ({ token, balances, activeUser, reloadUser }) => {
                 disableProcessing={() => setProcessing(false)}
                 username={`${walletAddress.slice(0, 10)}...`}
                 amount={amount}
-                description={`You are sending ${amount}${asset.toUpperCase()} to ${username}`}
+                description={`You are sending ${amount}${asset.toUpperCase()} to ${walletAddress.slice(
+                    0,
+                    10
+                )}...`}
             />
             <div className="row justify-content-center">
                 <div className="col-xl-8">
