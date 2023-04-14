@@ -46,7 +46,10 @@ const Transactions = ({ activeUser, token, removeToken, balances }) => {
                             setActiveTab={setActiveTab}
                         />
                         {activeTab === "all" && (
-                            <TransactionList transactions={transactions} />
+                            <TransactionList
+                                user={activeUser}
+                                transactions={transactions}
+                            />
                         )}
                         {activeTab.split("-")[0] === "wallet" && (
                             <WalletTransactions

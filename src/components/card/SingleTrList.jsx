@@ -122,13 +122,15 @@ const SingleTrList = ({ transaction, trPage, user }) => {
                     </div>
                     <div>
                         <p>
-                            <span
-                                className={`titleSpan text-right amountSpan ${getTransactionColor(
-                                    transaction.type
-                                )}`}
-                            >
-                                ${parseFloat(trAmount).toFixed(2)}
-                            </span>
+                            {isSender ? (
+                                <span className="titleSpan text-right amountSpan red">
+                                    ${parseFloat(trAmount).toFixed(2)}
+                                </span>
+                            ) : (
+                                <span className="titleSpan text-right amountSpan green">
+                                    ${parseFloat(trAmount).toFixed(2)}
+                                </span>
+                            )}
                             <span className="subtitleSpan text-right">
                                 {convertDate(transaction.createdAt, "fulldate")}
                             </span>

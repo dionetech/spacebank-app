@@ -1,6 +1,6 @@
 import SingleTrList from "../card/SingleTrList";
 
-const TransactionList = ({ transactions }) => {
+const TransactionList = ({ transactions, user }) => {
     return (
         <div className="transactionList">
             {transactions.length !== 0 ? (
@@ -11,6 +11,7 @@ const TransactionList = ({ transactions }) => {
                                 key={index}
                                 transaction={transaction}
                                 trPage={true}
+                                user={user}
                             />
                         );
                     })}
