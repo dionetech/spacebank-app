@@ -113,7 +113,9 @@ const SingleTrList = ({ transaction, trPage, user }) => {
                         )}
                         <p>
                             <span className="titleSpan">
-                                {transaction.description}
+                                {isSender
+                                    ? transaction.description
+                                    : transaction.receiverDescription}
                             </span>
                             <span className="subtitleSpan">
                                 {getTransactionType(transaction.type)}
